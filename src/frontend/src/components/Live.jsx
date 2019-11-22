@@ -84,7 +84,11 @@ class Live extends Component<Props, State> {
         });
 
         // add marker
-        this.marker = L.marker([this.state.tracks[0].x, this.state.tracks[0].y]).addTo(this.map);
+        this.marker = L.marker([this.state.tracks[0].x, this.state.tracks[0].y])
+            .bindTooltip("Klemen Kenda", {
+                permanent: true,
+                direction: 'right'
+            }).addTo(this.map);
 
         // updating
         this.countdown = setInterval(() => this.loadTracks(), 1000);
