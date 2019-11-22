@@ -1,0 +1,14 @@
+{
+  "name": "o-gpsy-frontend",
+  "version": "0.0.1",
+  "description": "Frontend for o-gpsy.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "orienteering"
+  ],
+  "author": "Klemen Kenda",
+  "license": "ISC"
+}
