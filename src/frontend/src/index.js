@@ -4,6 +4,16 @@ import './index.css';
 import App from './components/App.jsx';
 import * as serviceWorker from './serviceWorker';
 
+
+// initialize backend
+import { setBackend } from "./lib/Backend";
+// eslint-disable-next-line
+// import { RestBackend } from "./lib/Backend.rest";
+// eslint-disable-next-line
+import { MockBackend } from "./lib/Backend.mock";
+
+setBackend(new MockBackend());
+
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

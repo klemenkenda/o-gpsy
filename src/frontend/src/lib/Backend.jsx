@@ -1,8 +1,8 @@
 // o-gpsy backend
 
 export interface LiveBackend {
-    getCompetitors(event, done, err);
-    getCoordinates(event, done, err);
+    getCompetitors(event_id, done, err): void;
+    getCoordinates(event_id, done, err): void;
 }
 
 export interface Backend {
