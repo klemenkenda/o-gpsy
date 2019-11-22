@@ -1,6 +1,6 @@
 // main imports
 import React, { Component } from 'react';
-import { Router, Link } from 'react-router-dom';
+// import { Router, Link } from 'react-router-dom';
 
 // models
 

@@ -2,9 +2,7 @@ import React from 'react';
 import { 
     BrowserRouter as Router, 
     Switch,
-    Route,
-    Link,
-    Redirect 
+    Route
 } from "react-router-dom";
 
 import ReactRouterPropTypes from "react-router-prop-types";
@@ -24,10 +22,6 @@ type Props = {
 type State = { };
 
 class App extends React.Component<Props, State> {
-    constructor() {
-        super();
-    }
-
     render() {
         return (
             <Router>
