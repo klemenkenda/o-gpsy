@@ -10,5 +10,9 @@
     "orienteering"
   ],
   "author": "Klemen Kenda",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mariadb": "^2.1.3"
+  }
 }
