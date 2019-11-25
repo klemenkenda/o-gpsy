@@ -8,8 +8,9 @@ create table users (
     username varchar(50),
     password varchar(255),
     name varchar(50),
+    type int,
     constraint users_pk primary key (id)
-);
+) collate=utf8_slovenian_ci;
 
 -- create table for trackers for storing tracker information
 create table trackers (
@@ -19,7 +20,7 @@ create table trackers (
     name varchar(50),
     hw varchar(50),
     constraint trackers_pk primary key (id)
-);
+) collate=utf8_slovenian_ci;
 
 -- create table of events (linked to `id` in table `users`)
 create table events (
@@ -33,7 +34,7 @@ create table events (
     map varchar(255),
     corrdinates varchar(255),
     constraint events_pk primary key (id)
-);
+) collate=utf8_slovenian_ci;
 
 -- create table runners
 create table runners (
@@ -47,5 +48,5 @@ create table runners (
     track mediumtext,
     start time,
     constraint runners_pk primary key (id)
-);
+) collate=utf8_slovenian_ci;
 create index runners_event_id_i on runners (event_id);
