@@ -62,7 +62,7 @@ class App extends React.Component<Props, State> {
             <Router>
                 <Switch>
                     <Route path="/" exact={true}>
-                        <footer className="text-muted mt-5">
+                        <footer className="text-muted pt-4" style={{borderTop: "1px solid #eee"}}>
                             <div className="container">
                                 <p className="float-right">
                                     <a href="#home">Back to top</a>
