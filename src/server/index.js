@@ -11,7 +11,10 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
 app.get('/api/register/:u/:p/:x/:y/:t', (req, res) => {
-    console.log(req.params);
+    const x = req.params.x;
+    const y = req.params.y;
+    const ts = req.params.ts;
+    console.log(x, y, ts);
     res.send("OK");
 });
 
