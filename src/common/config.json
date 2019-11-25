@@ -1,0 +1,11 @@
+{
+    "storage": {
+        "ogpsy": {
+            "host": "localhost",
+            "root_password": "example",
+            "user": "ogpsy",
+            "password": "Th0uSha11S4v3",
+            "db": "ogpsy"
+        }
+    }
+}

@@ -1,4 +1,4 @@
-let config = require('../common/storage.json');
+let config = require('../common/config.json')["storage"];
 let mariadb = require('mariadb');
 let fs = require('fs');
 
