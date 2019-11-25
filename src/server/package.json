@@ -4,7 +4,8 @@
   "description": "Server for o-gpsy.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "keywords": [
     "orienteering"
@@ -12,6 +13,8 @@
   "author": "Klemen Kenda",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
     "mariadb": "^2.1.3"
   }
