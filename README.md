@@ -1,5 +1,5 @@
 # O-GPSY
-O-GPSY is another attempt to make following orienteering trainings easy. It is supposed to be an open source solution for the traditionally expensive alternatives (whici are usually better - for now :)).
+O-GPSY is another attempt to make following orienteering trainings easy. It is supposed to be an open source solution for the traditionally expensive alternatives (gpsseuranta, TracTrac, etc. which are usually better - for now :)).
 
 ## Components
 
@@ -12,5 +12,4 @@ O-GPSY is another attempt to make following orienteering trainings easy. It is s
 *TODO*:
 
 * `integrations/TMT250-server` - TMT250 tracker gateway for TCP requests
-* `integrations/TMT250-sms` - TMT250 tracker gateway (for Android phone) for SMS reports
-
+* `integrations/TMT250-sms` - TMT250 tracker gateway (for Android phone) for SMS requests
