@@ -1,6 +1,13 @@
 # O-GPSY
 O-GPSY is another attempt to make following orienteering trainings easy. It is supposed to be an open source solution for the traditionally expensive alternatives (gpsseuranta, TracTrac, etc. which are usually better - for now :)).
 
+The solution uses some traditional technologies like MariaDB and some standard web solutions like NodeJS, React, Bootstrap and Leaflet.
+
+*Currently we support the following technology:*
+
+* smart phone (with GPSLogger for Android)
+* Teltonika TMT250 (todo)
+
 ## Components
 
 * `common` - folder with config files
