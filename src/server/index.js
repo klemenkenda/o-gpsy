@@ -10,15 +10,9 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
-app.get('/api/register/:u/:p/:x/:y/:t', (req, res) => {
-    const x = req.params.x;
-    const y = req.params.y;
-    const ts = req.params.ts;
-    console.log(x, y, ts);
-    res.send("OK");
-});
+const router = express.Router();
 
-
-
+router.get('/api/register/:u/:p/:x/:y/:t', gps.writeCoordinates);
+app.use('/', router);
 
 app.listen(3000);
