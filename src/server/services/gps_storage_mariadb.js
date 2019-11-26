@@ -22,17 +22,21 @@ class MariaDBGPSStorageService {
             await conn.query('use ' + this.config.db);
 
             // create record
-            let record = x + "," + y + "," + t + ";";
+            let px = parseFloat(x);
+            let py = parseFloat(y);
+            let pt = parseInt(t);
 
-            // insert into db
-            let query = `update
-                runners, trackers
-            set
-                runners.track = if(runners.track IS NULL, ?, concat(runners.track, ?))
-            where
-                trackers.id = runners.tracker_id
+            let query = `
+                insert into points
+                (runner_id, ts, lat, lon)
+                values (
+                    (select runners.id from trackers, runners
+                        where trackers.id = runners.tracker_id),
+                    FROM_UNIXTIME(?), ?, ?
+                )
             `;
-            await conn.query(query, [record, record]);
+
+            await conn.query(query, [pt, px, py]);
 
         } catch(err) {
             console.log(err);

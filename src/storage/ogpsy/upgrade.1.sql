@@ -16,7 +16,7 @@ create table users (
 create table trackers (
     ts timestamp not null default current_timestamp,
     id int auto_increment,
-    imei varchar(50),
+    uuid varchar(20),
     name varchar(50),
     hw varchar(50),
     constraint trackers_pk primary key (id)
@@ -50,3 +50,13 @@ create table runners (
     constraint runners_pk primary key (id)
 ) collate=utf8_slovenian_ci;
 create index runners_event_id_i on runners (event_id);
+
+-- create points
+create table points (
+    ts timestamp not null default current_timestamp,
+    runner_id int,
+    lat double,
+    lon double
+);
+create index point_runner_id_i on points (runner_id);
+create index point_ts_i on points (ts);
