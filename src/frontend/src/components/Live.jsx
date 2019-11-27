@@ -85,21 +85,20 @@ class Live extends Component<Props, State> {
                 this.track.addLatLng(lat_lng);
             }
         }
+    }
 
+    updateTracks() {
+        if (this.state.tracks.length > 0) {
+            // fill track
+            let latlngs = this.state.tracks
+                .filter(x => x.ts > this.state.current_ts - 300)
+                .map((el, i) => [el.lat, el.lon]);
+            console.log(latlngs);
+            this.track.setLatLngs(latlngs);
+        }
     }
 
     componentDidMount() {
-        getBackend().live.getCompetitors(1,
-            (data) => {
-                this.setState({ competitors: data });
-            },
-            (err) => {
-                console.log("Error");
-            }
-        );
-
-        this.loadTracks(1);
-
         // create a map
         this.map = L.map('map', {
             center: [46.0420155, 14.4879161],
@@ -131,12 +130,23 @@ class Live extends Component<Props, State> {
         let imageBounds = [[46.040191, 14.47962], [46.049594, 14.498732]];
         this.mapImage = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
 
+        getBackend().live.getCompetitors(1,
+            (data) => {
+                console.log(data);
+                this.setState({ competitors: data, tracks: data[0].track });
+            },
+            (err) => {
+                console.log("Error");
+            }
+        );
+
         // updating
         this.countdown = setInterval(() => this.loadTracks(), 1000);
     }
 
     render() {
         this.updateMarkers();
+        this.updateTracks();
         return <div>
             <div id="map" style={{width: "100%", height: "100vh"}}>
             <LiveNavBar />

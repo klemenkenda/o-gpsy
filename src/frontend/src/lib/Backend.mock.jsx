@@ -7,9 +7,12 @@ export class MockLiveBackend implements LiveBackend {
     }
 
     getCompetitors(event, done, err) {
-        done({
-            0: { name: "Klemen Kenda", club: "OK Azimut", country: "Slovenia" }
-        })
+        done([{
+            "ts":"2019-11-27T14:10:54.000Z","id":1,"event_id":1,"tracker_id":1,
+            "name":"Klemen Kenda","club":"OK Azimut","country":"SLO",
+            "track":[{"ts":1574867257,"lon":14.4874174,"lat":46.0421246}],
+            "start": null}
+        ]);
     }
     getCoordinates(event, done, err) {
         this.comp_x += (Math.random() - 0.5) / 10000;

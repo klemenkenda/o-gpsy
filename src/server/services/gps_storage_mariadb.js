@@ -70,7 +70,7 @@ class MariaDBGPSStorageService {
             await conn.query('use ' + this.config.db);
 
             let query = `
-                select * from points order by ts desc limit 1
+                select UNIX_TIMESTAMP(ts) as ts, lat, lon from points order by ts desc limit 1
             `;
 
             let record = await conn.query(query);
@@ -85,16 +85,16 @@ class MariaDBGPSStorageService {
         }
     }
 
-    async getCompetitors(event) {
+    async getCompetitors(event_id) {
         let conn;
         try {
             conn = await this.pool.getConnection();
             await conn.query('use ' + this.config.db);
             let query = `
-                select * from runners
+                select * from runners where event_id = ?
             `;
 
-            let records = await conn.query(query);
+            let records = await conn.query(query, event_id);
             let track;
 
             await Promise.all(records.map(async (rec, i) => {

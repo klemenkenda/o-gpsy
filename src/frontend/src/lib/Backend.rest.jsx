@@ -8,9 +8,15 @@ export class RestLiveBackend implements LiveBackend {
     }
 
     getCompetitors(event, done, err) {
-        done({
-            0: { name: "Klemen Kenda", club: "OK Azimut", country: "Slovenia" }
-        })
+        axios.get("/api/competitors?event_id=" + event)
+            .then(result => {
+                done(result.data);
+            })
+            .catch(error => {
+                console.log(error);
+                err(error);
+            }
+        );
     }
 
     getCoordinates(event, done, err) {
