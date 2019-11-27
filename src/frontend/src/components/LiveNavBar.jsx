@@ -25,7 +25,7 @@ class LiveNavBar extends Component<Props, State> {
             <b>Options:</b>
             <Form>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Check type="checkbox" label="Show tail" />
+                    <Form.Check type="checkbox" label="Show tail (5 min)" value={true}/>
                     <Form.Check type="checkbox" label="Show label" />
                 </Form.Group>
             </Form>
