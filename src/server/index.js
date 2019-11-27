@@ -6,6 +6,7 @@ const path = require('path');
 const app = express();
 
 const gps = require('./controller/gps');
+const time = require('./controller/time');
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -48,6 +49,7 @@ app.use('/maps', express.static(MAPS_DIR));
 
 router.get('/register/:u/:p/:x/:y/:t', gps.writeCoordinates);
 router.get('/point/:u', gps.getPoint);
+router.get('/timestamp', time.getTime);
 
 app.use('/api', router);
 
