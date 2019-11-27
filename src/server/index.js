@@ -14,7 +14,8 @@ app.use(bodyParser.json());
 const router = express.Router();
 
 const REACT_BUILD_DIR = "../frontend/build";
-
+const MAPS_DIR = "public/maps";
+const PORT = 8000;
 
 /** Prepare GUI routes - React and some static stuff */
 function prepareGuiRoutes() {
@@ -43,10 +44,14 @@ function prepareGuiRoutes() {
     });
 }
 
+app.use('/maps', express.static(MAPS_DIR));
+
 router.get('/register/:u/:p/:x/:y/:t', gps.writeCoordinates);
 router.get('/point/:u', gps.getPoint);
+
 app.use('/api', router);
 
 prepareGuiRoutes();
 
-app.listen(8000);
+console.log("Starting server on port", PORT)
+app.listen(PORT);
