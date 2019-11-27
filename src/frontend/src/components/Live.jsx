@@ -93,7 +93,6 @@ class Live extends Component<Props, State> {
             let latlngs = this.state.tracks
                 .filter(x => x.ts > this.state.current_ts - 300)
                 .map((el, i) => [el.lat, el.lon]);
-            console.log(latlngs);
             this.track.setLatLngs(latlngs);
         }
     }
