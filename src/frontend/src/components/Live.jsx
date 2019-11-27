@@ -40,9 +40,7 @@ class Live extends Component<Props, State> {
         super(props);
         this.state = {
             competitors: [],
-            tracks: [
-                { lat: 46.0430155, lon: 14.4879161 },
-            ],
+            tracks: [],
             current_ts: 0
         };
     }
@@ -51,9 +49,11 @@ class Live extends Component<Props, State> {
         getBackend().live.getCoordinates(event_id,
             (data) => {
                 let track = this.state.tracks;
-                if (track[track.length - 1].ts) {
-                    if (track[track.length - 1].ts !== data.ts) {
-                        track.push(data);
+                if (track.length > 0) {
+                    if (track[track.length - 1].ts) {
+                        if (track[track.length - 1].ts !== data.ts) {
+                            track.push(data);
+                        }
                     }
                 } else {
                     track.push(data);
@@ -76,9 +76,12 @@ class Live extends Component<Props, State> {
     updateMarkers() {
         if (this.marker) {
             const len = this.state.tracks.length;
-            let lat_lng = new L.LatLng(this.state.tracks[len - 1].lat, this.state.tracks[len - 1].lon);
-            this.marker.setLatLng(lat_lng);
-            this.track.addLatLng(lat_lng);
+            console.log(this.state.tracks);
+            if (len > 0) {
+                let lat_lng = new L.LatLng(this.state.tracks[len - 1].lat, this.state.tracks[len - 1].lon);
+                this.marker.setLatLng(lat_lng);
+                this.track.addLatLng(lat_lng);
+            }
         }
 
     }
@@ -108,7 +111,7 @@ class Live extends Component<Props, State> {
         this.map.zoomControl.setPosition('topright');
 
         // add marker
-        this.marker = L.marker([this.state.tracks[0].lat, this.state.tracks[0].lon])
+        this.marker = L.marker([0, 0])
             .bindTooltip("Klemen Kenda", {
                 permanent: true,
                 direction: 'right'
