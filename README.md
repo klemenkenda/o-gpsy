@@ -6,7 +6,9 @@ The solution uses some traditional technologies like MariaDB and some standard w
 *Currently we support the following technology:*
 
 * smart phone (with GPSLogger for Android)
-* Teltonika TMT250 (todo)
+* Teltonika TMT250 (under development)
+
+Teltonika TMT250 AVL NodeJS driver is being developed at [here](http://github.com/klemenkenda/tmt250-node).
 
 ## Components
 
@@ -20,3 +22,11 @@ The solution uses some traditional technologies like MariaDB and some standard w
 
 * `integrations/TMT250-server` - TMT250 tracker gateway for TCP requests
 * `integrations/TMT250-sms` - TMT250 tracker gateway (for Android phone) for SMS requests
+
+## Production
+
+For production mode go to `src/client` and run `npm run build`. This will build the last version of the frontend into the `build` directory. This one gets automatically served with o-gpsy server in `src/server`. You start the server simply by `npm start`. The app will be served on port 8000.
+
+## Development
+
+Development server runs on port 3000. You start it simply by `npm start` in `src/frontend`. This will start react-tools and the changes will be automatically visited in the front end. Visit [http://localhost:3000](http://localhost:3000) for this version. This version uses the server running on port 8000 (see Production).
