@@ -18,7 +18,8 @@ type Props = { };
 
 type State = {
     competitors: [],
-    tracks: []
+    tracks: [],
+    current_ts: number
 };
 
 // fixing marker
@@ -38,9 +39,11 @@ class Live extends Component<Props, State> {
     constructor(props) {
         super(props);
         this.state = {
+            competitors: [],
             tracks: [
                 { lat: 46.0430155, lon: 14.4879161 },
-            ]
+            ],
+            current_ts: 0
         };
     }
 
@@ -60,6 +63,12 @@ class Live extends Component<Props, State> {
             },
             (err) => {
                 console.log("Error");
+            }
+        );
+
+        getBackend().live.getTime(
+            (data) => {
+                this.setState({ current_ts: data });
             }
         );
     }
@@ -105,7 +114,7 @@ class Live extends Component<Props, State> {
                 direction: 'right'
             }).addTo(this.map);
 
-        this.track = L.polyline([], { color: 'red', weight: 4, opacity: 0.8 }).addTo(this.map);
+        this.track = L.polyline([], { color: 'red', weight: 6, opacity: 0.8 }).addTo(this.map);
         // add map image
         let imageUrl = '/maps/ljubljana-vic.jpg';
         /*
