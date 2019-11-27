@@ -14,3 +14,10 @@ exports.writeCoordinates = (req, res) => {
     storage.addGPS(u, p, x, y, ts);
     res.send("OK");
 };
+
+exports.getPoint = async (req, res) => {
+    // extract data
+    const u = req.params.u;
+    const r = await storage.getPoint(u);
+    res.json(r);
+}

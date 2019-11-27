@@ -13,7 +13,8 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
 // defining types
-type Props = {};
+type Props = { };
+
 type State = {
     competitors: [],
     tracks: []
@@ -33,11 +34,12 @@ L.Icon.Default.mergeOptions({
  */
 class Live extends Component<Props, State> {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        console.log(this.props.match);
         this.state = {
             tracks: [
-                { x: 46.056946, y: 14.505751 },
+                { lat: 46.0430155, lon: 14.4879161 },
             ]
         };
     }
@@ -45,7 +47,9 @@ class Live extends Component<Props, State> {
     loadTracks(event_id) {
         getBackend().live.getCoordinates(event_id,
             (data) => {
-                this.setState({ tracks: data }, this.componentDidUpdate);
+                let track = this.state.tracks;
+                track.push(data);
+                this.setState({ tracks: track }, this.componentDidUpdate);
             },
             (err) => {
                 console.log("Error");
@@ -55,7 +59,8 @@ class Live extends Component<Props, State> {
 
     updateMarkers() {
         if (this.marker) {
-            let lat_lng = new L.LatLng(this.state.tracks[0].x, this.state.tracks[0].y);
+            const len = this.state.tracks.length;
+            let lat_lng = new L.LatLng(this.state.tracks[len - 1].lat, this.state.tracks[len - 1].lon);
             this.marker.setLatLng(lat_lng);
         }
     }
@@ -74,7 +79,7 @@ class Live extends Component<Props, State> {
 
         // create a map
         this.map = L.map('map', {
-            center: [46.056946, 14.505751],
+            center: [46.0420155, 14.4879161],
             zoom: 16,
             layers: [
                 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -84,7 +89,7 @@ class Live extends Component<Props, State> {
         });
 
         // add marker
-        this.marker = L.marker([this.state.tracks[0].x, this.state.tracks[0].y])
+        this.marker = L.marker([this.state.tracks[0].lat, this.state.tracks[0].lon])
             .bindTooltip("Klemen Kenda", {
                 permanent: true,
                 direction: 'right'

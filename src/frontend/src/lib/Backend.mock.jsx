@@ -18,6 +18,10 @@ export class MockLiveBackend implements LiveBackend {
             {x: this.comp_x, y: this.comp_y}
         ]);
     }
+
+    putCoordinates(u, p, x, y, t, done, err) {
+        done();
+    }
 }
 
 export class MockBackend implements Backend {

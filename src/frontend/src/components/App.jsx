@@ -14,6 +14,7 @@ import { Container, Navbar, Nav, Form, FormControl, Button } from 'react-bootstr
 // components
 import Home from "./Home";
 import Live from "./Live";
+import ProxyGPSRest from "./ProxyHTTPRest";
 
 // CSS
 import './App.css';
@@ -30,6 +31,7 @@ class App extends React.Component<Props, State> {
         return [
             <Router>
                 <Switch>
+                    <Route path="/register/:u/:p/:x/:y/:t" component={ProxyGPSRest} />
                     <Route path="/" exact={true}>
                         <Navbar bg="dark" variant="dark">
                             <Navbar.Brand href="#home">o-gpsy</Navbar.Brand>

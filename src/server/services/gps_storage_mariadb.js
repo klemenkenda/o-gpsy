@@ -47,6 +47,37 @@ class MariaDBGPSStorageService {
         }
     };
 
+    async getPoint(u) {
+        let conn;
+        let pool;
+
+        try {
+            // connecting to DB
+            pool = mariadb.createPool({
+                host: this.config.host,
+                user: this.config.user,
+                password: this.config.password,
+                multipleStatements: true
+            });
+            conn = await pool.getConnection();
+            await conn.query('use ' + this.config.db);
+
+            let query = `
+                select * from points order by ts desc limit 1
+            `;
+
+            let record = await conn.query(query);
+            return(record[0]);
+
+        } catch(err) {
+            console.log(err);
+            throw(err);
+        } finally {
+            if (conn) conn.end();
+            if (pool) pool.end();
+        }
+    }
+
 };
 
 module.exports = MariaDBGPSStorageService;

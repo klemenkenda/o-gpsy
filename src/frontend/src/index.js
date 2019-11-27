@@ -11,8 +11,10 @@ import { setBackend } from "./lib/Backend";
 // import { RestBackend } from "./lib/Backend.rest";
 // eslint-disable-next-line
 import { MockBackend } from "./lib/Backend.mock";
+import { RestBackend } from "./lib/Backend.rest";
 
-setBackend(new MockBackend());
+// setBackend(new MockBackend());
+setBackend(new RestBackend());
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

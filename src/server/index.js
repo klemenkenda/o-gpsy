@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 const router = express.Router();
 
 router.get('/api/register/:u/:p/:x/:y/:t', gps.writeCoordinates);
+router.get('/api/point/:u', gps.getPoint);
 app.use('/', router);
 
 app.listen(3000);
