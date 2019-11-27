@@ -22,7 +22,17 @@ create table trackers (
     constraint trackers_pk primary key (id)
 ) collate=utf8_slovenian_ci;
 
--- create table of events (linked to `id` in table `users`)
+-- create table of maps
+create table maps (
+    ts timestamp not null default current_timestamp,
+    id int auto_increment,
+    name varchar(255),
+    filename varchar(255),
+    coordinates varchar(255),
+    constraint maps_pk primary key (id)
+) collate=utf8_slovenian_ci;
+
+-- create table of events (linked to `id` in table `users`, linked to `id` in table ˛`maps`)
 create table events (
     ts timestamp not null default current_timestamp,
     id int auto_increment,
@@ -31,8 +41,7 @@ create table events (
     www varchar(255),
     start time,
     public boolean,
-    map varchar(255),
-    corrdinates varchar(255),
+    map_id int,
     constraint events_pk primary key (id)
 ) collate=utf8_slovenian_ci;
 
