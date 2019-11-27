@@ -95,6 +95,17 @@ class Live extends Component<Props, State> {
                 direction: 'right'
             }).addTo(this.map);
 
+        // add map image
+        let imageUrl = 'http://sentinel.ijs.si:8000/maps/ljubljana-vic.jpg';
+        /*
+        46.049578, 14.4795
+        46.049594, 14.498732
+        46.040151, 14.498755
+        46.040191, 14.47962
+        */
+        let imageBounds = [[46.040191, 14.47962], [46.049594, 14.498732]];
+        this.mapImage = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
+
         // updating
         this.countdown = setInterval(() => this.loadTracks(), 1000);
     }
