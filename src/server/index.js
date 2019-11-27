@@ -16,4 +16,4 @@ router.get('/api/register/:u/:p/:x/:y/:t', gps.writeCoordinates);
 router.get('/api/point/:u', gps.getPoint);
 app.use('/', router);
 
-app.listen(3000);
+app.listen(8000);
