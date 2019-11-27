@@ -131,7 +131,6 @@ class Live extends Component<Props, State> {
 
         getBackend().live.getCompetitors(1,
             (data) => {
-                console.log(data);
                 this.setState({ competitors: data, tracks: data[0].track });
             },
             (err) => {
