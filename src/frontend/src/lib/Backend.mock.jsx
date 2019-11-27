@@ -22,6 +22,10 @@ export class MockLiveBackend implements LiveBackend {
     putCoordinates(u, p, x, y, t, done, err) {
         done();
     }
+
+    getTime(done, err) {
+        done(Math.round(new Date().getTime() / 1000));
+    }
 }
 
 export class MockBackend implements Backend {

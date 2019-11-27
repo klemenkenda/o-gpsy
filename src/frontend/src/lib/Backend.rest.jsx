@@ -28,8 +28,19 @@ export class RestLiveBackend implements LiveBackend {
     putCoordinates(u, p, x, y, t, done, err) {
         axios.get("/api/register/" + u + "/" + p + "/" + x + "/" + y + "/" + t)
             .then(result => {
-                console.log(result.data);
                 done();
+            })
+            .catch(error => {
+                console.log(error);
+                err(error);
+            }
+        )
+    }
+
+    getTime(done, err) {
+        axios.get("/api/timestamp")
+            .then(result => {
+                done(result.data);
             })
             .catch(error => {
                 console.log(error);
