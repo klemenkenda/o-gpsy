@@ -21,3 +21,10 @@ exports.getPoint = async (req, res) => {
     const r = await storage.getPoint(u);
     res.json(r);
 }
+
+exports.getCompetitors = async (req, res) => {
+    // extract data
+    const event_id = req.params.event_id;
+    const r = await storage.getCompetitors(event_id);
+    res.json(r);
+}

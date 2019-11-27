@@ -69,6 +69,9 @@ class Live extends Component<Props, State> {
         getBackend().live.getTime(
             (data) => {
                 this.setState({ current_ts: data });
+            },
+            (err) => {
+                console.log(err);
             }
         );
     }
@@ -76,7 +79,6 @@ class Live extends Component<Props, State> {
     updateMarkers() {
         if (this.marker) {
             const len = this.state.tracks.length;
-            console.log(this.state.tracks);
             if (len > 0) {
                 let lat_lng = new L.LatLng(this.state.tracks[len - 1].lat, this.state.tracks[len - 1].lon);
                 this.marker.setLatLng(lat_lng);

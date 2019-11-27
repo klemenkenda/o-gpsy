@@ -50,6 +50,7 @@ app.use('/maps', express.static(MAPS_DIR));
 router.get('/register/:u/:p/:x/:y/:t', gps.writeCoordinates);
 router.get('/point/:u', gps.getPoint);
 router.get('/timestamp', time.getTime);
+router.get('/competitors', gps.getCompetitors);
 
 app.use('/api', router);
 

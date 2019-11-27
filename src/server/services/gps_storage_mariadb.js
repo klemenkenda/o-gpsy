@@ -4,6 +4,13 @@ class MariaDBGPSStorageService {
 
     constructor() {
         this.config = require('../../common/config.json').storage.ogpsy;
+        // connecting to DB
+        this.pool = mariadb.createPool({
+            host: this.config.host,
+            user: this.config.user,
+            password: this.config.password,
+            multipleStatements: true
+        });
     }
 
     async addGPS(u, p, x, y, t) {
@@ -75,6 +82,39 @@ class MariaDBGPSStorageService {
         } finally {
             if (conn) conn.end();
             if (pool) pool.end();
+        }
+    }
+
+    async getCompetitors(event) {
+        let conn;
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+            let query = `
+                select * from runners
+            `;
+
+            let records = await conn.query(query);
+            let track;
+
+            await Promise.all(records.map(async (rec, i) => {
+                let query = `
+                    select
+                        UNIX_TIMESTAMP(ts) as ts,
+                        lon,
+                        lat
+                    from points
+                    where runner_id = ?
+                `;
+                track = await conn.query(query, rec.id);
+                records[i].track = track;
+            }));
+            return(records);
+        } catch(err) {
+            console.log(err);
+            throw(err);
+        } finally {
+            if (conn) conn.end();
         }
     }
 
