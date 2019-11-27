@@ -36,7 +36,6 @@ class Live extends Component<Props, State> {
 
     constructor(props) {
         super(props);
-        console.log(this.props.match);
         this.state = {
             tracks: [
                 { lat: 46.0430155, lon: 14.4879161 },
@@ -48,7 +47,14 @@ class Live extends Component<Props, State> {
         getBackend().live.getCoordinates(event_id,
             (data) => {
                 let track = this.state.tracks;
-                track.push(data);
+                if (track[track.length - 1].ts) {
+                    if (track[track.length - 1].ts !== data.ts) {
+                        track.push(data);
+                    }
+                } else {
+                    track.push(data);
+                };
+
                 this.setState({ tracks: track }, this.componentDidUpdate);
             },
             (err) => {
