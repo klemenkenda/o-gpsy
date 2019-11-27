@@ -69,7 +69,9 @@ class Live extends Component<Props, State> {
             const len = this.state.tracks.length;
             let lat_lng = new L.LatLng(this.state.tracks[len - 1].lat, this.state.tracks[len - 1].lon);
             this.marker.setLatLng(lat_lng);
+            this.track.addLatLng(lat_lng);
         }
+
     }
 
     componentDidMount() {
@@ -103,7 +105,7 @@ class Live extends Component<Props, State> {
                 direction: 'right'
             }).addTo(this.map);
 
-        this.track = L.polyline([[]], { color: 'red' });
+        this.track = L.polyline([], { color: 'red', weight: 4, opacity: 0.8 }).addTo(this.map);
         // add map image
         let imageUrl = '/maps/ljubljana-vic.jpg';
         /*
