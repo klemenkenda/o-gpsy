@@ -1,11 +1,14 @@
 # O-GPSY
+
+> This software is still under heavy development.
+
 O-GPSY is another attempt to make following orienteering trainings easy. It is supposed to be an open source solution for the traditionally expensive alternatives (gpsseuranta, TracTrac, etc. which are usually better - for now :)).
 
 The solution uses some traditional technologies like MariaDB and some standard web solutions like NodeJS, React, Bootstrap and Leaflet.
 
 *Currently we support the following technology:*
 
-* smart phone (with GPSLogger for Android)
+* smart phone with [GPSLogger](http://gpslogger.app) for Android (test phase)
 * Teltonika TMT250 (under development)
 
 Teltonika TMT250 AVL NodeJS driver is being developed at [here](http://github.com/klemenkenda/tmt250-node).
