@@ -9,7 +9,7 @@ import ReactRouterPropTypes from "react-router-prop-types";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // bootstrap components
-import { Container, Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { Container, Navbar, Nav, Form, /*FormControl,*/ Button } from 'react-bootstrap';
 
 // components
 import Home from "./Home";
@@ -37,12 +37,13 @@ class App extends React.Component<Props, State> {
                             <Navbar.Brand href="#home">o-gpsy</Navbar.Brand>
                             <Nav className="mr-auto">
                                 <Nav.Link href="#home">Domov</Nav.Link>
-                                <Nav.Link href="#options">Opcije</Nav.Link>
                                 <Nav.Link href="#pricing">Najem</Nav.Link>
                             </Nav>
                             <Form inline>
+                                {/*
                                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                                 <Button variant="outline-light" className="mr-sm-2">Search</Button>
+                                */}
                                 <Button variant="outline-info">Log In</Button>
                             </Form>
                         </Navbar>
