@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 import { getBackend } from '../lib/Backend';
 
 // import subcomponents
+import LiveNavBar from './LiveNavBar';
 
 // import libraries
 import 'leaflet/dist/leaflet.css';
@@ -102,6 +103,7 @@ class Live extends Component<Props, State> {
                 direction: 'right'
             }).addTo(this.map);
 
+        this.track = L.polyline([[]], { color: 'red' });
         // add map image
         let imageUrl = '/maps/ljubljana-vic.jpg';
         /*
@@ -119,7 +121,11 @@ class Live extends Component<Props, State> {
 
     render() {
         this.updateMarkers();
-        return <div id="map" style={{width: "100%", height: "100vh"}}></div>
+        return <div>
+            <div id="map" style={{width: "100%", height: "100vh"}}>
+            <LiveNavBar />
+            </div>
+        </div>
     }
 
 }
