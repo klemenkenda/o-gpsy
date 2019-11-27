@@ -87,6 +87,7 @@ class Live extends Component<Props, State> {
                 }),
             ]
         });
+        this.map.zoomControl.setPosition('topright');
 
         // add marker
         this.marker = L.marker([this.state.tracks[0].lat, this.state.tracks[0].lon])
@@ -96,12 +97,12 @@ class Live extends Component<Props, State> {
             }).addTo(this.map);
 
         // add map image
-        let imageUrl = 'http://sentinel.ijs.si:8000/maps/ljubljana-vic.jpg';
+        let imageUrl = '/maps/ljubljana-vic.jpg';
         /*
-        46.049578, 14.4795
-        46.049594, 14.498732
-        46.040151, 14.498755
-        46.040191, 14.47962
+            46.049578, 14.4795
+            46.049594, 14.498732 (2)
+            46.040151, 14.498755
+            46.040191, 14.47962 (1)
         */
         let imageBounds = [[46.040191, 14.47962], [46.049594, 14.498732]];
         this.mapImage = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
