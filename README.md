@@ -2,6 +2,8 @@
 
 > This software is still under heavy development.
 
+[<image src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=8NMLS5RYUERDL&currency_code=EUR&source=url)
+
 O-GPSY is another attempt to make following orienteering trainings easy. It is supposed to be an open source solution for the traditionally expensive alternatives (gpsseuranta, TracTrac, etc. which are usually better - for now :)).
 
 The solution uses some traditional technologies like MariaDB and some standard web solutions like NodeJS, React, Bootstrap and Leaflet.
