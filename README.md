@@ -28,7 +28,7 @@ Teltonika TMT250 AVL NodeJS driver is being developed [here](http://github.com/k
 
 ## Production
 
-For production mode go to `src/client` and run `npm run build`. This will build the last version of the frontend into the `build` directory. This one gets automatically served with o-gpsy server in `src/server`. You start the server simply by `npm start`. The app will be served on port 8000.
+For production mode go to `src/frontend` and run `npm run build`. This will build the last version of the frontend into the `build` directory. This one gets automatically served with o-gpsy server in `src/server`. You start the server simply by `npm start`. The app will be served on port 8000.
 
 ## Development
 
