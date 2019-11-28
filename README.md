@@ -11,14 +11,14 @@ The solution uses some traditional technologies like MariaDB and some standard w
 * smart phone with [GPSLogger](http://gpslogger.app) for Android (test phase)
 * Teltonika TMT250 (under development)
 
-Teltonika TMT250 AVL NodeJS driver is being developed at [here](http://github.com/klemenkenda/tmt250-node).
+Teltonika TMT250 AVL NodeJS driver is being developed [here](http://github.com/klemenkenda/tmt250-node).
 
 ## Components
 
 * `common` - folder with config files
 * `docker` - folder with docker compose for MariaDB and Adminer
 * `frontend` - frontend based on Bootstrap, React and Leaflet (admin and viewer for users)
-* `server` - backend GUI server based on NodeJS and MariaDB; in addition it supports HTTP requests from trackers (such as smart phones using GPSLogger (for Android))
+* `server` - backend GUI server based on NodeJS and MariaDB; in addition it supports HTTP requests from trackers (such as smart phones using GPSLogger (for Android)
 * `storage` - folder with SQL definitions and others
 
 *TODO*:
