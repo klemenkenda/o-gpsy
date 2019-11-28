@@ -110,14 +110,16 @@ class Live extends Component<Props, State> {
         });
         this.map.zoomControl.setPosition('topright');
 
+        // add tail
+        this.track = L.polyline([], { color: 'red', weight: 6, opacity: 0.8 }).addTo(this.map);
         // add marker
-        this.marker = L.marker([0, 0])
+        this.marker = L.circleMarker([0, 0], { radius: 6, color: "black", weight: 1, fillColor: "red", fillOpacity: 1 })
             .bindTooltip("Klemen Kenda", {
-                permanent: true,
-                direction: 'right'
+                permanent: false,
+                direction: 'right',
+                offset: new L.Point(10, 0)
             }).addTo(this.map);
 
-        this.track = L.polyline([], { color: 'red', weight: 6, opacity: 0.8 }).addTo(this.map);
         // add map image
         let imageUrl = '/maps/ljubljana-vic.jpg';
         /*
