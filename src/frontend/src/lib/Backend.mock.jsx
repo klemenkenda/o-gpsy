@@ -17,9 +17,9 @@ export class MockLiveBackend implements LiveBackend {
     getCoordinates(event, done, err) {
         this.comp_x += (Math.random() - 0.5) / 10000;
         this.comp_y += (Math.random() - 0.5) / 10000;
-        done(
+        done([
             {lat: this.comp_x, lon: this.comp_y, ts: Math.round(new Date().getTime()/1000)}
-        );
+        ]);
     }
 
     putCoordinates(u, p, x, y, t, done, err) {

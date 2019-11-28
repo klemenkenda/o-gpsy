@@ -8,6 +8,7 @@ import { getBackend } from '../lib/Backend';
 
 // import subcomponents
 import LiveNavBar from './LiveNavBar';
+import Orienteer from './Orienteer.js';
 
 // import libraries
 import 'leaflet/dist/leaflet.css';
@@ -17,19 +18,11 @@ import L from 'leaflet';
 type Props = { };
 
 type State = {
+    orienteers: [],
     competitors: [],
     tracks: [],
     current_ts: number
 };
-
-// fixing marker
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-    iconUrl: require('leaflet/dist/images/marker-icon.png'),
-    shadowUrl: require('leaflet/dist/images/marker-shadow.png')
-});
-
 
 /**
  * Displaying production lines list.
@@ -43,11 +36,18 @@ class Live extends Component<Props, State> {
             tracks: [],
             current_ts: 0
         };
+        this.orienteers = [];
     }
 
     loadTracks(event_id) {
         getBackend().live.getCoordinates(event_id,
             (data) => {
+                if (this.orienteers.length === data.length) {
+                    data.forEach((el, i) => {
+                        this.orienteers[i].update(el);
+                    });
+                };   
+                /*
                 let track = this.state.tracks;
                 if (track.length > 0) {
                     if (track[track.length - 1].ts) {
@@ -60,6 +60,7 @@ class Live extends Component<Props, State> {
                 };
 
                 this.setState({ tracks: track }, this.componentDidUpdate);
+                */
             },
             (err) => {
                 console.log("Error");
@@ -77,6 +78,11 @@ class Live extends Component<Props, State> {
     }
 
     updateMarkers() {
+        this.orienteers.forEach((orienteer, i) => {
+            orienteer.updateMarker();
+        });
+        
+        /*
         if (this.marker) {
             const len = this.state.tracks.length;
             if (len > 0) {
@@ -85,6 +91,7 @@ class Live extends Component<Props, State> {
                 this.track.addLatLng(lat_lng);
             }
         }
+        */
     }
 
     updateTracks() {
@@ -110,30 +117,27 @@ class Live extends Component<Props, State> {
         });
         this.map.zoomControl.setPosition('topright');
 
-        // add tail
-        this.track = L.polyline([], { color: 'red', weight: 6, opacity: 0.8 }).addTo(this.map);
-        // add marker
-        this.marker = L.circleMarker([0, 0], { radius: 6, color: "black", weight: 1, fillColor: "red", fillOpacity: 1 })
-            .bindTooltip("Klemen Kenda", {
-                permanent: false,
-                direction: 'right',
-                offset: new L.Point(10, 0)
-            }).addTo(this.map);
-
         // add map image
-        let imageUrl = '/maps/ljubljana-vic.jpg';
+        // let imageUrl = '/maps/ljubljana-vic.jpg';
         /*
             46.049578, 14.4795
             46.049594, 14.498732 (2)
             46.040151, 14.498755
             46.040191, 14.47962 (1)
         */
+        /*
         let imageBounds = [[46.040191, 14.47962], [46.049594, 14.498732]];
         this.mapImage = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
+        */
 
         getBackend().live.getCompetitors(1,
             (data) => {
-                this.setState({ competitors: data, tracks: data[0].track });
+                this.orienteers = [];
+                data.forEach((el, i) => {
+                    console.log(el);
+                    this.orienteers.push(new Orienteer(el, this.map));
+                });
+                this.setState({ competitors: data, tracks: data[0].track });                
             },
             (err) => {
                 console.log("Error");
@@ -146,7 +150,7 @@ class Live extends Component<Props, State> {
 
     render() {
         this.updateMarkers();
-        this.updateTracks();
+        // this.updateTracks();
         return <div>
             <div id="map" style={{width: "100%", height: "100vh"}}>
             <LiveNavBar />
