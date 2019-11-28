@@ -47,20 +47,6 @@ class Live extends Component<Props, State> {
                         this.orienteers[i].update(el);
                     });
                 };   
-                /*
-                let track = this.state.tracks;
-                if (track.length > 0) {
-                    if (track[track.length - 1].ts) {
-                        if (track[track.length - 1].ts !== data.ts) {
-                            track.push(data);
-                        }
-                    }
-                } else {
-                    track.push(data);
-                };
-
-                this.setState({ tracks: track }, this.componentDidUpdate);
-                */
             },
             (err) => {
                 console.log("Error");
@@ -80,18 +66,7 @@ class Live extends Component<Props, State> {
     updateMarkers() {
         this.orienteers.forEach((orienteer, i) => {
             orienteer.updateMarker();
-        });
-        
-        /*
-        if (this.marker) {
-            const len = this.state.tracks.length;
-            if (len > 0) {
-                let lat_lng = new L.LatLng(this.state.tracks[len - 1].lat, this.state.tracks[len - 1].lon);
-                this.marker.setLatLng(lat_lng);
-                this.track.addLatLng(lat_lng);
-            }
-        }
-        */
+        });        
     }
 
     updateTracks() {
