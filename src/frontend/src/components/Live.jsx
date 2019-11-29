@@ -66,6 +66,7 @@ class Live extends Component<Props, State> {
     updateMarkers() {
         this.orienteers.forEach((orienteer, i) => {
             orienteer.updateMarker();
+            orienteer.updateTrack();
         });
     }
 
@@ -83,7 +84,7 @@ class Live extends Component<Props, State> {
         // create a map
         this.map = L.map('map', {
             center: [46.0420155, 14.4879161],
-            zoom: 16,
+            zoom: 13,
             layers: [
                 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -103,12 +104,14 @@ class Live extends Component<Props, State> {
         let imageBounds = [[46.040191, 14.47962], [46.049594, 14.498732]];
         this.mapImage = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
 
+        let _self = this;
+
         getBackend().live.getCompetitors(1,
             (data) => {
                 this.orienteers = [];
                 data.forEach((el, i) => {
                     console.log(el);
-                    this.orienteers.push(new Orienteer(i, el, this.map));
+                    this.orienteers.push(new Orienteer(_self, i, el, this.map));
                 });
                 this.setState({ competitors: data, tracks: data[0].track });
             },

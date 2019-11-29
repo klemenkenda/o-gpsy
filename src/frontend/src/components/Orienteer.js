@@ -16,13 +16,14 @@ import L from 'leaflet';
  * Handling an orienteer.
  */
 class Orienteer {
-    constructor(i, props, map) {
-        console.log("New orienteer!");
+    constructor(live, i, props, map) {
+        this.parent = live;
         this.props = props;
         this.i = i;
         this.color = this.getColor(i);
         this.map = map;
         this.track_data = this.props.track;
+        this.tail_length = 120;
 
         this.initMarkerAndTail();
     }
@@ -30,6 +31,7 @@ class Orienteer {
     initMarkerAndTail() {
         // add tail
         this.track = L.polyline([], { color: this.color, weight: 6, opacity: 0.8 }).addTo(this.map);
+        this.updateTrack();
         // add marker
         this.marker = L.circleMarker([0, 0], { radius: 6, color: "black", weight: 1, fillColor: this.color, fillOpacity: 1 })
             .bindTooltip(this.props.name, {
@@ -47,6 +49,16 @@ class Orienteer {
                 this.marker.setLatLng(lat_lng);
                 this.track.addLatLng(lat_lng);
             }
+        }
+    }
+
+    updateTrack() {
+        if (this.track_data.length > 0) {
+            // fill track
+            let latlngs = this.track_data
+                .filter(x => x.ts > this.parent.state.current_ts - this.tail_length)
+                .map((el, i) => [el.lat, el.lon]);
+            this.track.setLatLngs(latlngs);
         }
     }
 
@@ -70,7 +82,7 @@ class Orienteer {
             "blue"
         ];
 
-        return colors[i];
+        return colors[i % colors.length];
     }
 
 }
