@@ -108,7 +108,7 @@ class Live extends Component<Props, State> {
                 this.orienteers = [];
                 data.forEach((el, i) => {
                     console.log(el);
-                    this.orienteers.push(new Orienteer(el, this.map));
+                    this.orienteers.push(new Orienteer(i, el, this.map));
                 });
                 this.setState({ competitors: data, tracks: data[0].track });
             },
