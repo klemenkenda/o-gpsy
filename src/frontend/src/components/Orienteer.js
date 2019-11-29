@@ -65,6 +65,7 @@ class Orienteer {
     update(data) {
         // this is acctually pointer
         let track = this.track_data;
+        console.log(data);
         if (track.length > 0) {
             if (track[track.length - 1].ts) {
                 if (track[track.length - 1].ts !== data.ts) {

@@ -73,7 +73,7 @@ class MariaDBGPSStorageService {
             let query = `
                 select *
                 from (
-                    select ts, runner_id, lat, lon from points
+                    select unix_timestamp(ts) as ts, runner_id, lat, lon from points
                     group by runner_id desc
                 ) as x
                 order by runner_id
@@ -106,7 +106,7 @@ class MariaDBGPSStorageService {
             await Promise.all(records.map(async (rec, i) => {
                 let query = `
                     select
-                        UNIX_TIMESTAMP(ts) as ts,
+                        unix_timestamp(ts) as ts,
                         lon,
                         lat
                     from points
