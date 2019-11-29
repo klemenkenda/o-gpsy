@@ -30,7 +30,7 @@ Teltonika TMT250 AVL NodeJS driver is being developed [here](http://github.com/k
 
 ## Prerequisites
 
-* Linux/Windows/Mac (tested only on Windows)
+* Linux/Windows/Mac (tested only on Windows and WSL)
 * Docker (`docker-compose`)
   * alternatively you can set MariaDB and Adminer (optional) locally
 * NodeJS (v8+), `npm`
