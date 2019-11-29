@@ -60,14 +60,7 @@ class MariaDBGPSStorageService {
         let pool;
 
         try {
-            // connecting to DB
-            pool = mariadb.createPool({
-                host: this.config.host,
-                user: this.config.user,
-                password: this.config.password,
-                multipleStatements: true
-            });
-            conn = await pool.getConnection();
+            conn = await this.pool.getConnection();
             await conn.query('use ' + this.config.db);
 
             let query = `
