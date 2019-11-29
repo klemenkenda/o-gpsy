@@ -1,7 +1,8 @@
 {
   "name": "o-gpsy-front",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.2.0",
+  "author": "Klemen Kenda",
+  "license": "CC BY-NC 4.0",
   "dependencies": {
     "@babel/runtime": "^7.7.4",
     "axios": "^0.19.0",

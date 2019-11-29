@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Klemen Kenda",
-  "license": "ISC",
+  "license": "CC BY-NC 4.0",
   "dependencies": {
     "mariadb": "^2.1.3"
   }

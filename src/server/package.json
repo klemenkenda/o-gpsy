@@ -11,7 +11,7 @@
     "orienteering"
   ],
   "author": "Klemen Kenda",
-  "license": "ISC",
+  "license": "CC BY-NC 4.0",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
