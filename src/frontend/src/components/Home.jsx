@@ -21,7 +21,7 @@ class Live extends Component<Props, State> {
         return <div className="mt-5">
             <h1>Events</h1>
             <ul>
-                <li><a href="/live/1">Test event</a>, starts 27/11/2019@16:00 CET, tracking from 16:30</li>
+                <li><a href="/live/1">ZL2 - Trofeja rimskega zidu (re-run)</a>, starts 30/11/2019@12:00 CET, tracking from 12:00</li>
             </ul>
         </div>
     }

@@ -83,8 +83,8 @@ class Live extends Component<Props, State> {
     componentDidMount() {
         // create a map
         this.map = L.map('map', {
-            center: [46.0420155, 14.4879161],
-            zoom: 13,
+            center: [45.895, 14.25],
+            zoom: 16,
             layers: [
                 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -93,7 +93,7 @@ class Live extends Component<Props, State> {
         });
         this.map.zoomControl.setPosition('topright');
 
-        // add map image
+        // add map image - Ljubljana-Vic
         let imageUrl = '/maps/ljubljana-vic.jpg';
         /*
             46.049578, 14.4795
@@ -103,6 +103,17 @@ class Live extends Component<Props, State> {
         */
         let imageBounds = [[46.040191, 14.47962], [46.049594, 14.498732]];
         this.mapImage = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
+
+        // add map image - Logaticum northern block
+        imageUrl = '/maps/lom.jpg';
+        /*
+            45.902115_14.24592_
+            45.902055_14.256412_
+            45.889392_14.256262_
+            45.889466_14.245748
+        */
+       imageBounds = [[45.889466, 14.245748], [45.902055, 14.256412]];
+       this.mapImage2 = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
 
         let _self = this;
 
