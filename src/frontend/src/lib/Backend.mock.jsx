@@ -30,8 +30,8 @@ export class MockLiveBackend implements LiveBackend {
         this.comp_x2 += (Math.random() - 0.5) / 10000;
         this.comp_y2 += (Math.random() - 0.5) / 10000;
         done([
-            {lat: this.comp_x, lon: this.comp_y, ts: Math.round(new Date().getTime()/1000)},
-            {lat: this.comp_x2, lon: this.comp_y2, ts: Math.round(new Date().getTime()/1000)}
+            {lat: this.comp_x, runner_id: 1, lon: this.comp_y, ts: Math.round(new Date().getTime()/1000)},
+            {lat: this.comp_x2, runner_id: 2, lon: this.comp_y2, ts: Math.round(new Date().getTime()/1000)}
         ]);
     }
 

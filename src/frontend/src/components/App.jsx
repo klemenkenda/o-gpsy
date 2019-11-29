@@ -17,7 +17,7 @@ import Live from "./Live";
 import ProxyGPSRest from "./ProxyHTTPRest";
 
 // CSS
-import './App.css';
+import './css/App.css';
 
 // types
 type Props = {

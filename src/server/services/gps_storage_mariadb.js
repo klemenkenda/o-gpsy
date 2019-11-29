@@ -71,11 +71,16 @@ class MariaDBGPSStorageService {
             await conn.query('use ' + this.config.db);
 
             let query = `
-                select UNIX_TIMESTAMP(ts) as ts, lat, lon from points order by ts desc limit 1
+                select *
+                from (
+                    select ts, runner_id, lat, lon from points
+                    group by runner_id desc
+                ) as x
+                order by runner_id
             `;
 
-            let record = await conn.query(query);
-            return(record[0]);
+            let records = await conn.query(query);
+            return(records);
 
         } catch(err) {
             console.log(err);
