@@ -80,7 +80,17 @@ class Orienteer {
     getColor(i) {
         const colors = [
             "red",
-            "blue"
+            "blue",
+            "green",
+            "silver",
+            "maroon",
+            "yellow",
+            "olive",
+            "lime",
+            "teal",
+            "navy",
+            "fuchsia",
+            "purple"
         ];
 
         return colors[i % colors.length];
