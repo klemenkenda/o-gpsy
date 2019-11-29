@@ -25,8 +25,8 @@ Teltonika TMT250 AVL NodeJS driver is being developed [here](http://github.com/k
 
 *TODO*:
 
-* `integrations/TMT250-server` - TMT250 tracker gateway for TCP requests
-* `integrations/TMT250-sms` - TMT250 tracker gateway (for Android phone) for SMS requests
+* `integrations/tmt250-server` - TMT250 tracker gateway for TCP requests
+* `integrations/tmt250-sms` - TMT250 tracker gateway (for Android phone) for SMS requests
 
 ## Prerequisites
 
