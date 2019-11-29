@@ -46,7 +46,7 @@ class Live extends Component<Props, State> {
                     data.forEach((el, i) => {
                         this.orienteers[i].update(el);
                     });
-                };   
+                };
             },
             (err) => {
                 console.log("Error");
@@ -66,7 +66,7 @@ class Live extends Component<Props, State> {
     updateMarkers() {
         this.orienteers.forEach((orienteer, i) => {
             orienteer.updateMarker();
-        });        
+        });
     }
 
     updateTracks() {
@@ -93,17 +93,15 @@ class Live extends Component<Props, State> {
         this.map.zoomControl.setPosition('topright');
 
         // add map image
-        // let imageUrl = '/maps/ljubljana-vic.jpg';
+        let imageUrl = '/maps/ljubljana-vic.jpg';
         /*
             46.049578, 14.4795
             46.049594, 14.498732 (2)
             46.040151, 14.498755
             46.040191, 14.47962 (1)
         */
-        /*
         let imageBounds = [[46.040191, 14.47962], [46.049594, 14.498732]];
         this.mapImage = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
-        */
 
         getBackend().live.getCompetitors(1,
             (data) => {
@@ -112,7 +110,7 @@ class Live extends Component<Props, State> {
                     console.log(el);
                     this.orienteers.push(new Orienteer(el, this.map));
                 });
-                this.setState({ competitors: data, tracks: data[0].track });                
+                this.setState({ competitors: data, tracks: data[0].track });
             },
             (err) => {
                 console.log("Error");

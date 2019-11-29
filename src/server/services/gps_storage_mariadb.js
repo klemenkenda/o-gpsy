@@ -38,12 +38,13 @@ class MariaDBGPSStorageService {
                 (runner_id, ts, lat, lon)
                 values (
                     (select runners.id from trackers, runners
-                        where trackers.id = runners.tracker_id),
-                    FROM_UNIXTIME(?), ?, ?
+                        where trackers.id = runners.tracker_id and
+                        trackers.uuid = ?),
+                    from_unixtime(?), ?, ?
                 )
             `;
 
-            await conn.query(query, [pt, px, py]);
+            await conn.query(query, [u, pt, px, py]);
 
         } catch(err) {
             console.log(err);
