@@ -69,7 +69,7 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
    * TMT250 TCP service
    * TMT250 SMS service
    
-> Help is needed! Developer welcome and support from future users too. :)
+> Help is needed! Developers welcome. Support from future users (testing, beta testing) too. :)
 
 
 
