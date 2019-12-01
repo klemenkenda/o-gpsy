@@ -9,9 +9,10 @@ import ReactRouterPropTypes from "react-router-prop-types";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // bootstrap components
-import { Container, Navbar, Nav, Form, /*FormControl,*/ Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 // components
+import Header from "./Header";
 import Home from "./Home";
 import Live from "./Live";
 import ProxyGPSRest from "./ProxyHTTPRest";
@@ -33,20 +34,7 @@ class App extends React.Component<Props, State> {
                 <Switch>
                     <Route path="/register/:u/:p/:x/:y/:t" component={ProxyGPSRest} />
                     <Route path="/" exact={true}>
-                        <Navbar bg="dark" variant="dark">
-                            <Navbar.Brand href="#home">o-gpsy</Navbar.Brand>
-                            <Nav className="mr-auto">
-                                <Nav.Link href="#home">Domov</Nav.Link>
-                                <Nav.Link href="#pricing">Najem</Nav.Link>
-                            </Nav>
-                            <Form inline>
-                                {/*
-                                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                                <Button variant="outline-light" className="mr-sm-2">Search</Button>
-                                */}
-                                <Button variant="outline-info">Log In</Button>
-                            </Form>
-                        </Navbar>
+                        <Header />
                     </Route>
                 </Switch>
             </Router>,
