@@ -83,7 +83,7 @@ class Live extends Component<Props, State> {
     componentDidMount() {
         // create a map
         this.map = L.map('map', {
-            center: [45.895, 14.25],
+            center: [46.131, 14.736],
             zoom: 16,
             layers: [
                 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -112,8 +112,18 @@ class Live extends Component<Props, State> {
             45.889392_14.256262_
             45.889466_14.245748
         */
-       imageBounds = [[45.889466, 14.245748], [45.902055, 14.256412]];
-       this.mapImage2 = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
+        imageBounds = [[45.889466, 14.245748], [45.902055, 14.256412]];
+        this.mapImage2 = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
+
+        imageUrl = '/maps/trening-matic.jpg';
+        /*
+            46.138409_14.722319
+            46.138434_14.750768
+            46.124615_14.750793
+            46.12459_14.722344
+        */
+        imageBounds = [[46.12459, 14.722344], [46.138434, 14.750768]];
+        this.mapImage3 = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
 
         let _self = this;
 
