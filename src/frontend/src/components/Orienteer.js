@@ -32,6 +32,9 @@ class Orienteer {
         this.initMarkerAndTail();
     }
 
+    /**
+     * Creates initial marker and track (tail) objects for a competitor.
+     */
     initMarkerAndTail() {
         // add tail
         this.track = L.polyline([], { color: this.color, weight: 6, opacity: 0.8 }).addTo(this.map);
@@ -45,6 +48,9 @@ class Orienteer {
             }).addTo(this.map);
     }
 
+    /**
+     * Updates marker. Currently called from Live component.
+     */
     updateMarker() {
         if (this.marker) {
             const len = this.track_data.length;
@@ -56,6 +62,9 @@ class Orienteer {
         }
     }
 
+    /**
+     * Updates track. Currently called from Live component.
+     */
     updateTrack() {
         if (this.track_data.length > 0) {
             // fill track
@@ -66,6 +75,10 @@ class Orienteer {
         }
     }
 
+    /**
+     * Updates the internal track property with outside data.
+     * @param {PointRecordObj} data New point data record.
+     */
     update(data) {
         // this is acctually pointer
         let track = this.track_data;
@@ -80,6 +93,10 @@ class Orienteer {
         };
     }
 
+    /**
+     * Returns the color of the marker/tail.
+     * @param {number} i Number of the current competitor in the event.
+     */
     getColor(i) {
         const colors = [
             "red",
