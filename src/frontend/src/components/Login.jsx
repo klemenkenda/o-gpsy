@@ -11,7 +11,7 @@ import './css/Login.css';
 // import subcomponents
 import {
     Container, Row, Col,
-    Form, Button, FormControl
+    Form, Button
 } from 'react-bootstrap';
 
 // defining types
@@ -26,29 +26,30 @@ class Login extends Component<Props, State> {
     render() {
         return <Row>
             <Col lg={12} md={12} xs={12}>
-        <Form className="form-signup">
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Username</Form.Label>
-          <Form.Control type="username" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            Username should be given to you by the administrator.
-          </Form.Text>
-        </Form.Group>
+                <Form className="form-signup">
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type="username" placeholder="Enter email" />
+                        <Form.Text className="text-muted">
+                            Username should be given to you by the administrator.
+                        </Form.Text>
+                    </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-      </Col>
-    </Row>
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" />
+                    </Form.Group>
+                    <Form.Group controlId="formBasicCheckbox">
+                        <Form.Check type="checkbox" label="Check me out" />
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
+            </Col>
+        </Row>
     }
+
     render2() {
         return <Container fluid={true}>
             <Row className="justify-content-md-center">
