@@ -4,6 +4,7 @@ export interface LiveBackend {
     getCompetitors(event_id, done, err): void;
     getCoordinates(event_id, done, err): void;
     putCoordinats(u, p, x, y, t, done, err): void;
+    getTime(done, err): void;
 }
 
 export interface Backend {

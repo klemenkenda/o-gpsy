@@ -1,5 +1,6 @@
 // main imports
 import React, { Component } from 'react';
+import { getBackend } from '../lib/Backend';
 // import { Router, Link } from 'react-router-dom';
 
 // models
@@ -10,22 +11,54 @@ import React, { Component } from 'react';
 
 // defining types
 type Props = {};
-type State = {};
+type State = {
+    events: Array<Object>
+};
 
 /**
  * Displaying production lines list.
  */
-class Live extends Component<Props, State> {
+class Home extends Component<Props, State> {
 
+    constructor() {
+        super();
+
+        this.state = {
+            events: []
+        }
+    }
+
+    componentDidMount() {
+        getBackend().live.getEvents(
+            (data) => {
+                this.setState({ events: data});
+            },
+            (err) => {
+                console.log(err);
+            }
+        )
+    }
     render() {
         return <div className="mt-5">
             <h1>Events</h1>
             <ul>
-                <li><a href="/live/1">Trening Matic B.</a>, starts 01/02/2019@11:15 CET, tracking from 11:15</li>
+                {
+                    this.state.events.map((event, i) => {
+                        let desc = "";
+                        if (event.start !== null) {
+                            desc = ", starts at " + event.start;
+                        }
+                        return <li key={i}>
+                            <a href={"/live/" + event.id}>
+                                {event.name}
+                            </a>{ desc }
+                        </li>;
+                    })
+                }
             </ul>
         </div>
     }
 
 }
 
-export default Live;
+export default Home;
