@@ -10,6 +10,7 @@ const app = express();
 // loading routers
 const gpsRouter = require('./routes/gps');
 const guiRouter = require('./routes/gui');
+const adminRouter = require('./routes/admin');
 
 // basic server preparation
 app.use(cookieParser());
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 app.use('/api', gpsRouter.prepareGPSRoutes());
 guiRouter.prepareMapRoutes(app);
 guiRouter.prepareGuiRoutes(app);
+app.use('/api', adminRouter.prepareAdminRoutes());
 
 // starting server
 console.log("Starting server on port", PORT)
