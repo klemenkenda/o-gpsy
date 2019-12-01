@@ -11,7 +11,7 @@ exports.prepareAdminRoutes = () => {
     router.get('/login/:u/:p', admin.login);
 
     // GUI/admin routes
-    router.get('/events/:event_id?', admin.getEvents);
+    router.get('/events/:user_id?', admin.getEvents);
 
     return(router);
 }
