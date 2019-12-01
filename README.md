@@ -4,13 +4,13 @@
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
-O-GPSY is another attempt to make following orienteering trainings easy. It is supposed to be an open source solution for the traditionally expensive alternatives (gpsseuranta, TracTrac, etc. which are usually better - for now :)).
+O-GPSY is another attempt to make following orienteering trainings easy. It is supposed to be an open source alternative to the more reliable (but closed) solutions (gpsseuranta, TracTrac, etc. which are usually better - for now :)).
 
 The solution uses some traditional technologies like MariaDB and some standard web solutions like NodeJS, React, Bootstrap and Leaflet.
 
 *Currently we support the following technology:*
 
-* smart phone with [GPSLogger](http://gpslogger.app) for Android (test phase)
+* smart phone with [GPSLogger](http://gpslogger.app) for Android (alpha phase)
 * Teltonika TMT250 (under development)
 
 Teltonika TMT250 AVL NodeJS driver is being developed [here](http://github.com/klemenkenda/tmt250-node).
@@ -37,26 +37,29 @@ Teltonika TMT250 AVL NodeJS driver is being developed [here](http://github.com/k
 
 ## Production
 
-For production mode go to `src/frontend` and run `npm run build`. This will build the last version of the frontend into the `build` directory. This one gets automatically served with o-gpsy server in `src/server`. You start the server simply by `npm start`. The app will be served on port 8000.
+For production mode go to `src/frontend` and run `npm install` and then `npm run build`. This will build the last version of the frontend into the `build` directory. This one gets automatically served with o-gpsy server in `src/server`. You start the server simply by `npm start` (be aware to run `npm install` before). The app will be served on port 8000.
 
 ## Development
 
-Development server runs on port 3000. You start it simply by `npm start` in `src/frontend`. This will start react-tools and the changes will be automatically visited in the front end. Visit [http://localhost:3000](http://localhost:3000) for this version. This version uses the server running on port `8000` (see Production). The prerequisite is to start MariaDB service. This can be done with Docker (`src/docker`) with a command `docker-compose up`. If you run `docker-compose` Adminer is also available on `docker-machine ip` on port `8080`. Be careful to provide correct data to `src/common/config.json`.
+Development server runs on port 3000. You start it simply by `npm start` in `src/frontend`. This will start react-tools and the changes will be automatically visible in the front end. Visit [http://localhost:3000](http://localhost:3000) for this version. This version uses the server running on port `8000` (see Production). The prerequisite is to start MariaDB service. This can be done with Docker (`src/docker`) with a command `docker-compose up`. If you run `docker-compose` Adminer is also available on `docker-machine ip` on port `8080`. Be careful to provide correct data to `src/common/config.json`.
 
 ### Plan for o-gpsy
 
 * Provide administration interface for users/clubs
+   * Login
+   * Add/edit/delete users
    * Add/edit/delete new competition
    * Add/edit/delete tracker
-   * Add/edit/edit runner to the competition
+   * Add/edit/delete runner to the competition
    * Add/edit/delete new map
-   * Use 4 coordinates to fit the map to basemap (like Routegadget)
    * Export GPX for each runner (and for whole training)
-   * Login
+   * Add course editor (idea is to have one map in the system; just add controls for trainings)   
 * Docs
-   * Manual for Android app
+   * Manual for Android app (GPSLogger)
    * Manual for TMT250
-   * Manual for usage
+   * Manual for usage of the app
+       * Desktop
+       * Phone
 * 2drerun (export) + docs
 * Interface
    * Show track
@@ -64,7 +67,7 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
    * Show clock
    * Replay
    * Sync for replay
-   * Add course editor (idea is to have one map in the system; just add controls for trainings)
+   * Use 4 coordinates to fit the map to basemap (like Routegadget)
 * Services
    * TMT250 TCP service
    * TMT250 SMS service
