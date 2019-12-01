@@ -50,6 +50,7 @@ class Login extends Component<Props, State> {
         </Row>
     }
 
+    // obsolete
     render2() {
         return <Container>
             <Row className="justify-content-md-center">
