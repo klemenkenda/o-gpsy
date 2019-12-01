@@ -1,6 +1,3 @@
-// main imports
-// import React from 'react';
-
 // models
 
 // backend
@@ -17,14 +14,21 @@ import L from 'leaflet';
  */
 class Orienteer {
     constructor(live, i, props, map) {
+        // remembering pointer to the Live component
         this.parent = live;
+
+        // handling inherited props of a user
         this.props = props;
+        this.track_data = this.props.track;
         this.i = i;
+
+        // handling map related issues
         this.color = this.getColor(i);
         this.map = map;
-        this.track_data = this.props.track;
-        this.tail_length = 120;
 
+        this.tail_length = 120; // TODO: this should be inherited from parent (used "live")
+
+        // render marker and tail
         this.initMarkerAndTail();
     }
 
