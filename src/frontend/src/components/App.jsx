@@ -13,6 +13,7 @@ import { Container } from 'react-bootstrap';
 
 // components
 import Header from "./Header";
+import Login from "./Login";
 import Home from "./Home";
 import Live from "./Live";
 import ProxyGPSRest from "./ProxyHTTPRest";
@@ -43,6 +44,11 @@ class App extends React.Component<Props, State> {
                     <Route path="/" exact={true}>
                         <Container>
                             <Home />
+                        </Container>
+                    </Route>
+                    <Route path="/login">
+                        <Container>
+                            <Login />
                         </Container>
                     </Route>
                     <Route path="/live/:id">

@@ -29,7 +29,7 @@ class Header extends Component<Props, State> {
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                 <Button variant="outline-light" className="mr-sm-2">Search</Button>
                 */}
-                <Button variant="outline-info">Log In</Button>
+                <Button variant="outline-info" href="/login">Log In</Button>
             </Form>
         </Navbar>
     }
