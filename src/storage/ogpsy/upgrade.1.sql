@@ -40,6 +40,8 @@ create table events (
     name varchar(255),
     www varchar(255),
     start time,
+    end time,
+    active boolean,
     public boolean,
     map_id int,
     constraint events_pk primary key (id)
