@@ -19,10 +19,12 @@ class Header extends Component<Props, State> {
 
     render() {
         return <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home">o-gpsy</Navbar.Brand>
+            <Navbar.Brand href="/">o-gpsy</Navbar.Brand>
             <Nav className="mr-auto">
+                {/*
                 <Nav.Link href="#home">Domov</Nav.Link>
                 <Nav.Link href="#pricing">Najem</Nav.Link>
+                */}
             </Nav>
             <Form inline>
                 {/*
