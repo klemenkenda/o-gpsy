@@ -53,16 +53,10 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
    * Add/edit/delete runner to the competition
    * Add/edit/delete new map
    * Export GPX for each runner (and for whole training)
-   * Add course editor (idea is to have one map in the system; just add controls for trainings)   
-* Docs
-   * Manual for Android app (GPSLogger)
-   * Manual for TMT250
-   * Manual for usage of the app
-       * Desktop
-       * Phone
-* 2drerun (export) + docs
-* Interface
-   * Show track
+   * Add course editor (idea is to have one map in the system; just add controls for trainings) 
+   * 2drerun (export) + docs
+* Live view: user interface
+   * Show full track
    * Working controls (tail, names ...)
    * Show clock
    * Replay
@@ -71,6 +65,12 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
 * Services
    * TMT250 TCP service
    * TMT250 SMS service
+* Docs
+   * Manual for Android app (GPSLogger)
+   * Manual for TMT250
+   * Manual for usage of the app
+       * Desktop
+       * Phone
    
 > Help is needed! Developers welcome. Support from future users (testing, beta testing) too. :)
 
