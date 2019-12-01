@@ -1,5 +1,5 @@
 -- users
-insert into users (username, password, name, type) values ('admin', 'pass', 'Temporary Admin', 99);
+insert into users (username, password, name, type) values ('admin', '1a1dc91c907325c69271ddf0c944bc72', 'Temporary Admin', 99);
 
 -- trackers
 insert into trackers (uuid, name, hw) values ('ph001', 'My phone', 'Samsung Galaxy S9');
