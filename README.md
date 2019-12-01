@@ -53,7 +53,7 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
    * Add/edit/delete runner to the competition
    * Add/edit/delete new map
    * Export GPX for each runner (and for whole training)
-   * Add course editor (idea is to have one map in the system; just add controls for trainings) 
+   * Add course editor (idea is to have one map in the system; just add controls for trainings)
    * Provide user interface to fit the map to the basemap (like Routegadget)
    * 2drerun (export) + docs
 * Live view: user interface
@@ -81,7 +81,10 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
    * Manual for usage of the app
        * Desktop
        * Phone
-   
+* Development
+   * Using flow for type checking
+   * Using jest for unit tests
+
 > Help is needed! Developers welcome. Support from future users (testing, beta testing) too. :)
 
 
