@@ -37,6 +37,9 @@ class App extends React.Component<Props, State> {
                     <Route path="/" exact={true}>
                         <Header />
                     </Route>
+                    <Route path="/login" exact={true}>
+                        <Header />
+                    </Route>
                 </Switch>
             </Router>,
             <Router>

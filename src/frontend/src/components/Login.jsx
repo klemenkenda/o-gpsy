@@ -24,7 +24,7 @@ type State = {};
 class Login extends Component<Props, State> {
 
     render() {
-        return <Row>
+        return <Row className="mt-5">
             <Col lg={12} md={12} xs={12}>
                 <Form className="form-signup">
                     <Form.Group controlId="formBasicEmail">
@@ -40,10 +40,10 @@ class Login extends Component<Props, State> {
                         <Form.Control type="password" placeholder="Password" />
                     </Form.Group>
                     <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Check me out" />
+                        <Form.Check type="checkbox" label="Remember me" />
                     </Form.Group>
                     <Button variant="primary" type="submit">
-                        Submit
+                        Log in
                     </Button>
                 </Form>
             </Col>
@@ -51,9 +51,9 @@ class Login extends Component<Props, State> {
     }
 
     render2() {
-        return <Container fluid={true}>
+        return <Container>
             <Row className="justify-content-md-center">
-                <Col xs lg="12">
+                <Col xs={12} md={6} lg={6}>
                     <Form className="form-signin">
                         <img className="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72" />
                         <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
