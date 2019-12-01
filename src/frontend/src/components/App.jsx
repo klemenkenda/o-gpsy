@@ -16,7 +16,6 @@ import Header from "./Header";
 import Login from "./Login";
 import Home from "./Home";
 import Live from "./Live";
-import ProxyGPSRest from "./ProxyHTTPRest";
 
 // CSS
 import './css/App.css';
@@ -33,7 +32,6 @@ class App extends React.Component<Props, State> {
         return [
             <Router>
                 <Switch>
-                    <Route path="/register/:u/:p/:x/:y/:t" component={ProxyGPSRest} />
                     <Route path="/" exact={true}>
                         <Header />
                     </Route>
