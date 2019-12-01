@@ -54,14 +54,24 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
    * Add/edit/delete new map
    * Export GPX for each runner (and for whole training)
    * Add course editor (idea is to have one map in the system; just add controls for trainings) 
+   * Provide user interface to fit the map to the basemap (like Routegadget)
    * 2drerun (export) + docs
 * Live view: user interface
    * Show full track
-   * Working controls (tail, names ...)
-   * Show clock
-   * Replay
+   * Working controls
+       * Tail on/off
+       * Label on/off
+       * Various tail lengths (+/-)
+   * List of runners
+       * Display name/color
+       * On/off functionality
+       * Calculate speed
+   * Show clock + replay/sync (like gpsseuranta)
+   * Replay functionality
    * Sync for replay
    * Use 4 coordinates to fit the map to basemap (like Routegadget)
+* Analysis view: user interface
+   * show tracks color-coded by speed (like in QuickRoute)
 * Services
    * TMT250 TCP service
    * TMT250 SMS service
