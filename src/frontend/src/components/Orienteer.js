@@ -81,7 +81,6 @@ class Orienteer {
             "red",
             "blue",
             "green",
-            "silver",
             "maroon",
             "yellow",
             "olive",
@@ -89,7 +88,8 @@ class Orienteer {
             "teal",
             "navy",
             "fuchsia",
-            "purple"
+            "purple",
+            "silver",
         ];
 
         return colors[i % colors.length];
