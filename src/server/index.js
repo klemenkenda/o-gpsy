@@ -18,10 +18,10 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
 // setting up routes
+app.use('/api/admin', adminRouter.prepareAdminRoutes());
 app.use('/api', gpsRouter.prepareGPSRoutes());
 guiRouter.prepareMapRoutes(app);
 guiRouter.prepareGuiRoutes(app);
-app.use('/api', adminRouter.prepareAdminRoutes());
 
 // starting server
 console.log("Starting server on port", PORT)
