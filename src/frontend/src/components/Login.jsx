@@ -13,12 +13,14 @@ import {
     Row, Col,
     Form, Button
 } from 'react-bootstrap';
+import { getBackend } from '../lib/Backend';
 
 // defining types
 type Props = {};
 type State = {
     username: string,
-    password: String
+    password: string,
+    remember: boolean
 };
 
 /**
@@ -29,7 +31,8 @@ class Login extends Component<Props, State> {
         super(props, state);
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            remember: false
         }
     }
 
@@ -46,6 +49,33 @@ class Login extends Component<Props, State> {
            });
         }
     };
+
+    handleSubmit(e) {
+        e.preventDefault();
+        const u = this.state;
+        getBackend().admin.login(u.username, u.password.trim()) {
+            (data) => {
+
+            },
+            (err) => {
+                console.log(err);
+            }
+        }
+
+        /*
+        Auth.loginUP(u.username, u.password.trim(), u.remember,
+            () => {
+                this.setState({ message: "" });
+                const redirectURL = Auth.getLoginRedirectURL();
+                this.props.history.push(redirectURL);
+            },
+            (message) => {
+                console.log(message);
+                this.setState({ message });
+            }
+        );
+        */
+    }
 
     render() {
         return <Row className="mt-5">
@@ -70,10 +100,17 @@ class Login extends Component<Props, State> {
                             value={this.state.password}
                             onChange={ (e) => this.handleChange(e) } />
                     </Form.Group>
-                    <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Remember me" />
+                    <Form.Group controlId="remember">
+                        <Form.Check 
+                            type="checkbox" 
+                            label="Remember me"
+                            value={this.state.remember}
+                            onChange={ (e) => this.handleChange(e) } />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button 
+                        variant="primary" 
+                        type="submit"
+                        onClick={(e) => this.handleSubmit(e)}>
                         Log in
                     </Button>
                 </Form>

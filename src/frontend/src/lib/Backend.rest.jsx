@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Backend, LiveBackend } from "./Backend";
+import { Backend, LiveBackend, AdminBackend } from "./Backend";
 
 export class RestLiveBackend implements LiveBackend {
     constructor() {
@@ -66,6 +66,19 @@ export class RestLiveBackend implements LiveBackend {
             });
     }
 };
+
+export class RestAdminBackend implements AdminBackend {
+    login(u, p) {
+        axios.get("/api/admin/login/" + u + "/" + p)
+            .then(result => {
+                done(result.data);
+            })
+            .catch(error => {
+                console.log(error);
+                err(error);
+            });
+    };
+}
 
 export class RestBackend implements Backend {
     live: LiveBackend;
