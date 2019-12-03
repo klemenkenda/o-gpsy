@@ -63,7 +63,6 @@ class Orienteer {
         }
         // update tooltip
         if (this.last_show_labels !== this.parent.state.show_labels) {
-            console.log("ere");
             if (this.parent.state.show_labels === true) {
                 this.marker.openTooltip();
             } else {
