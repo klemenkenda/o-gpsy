@@ -22,9 +22,10 @@ type State = {
     competitors: [],
     tracks: [],
     current_ts: number,
-    labels: boolean,
-    tail: boolean,
-    tailLength: number
+    show_labels: boolean,
+    show_tail: boolean,
+    show_track: boolean,
+    tail_length: number
 };
 
 /**
@@ -41,7 +42,8 @@ class Live extends Component<Props, State> {
             current_ts: 2147483647,
             labels: false,
             tail: true,
-            tailLength: 60
+            tail_length: 60,
+            show_track: false
         };
         this.orienteers = [];
     }
@@ -159,9 +161,10 @@ class Live extends Component<Props, State> {
             <div id="map" style={{width: "100%", height: "100vh"}}>
                 <LiveNavBar
                     handleChange={(e) => this.handleChange(e) }
-                    tail={this.state.tail}
-                    labels={this.state.labels}
-                    tailLength={60} />
+                    show_tail={this.state.show_show_tail}
+                    show_labels={this.state.labels}
+                    show_track={this.state.show_track}
+                    tail_length={60} />
             </div>
         </div>
     }

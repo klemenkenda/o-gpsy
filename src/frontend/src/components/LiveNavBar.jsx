@@ -12,11 +12,7 @@ import './css/LiveNavBar.css';
 
 // defining types
 type Props = { };
-type State = {
-    tail: boolean,
-    labels: boolean,
-    tail_length: number
-};
+type State = { };
 
 /**
  * Displaying production lines list.
@@ -29,18 +25,25 @@ class LiveNavBar extends Component<Props, State> {
 
             <input
                 type="checkbox"
-                id="tail"
-                checked={this.props.tail}
+                id="show_tail"
+                checked={this.props.show_tail}
                 onChange={ (e) => this.props.handleChange(e) } />
-            Show tail<br />
+            Show tail (60s)<br />
 
             <input
                 type="checkbox"
-                id="labels"
-                label="Show label"
-                checked={this.props.labels}
+                id="show_track"
+                checked={this.props.show_track}
                 onChange={ (e) => this.props.handleChange(e) } />
-            Show label
+            Show track<br />
+
+            <input
+                type="checkbox"
+                id="show_labels"
+                label="Show label"
+                checked={this.props.show_labels}
+                onChange={ (e) => this.props.handleChange(e) } />
+            Show labels
         </div>
 
     }
