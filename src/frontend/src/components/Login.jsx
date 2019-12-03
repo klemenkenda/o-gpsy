@@ -1,6 +1,5 @@
 // main imports
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { MD5 } from 'crypto-js';
 import Auth from '../lib/Auth';
 
@@ -63,8 +62,13 @@ class Login extends Component<Props, State> {
         getBackend().admin.login(username, password,
             (data) => {              
                 if (typeof data === "object") {
-                    Auth.setUser(data[0], remember);
-                    this.setState({ logged_in: true });
+                    if (data.length > 0) {
+                        Auth.setUser(data[0], remember);
+                        this.setState({ logged_in: true });
+                    } else {
+                        // user not found
+                        console.log("User not found!");
+                    }
                 }
             },
             (err) => {

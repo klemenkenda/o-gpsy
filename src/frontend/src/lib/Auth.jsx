@@ -1,5 +1,5 @@
 export default class Auth {
-    static setUser(record, remember) {
+    static setUser(record, remember) {        
         localStorage.setItem('user', record.name);
         localStorage.setItem('username', record.username);
         localStorage.setItem('password', record.password);

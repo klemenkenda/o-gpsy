@@ -23,8 +23,6 @@ class Header extends Component<Props, State> {
     constructor(props, state) {
         super();
 
-        console.log(localStorage.getItem('user'));
-
         this.state = {
             logged_in: false
         }
@@ -32,7 +30,6 @@ class Header extends Component<Props, State> {
 
     shouldComponentUpdate() {
         const logged_in = Auth.checkUserShallow();
-        console.log(logged_in);
         if (this.state.logged_in === logged_in) return(false);
         return(true);
     }
@@ -44,12 +41,6 @@ class Header extends Component<Props, State> {
 
     componentDidMount() {
         this.checkUser();
-
-        window.addEventListener('storage', (e) => {
-            console.log(e);
-            this.checkUser();
-            console.log("xxx");
-        });
     }
 
     render() {
