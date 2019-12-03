@@ -32,12 +32,9 @@ class App extends React.Component<Props, State> {
         return [
             <Router key={1}>
                 <Switch>
-                    <Route path="/" exact={true} key={1}>
+                    <Route path="/(|login|logout)" exact={true} key={1}>
                         <Header />
-                    </Route>
-                    <Route path="/login" exact={true} key={2}>
-                        <Header />
-                    </Route>
+                    </Route>                    
                 </Switch>
             </Router>,
             <Router key={2}>
@@ -52,14 +49,19 @@ class App extends React.Component<Props, State> {
                             <Login />
                         </Container>
                     </Route>
-                    <Route path="/live/:id" key={3}>
+                    <Route path="/logout" key={3}>
+                        <Container>
+                            <Login />
+                        </Container>
+                    </Route>
+                    <Route path="/live/:id" key={4}>
                         <Live />
                     </Route>
                 </Switch>
             </Router>,
             <Router key={3}>
                 <Switch>
-                    <Route path="/" exact={true} key={1}>
+                    <Route path="/(|login|logout)" exact={true} key={1}>
                         <footer className="text-muted pt-4" style={{borderTop: "1px solid #eee"}}>
                             <div className="container">
                                 <p className="float-right">

@@ -24,7 +24,10 @@ export default class Auth {
     static getUser() {
         return {
             user: localStorage.getItem('user'),
-            username: localStorage.getItem('username')
+            username: localStorage.getItem('username'),
+            type: localStorage.getItem('type'),
+            user_ts: localStorage.getItem('user_ts'),
+            expired: localStorage.getItem('expired')
         }
     }
 }
