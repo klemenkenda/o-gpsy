@@ -45,6 +45,7 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
 
 ### Plan for o-gpsy [ PHASE 1 / MVP ]
 
+* Multiple events tracking
 * Provide administration interface for users/clubs
    * <del>Login</del> [ done ]
    * Create standard CRUD template to be used for all of the following tasks
@@ -54,10 +55,10 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
       * List/add/edit/delete new competition
       * List/add/edit/delete new map
 * Live view: user interface
-   * Show full track
-   * Working controls
-       * Tail on/off
-       * Label on/off
+   * <del>Show full track</del> [ done ]
+   * <del>Working controls</del> [ done ]
+       * <del>Tail on/off</del> [ done ]
+       * <del>Label on/off</del> [ done ]
        * Various tail lengths (+/-)
    * List of runners
        * Display name/color
