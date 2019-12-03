@@ -11,12 +11,46 @@ import { Navbar, Nav, Form, /*FormControl,*/ Button } from 'react-bootstrap';
 
 // defining types
 type Props = {};
-type State = {};
+type State = {
+    logged_in: boolean
+};
 
 /**
  * Displaying production lines list.
  */
 class Header extends Component<Props, State> {
+
+    constructor(props, state) {
+        super();
+
+        console.log(localStorage.getItem('user'));
+
+        this.state = {
+            logged_in: false
+        }
+    }
+
+    shouldComponentUpdate() {
+        const logged_in = Auth.checkUserShallow();
+        console.log(logged_in);
+        if (this.state.logged_in === logged_in) return(false);
+        return(true);
+    }
+
+    checkUser() {
+        const logged_in = Auth.checkUserShallow();
+        this.setState({ logged_in: logged_in });
+    }
+
+    componentDidMount() {
+        this.checkUser();
+
+        window.addEventListener('storage', (e) => {
+            console.log(e);
+            this.checkUser();
+            console.log("xxx");
+        });
+    }
 
     render() {
         const button = this.renderLoginButton();
@@ -34,9 +68,9 @@ class Header extends Component<Props, State> {
     }
 
     renderLoginButton() {
-        if (Auth.checkUserShallow() === true) {
+        if (this.state.logged_in === true) {
             const name = Auth.getUser().user;
-            console.log(Auth.getUser());
+            
             return <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
                     Signed in as: <a href="/logout">{name}</a>

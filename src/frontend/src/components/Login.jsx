@@ -1,5 +1,6 @@
 // main imports
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { MD5 } from 'crypto-js';
 import Auth from '../lib/Auth';
 
@@ -22,7 +23,8 @@ type Props = {};
 type State = {
     username: string,
     password: string,
-    remember: boolean
+    remember: boolean,
+    logged_in: boolean
 };
 
 /**
@@ -62,6 +64,7 @@ class Login extends Component<Props, State> {
             (data) => {              
                 if (typeof data === "object") {
                     Auth.setUser(data[0], remember);
+                    this.setState({ logged_in: true });
                 }
             },
             (err) => {
@@ -71,7 +74,11 @@ class Login extends Component<Props, State> {
     }
 
     render() {
-        return <Row className="mt-5">
+        if (this.state.logged_in) {
+            window.location.href = "/";
+        }
+
+        return <Row className="mt-5 mb-5">
             <Col lg={12} md={12} xs={12}>
                 <Form>
                     <Form.Group controlId="username">

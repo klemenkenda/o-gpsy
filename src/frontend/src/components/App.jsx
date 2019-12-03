@@ -16,6 +16,7 @@ import Header from "./Header";
 import Login from "./Login";
 import Home from "./Home";
 import Live from "./Live";
+import Logout from "./Logout";
 
 // CSS
 import './css/App.css';
@@ -51,7 +52,7 @@ class App extends React.Component<Props, State> {
                     </Route>
                     <Route path="/logout" key={3}>
                         <Container>
-                            <Login />
+                            <Logout />
                         </Container>
                     </Route>
                     <Route path="/live/:id" key={4}>
