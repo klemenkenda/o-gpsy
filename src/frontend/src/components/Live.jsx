@@ -77,16 +77,6 @@ class Live extends Component<Props, State> {
         });
     }
 
-    updateTracks() {
-        if (this.state.tracks.length > 0) {
-            // fill track
-            let latlngs = this.state.tracks
-                .filter(x => x.ts > this.state.current_ts - 300)
-                .map((el, i) => [el.lat, el.lon]);
-            this.track.setLatLngs(latlngs);
-        }
-    }
-
     componentDidMount() {
         // create a map
         this.map = L.map('map', {
