@@ -47,11 +47,12 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
 
 * Provide administration interface for users/clubs
    * <del>Login</del> [ done ]
-   * Add/edit/delete users
-   * Add/edit/delete new competition
-   * Add/edit/delete tracker
-   * Add/edit/delete runner to the competition
-   * Add/edit/delete new map
+   * Create standard CRUD template to be used all of the following tasks
+      * Add/edit/delete users
+      * Add/edit/delete tracker
+      * Add/edit/delete runner to the competition
+      * Add/edit/delete new competition
+      * Add/edit/delete new map
 * Live view: user interface
    * Show full track
    * Working controls
@@ -71,6 +72,10 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
 ### Plan for o-gpsy [ PHASE 2 / upgrade ]
 
 * Provide administration interface for users/clubs
+   * Add specialized interfaces
+      * Add/edit/delete runners to the competition
+      * Add/edit new competition
+      * Add/edit new map
    * Export GPX for each runner (and for whole training)
    * Add course editor (idea is to have one map in the system; just add controls for trainings)
    * Provide user interface to fit the map to the basemap (like Routegadget)
