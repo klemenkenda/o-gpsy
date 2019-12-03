@@ -7,8 +7,13 @@ export interface LiveBackend {
     getTime(done, err): void;
 }
 
+export interface AdminBackend {
+    doLogin(u, p): void;
+}
+
 export interface Backend {
     live: LiveBackend;
+    admin: AdminBackend;
 }
 
 let backend = null;
