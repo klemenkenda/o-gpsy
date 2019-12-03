@@ -4,6 +4,7 @@ import { MD5 } from 'crypto-js';
 import Auth from '../lib/Auth';
 
 // models
+import { getBackend } from '../lib/Backend';
 
 // backend
 
@@ -15,7 +16,7 @@ import {
     Row, Col,
     Form, Button
 } from 'react-bootstrap';
-import { getBackend } from '../lib/Backend';
+import Error from './Error';
 
 // defining types
 type Props = {};
@@ -23,7 +24,8 @@ type State = {
     username: string,
     password: string,
     remember: boolean,
-    logged_in: boolean
+    logged_in: boolean,
+    warning: string
 };
 
 /**
@@ -35,7 +37,9 @@ class Login extends Component<Props, State> {
         this.state = {
             username: "",
             password: "",
-            remember: false
+            remember: false,
+            logged_in: false,
+            warning: ""
         }
     }
 
@@ -67,7 +71,7 @@ class Login extends Component<Props, State> {
                         this.setState({ logged_in: true });
                     } else {
                         // user not found
-                        console.log("User not found!");
+                        this.setState({ warning: "User not found!" });
                     }
                 }
             },
@@ -84,6 +88,7 @@ class Login extends Component<Props, State> {
 
         return <Row className="mt-5 mb-5">
             <Col lg={12} md={12} xs={12}>
+                <Error msg={this.state.warning} type="warning" />
                 <Form>
                     <Form.Group controlId="username">
                         <Form.Label>Username</Form.Label>
