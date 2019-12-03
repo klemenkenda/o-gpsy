@@ -1,6 +1,11 @@
 export default class Auth {
     static setUser(record, remember) {
-        localStorage.setItem('user', record);
+        localStorage.setItem('user', record.name);
+        localStorage.setItem('username', record.username);
+        localStorage.setItem('password', record.password);
+        localStorage.setItem('user_ts', record.ts);
+        localStorage.setItem('type', record.type);
+
         // normal length of session 1 hour
         let session_length = 2 * 60 * 60 * 1000;
         if (remember === true) {
