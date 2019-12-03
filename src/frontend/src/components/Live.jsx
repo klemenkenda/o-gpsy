@@ -83,8 +83,8 @@ class Live extends Component<Props, State> {
     componentDidMount() {
         // create a map
         this.map = L.map('map', {
-            center: [46.131, 14.736],
-            zoom: 16,
+            center: [46.510, 15.078],
+            zoom: 15,
             layers: [
                 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -104,26 +104,22 @@ class Live extends Component<Props, State> {
         let imageBounds = [[46.040191, 14.47962], [46.049594, 14.498732]];
         this.mapImage = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
 
+
+        imageUrl = '/maps/slovenj-gradec.jpg';
+        imageBounds = [[46.505219, 15.072872], [46.515627, 15.08337]];
+        this.mapImageSG = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
+
+        /*
         // add map image - Logaticum northern block
         imageUrl = '/maps/lom.jpg';
-        /*
-            45.902115_14.24592_
-            45.902055_14.256412_
-            45.889392_14.256262_
-            45.889466_14.245748
-        */
         imageBounds = [[45.889466, 14.245748], [45.902055, 14.256412]];
         this.mapImage2 = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
 
+        // add map of Moravce (Matic)
         imageUrl = '/maps/trening-matic.jpg';
-        /*
-            46.138409_14.722319
-            46.138434_14.750768
-            46.124615_14.750793
-            46.12459_14.722344
-        */
         imageBounds = [[46.12459, 14.722344], [46.138434, 14.750768]];
         this.mapImage3 = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
+        */
 
         let _self = this;
 
