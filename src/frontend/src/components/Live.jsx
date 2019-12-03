@@ -40,8 +40,8 @@ class Live extends Component<Props, State> {
             competitors: [],
             tracks: [],
             current_ts: 2147483647,
-            labels: false,
-            tail: true,
+            show_labels: true,
+            show_tail: true,
             tail_length: 60,
             show_track: false
         };
@@ -126,7 +126,6 @@ class Live extends Component<Props, State> {
             (data) => {
                 this.orienteers = [];
                 data.forEach((el, i) => {
-                    console.log(el);
                     this.orienteers.push(new Orienteer(_self, i, el, this.map));
                 });
                 this.setState({ competitors: data, tracks: data[0].track });
@@ -162,9 +161,9 @@ class Live extends Component<Props, State> {
                 <LiveNavBar
                     handleChange={(e) => this.handleChange(e) }
                     show_tail={this.state.show_show_tail}
-                    show_labels={this.state.labels}
+                    show_labels={this.state.show_labels}
                     show_track={this.state.show_track}
-                    tail_length={60} />
+                    tail_length={this.state.tail_length} />
             </div>
         </div>
     }
