@@ -1,7 +1,7 @@
 // main imports
 import React, { Component } from 'react';
 import { MD5 } from 'crypto-js';
-import Auth from './lib/Auth';
+import Auth from '../lib/Auth';
 
 // models
 
@@ -56,11 +56,12 @@ class Login extends Component<Props, State> {
         e.preventDefault();
         const username = this.state.username;
         const password = MD5(this.state.password.trim());
+        const remember = this.state.remember;
 
         getBackend().admin.login(username, password,
             (data) => {              
                 if (typeof data === "object") {
-                    Auth.setUser(data[0]);
+                    Auth.setUser(data[0], remember);
                 }
             },
             (err) => {
