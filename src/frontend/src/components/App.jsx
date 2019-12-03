@@ -30,36 +30,36 @@ type State = { };
 class App extends React.Component<Props, State> {
     render() {
         return [
-            <Router>
+            <Router key={1}>
                 <Switch>
-                    <Route path="/" exact={true}>
+                    <Route path="/" exact={true} key={1}>
                         <Header />
                     </Route>
-                    <Route path="/login" exact={true}>
+                    <Route path="/login" exact={true} key={2}>
                         <Header />
                     </Route>
                 </Switch>
             </Router>,
-            <Router>
+            <Router key={2}>
                 <Switch>
-                    <Route path="/" exact={true}>
+                    <Route path="/" exact={true} key={1}>
                         <Container>
                             <Home />
                         </Container>
                     </Route>
-                    <Route path="/login">
+                    <Route path="/login" key={2}>
                         <Container>
                             <Login />
                         </Container>
                     </Route>
-                    <Route path="/live/:id">
+                    <Route path="/live/:id" key={3}>
                         <Live />
                     </Route>
                 </Switch>
             </Router>,
-            <Router>
+            <Router key={3}>
                 <Switch>
-                    <Route path="/" exact={true}>
+                    <Route path="/" exact={true} key={1}>
                         <footer className="text-muted pt-4" style={{borderTop: "1px solid #eee"}}>
                             <div className="container">
                                 <p className="float-right">
