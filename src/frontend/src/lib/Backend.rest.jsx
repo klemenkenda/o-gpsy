@@ -82,8 +82,10 @@ export class RestAdminBackend implements AdminBackend {
 
 export class RestBackend implements Backend {
     live: LiveBackend;
+    admin: AdminBackend;
 
     constructor() {
         this.live = new RestLiveBackend();
+        this.admin = new RestAdminBackend();
     }
 }

@@ -2,7 +2,7 @@
 const express = require('express');
 
 // import controllers
-const admin = require('../controller/admin');
+const admin = require('../controller/admin.ctrl');
 
 // create router
 exports.prepareAdminRoutes = () => {
