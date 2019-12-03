@@ -13,6 +13,25 @@ class MariaDBAdminStorageService {
         });
     }
 
+    async getLogin(username, password) {
+        let conn;
+
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+
+            let query = `select * from users where username = ? and password = ?`;
+            let r = await conn.query(query, [ username, password ]);
+            return(r);
+        } catch(err) {
+            console.log(err);
+            throw(err);
+        } finally {
+            if (conn) conn.end();
+        }
+
+    }
+
     async getEvents(user_id) {
         let conn;
 

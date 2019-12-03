@@ -3,8 +3,12 @@ const storage = new Storage();
 
 const Utils = require('./req_utils');
 
-exports.login = (req, res) => {
-    res.send("OK");
+exports.login = async (req, res) => {
+    const username = req.params.u;
+    const password = req.params.p;
+
+    const r = await storage.getLogin(username, password);
+    res.json(r);
 };
 
 exports.getEvents = async (req, res) => {
