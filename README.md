@@ -46,7 +46,7 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
 ### Plan for o-gpsy
 
 * Provide administration interface for users/clubs
-   * Login
+   * <del>Login</del> [ done ]
    * Add/edit/delete users
    * Add/edit/delete new competition
    * Add/edit/delete tracker
