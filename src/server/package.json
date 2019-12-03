@@ -1,6 +1,6 @@
 {
   "name": "o-gpsy-server",
-  "version": "0.0.1",
+  "version": "0.3.0",
   "description": "Server for o-gpsy.",
   "main": "index.js",
   "scripts": {
