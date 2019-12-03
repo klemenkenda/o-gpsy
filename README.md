@@ -43,7 +43,7 @@ For production mode go to `src/frontend` and run `npm install` and then `npm run
 
 Development server runs on port 3000. You start it simply by `npm start` in `src/frontend`. This will start react-tools and the changes will be automatically visible in the front end. Visit [http://localhost:3000](http://localhost:3000) for this version. This version uses the server running on port `8000` (see Production). The prerequisite is to start MariaDB service. This can be done with Docker (`src/docker`) with a command `docker-compose up`. If you run `docker-compose` Adminer is also available on `docker-machine ip` on port `8080`. Be careful to provide correct data to `src/common/config.json`.
 
-### Plan for o-gpsy
+### Plan for o-gpsy [ PHASE 1 / MVP ]
 
 * Provide administration interface for users/clubs
    * <del>Login</del> [ done ]
@@ -52,10 +52,6 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
    * Add/edit/delete tracker
    * Add/edit/delete runner to the competition
    * Add/edit/delete new map
-   * Export GPX for each runner (and for whole training)
-   * Add course editor (idea is to have one map in the system; just add controls for trainings)
-   * Provide user interface to fit the map to the basemap (like Routegadget)
-   * 2drerun (export) + docs
 * Live view: user interface
    * Show full track
    * Working controls
@@ -69,11 +65,21 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
    * Show clock + replay/sync (like gpsseuranta)
    * Replay functionality
    * Sync for replay
+* Services
+   * TMT250 TCP service
+
+### Plan for o-gpsy [ PHASE 2 / upgrade ]
+
+* Provide administration interface for users/clubs
+   * Export GPX for each runner (and for whole training)
+   * Add course editor (idea is to have one map in the system; just add controls for trainings)
+   * Provide user interface to fit the map to the basemap (like Routegadget)
+   * 2drerun (export) + docs
+* Live view: user interface
    * Use 4 coordinates to fit the map to basemap (like Routegadget)
 * Analysis view: user interface
    * show tracks color-coded by speed (like in QuickRoute)
 * Services
-   * TMT250 TCP service
    * TMT250 SMS service
 * Docs
    * Manual for Android app (GPSLogger)
@@ -83,7 +89,8 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
        * Phone
 * Development
    * Using flow for type checking
-   * Using jest for unit tests
+   * Using jest for unit tests (frontend)
+   * Using mocha (or jest) for unit tests (server)
 
 > Help is needed! Developers welcome. Support from future users (testing, beta testing) too. :)
 
