@@ -71,6 +71,7 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
 
 ### Plan for o-gpsy [ PHASE 2 / upgrade ]
 
+* Prepare manifest file & logo for mobile desktop app
 * Provide administration interface for users/clubs
    * Add specialized interfaces
       * Add/edit/delete runners to the competition
