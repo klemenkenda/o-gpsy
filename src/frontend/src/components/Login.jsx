@@ -50,10 +50,10 @@ class Login extends Component<Props, State> {
             const value = target.type === 'checkbox' ?
                 target.checked : target.value;
             // update
-           this.setState(prev_state => {
-               prev_state[field] = value;
-               return prev_state;
-           });
+            this.setState(prev_state => {
+                prev_state[field] = value;
+                return prev_state;
+            });
         }
     };
 
@@ -64,7 +64,7 @@ class Login extends Component<Props, State> {
         const remember = this.state.remember;
 
         getBackend().admin.login(username, password,
-            (data) => {              
+            (data) => {
                 if (typeof data === "object") {
                     if (data.length > 0) {
                         Auth.setUser(data[0], remember);
@@ -92,9 +92,9 @@ class Login extends Component<Props, State> {
                 <Form>
                     <Form.Group controlId="username">
                         <Form.Label>Username</Form.Label>
-                        <Form.Control type="username" 
-                            placeholder="Enter username" 
-                            value={this.state.username} 
+                        <Form.Control type="username"
+                            placeholder="Enter username"
+                            value={this.state.username}
                             onChange={ (e) => this.handleChange(e) }/>
                         <Form.Text className="text-muted">
                             Username should be given to you by the administrator.
@@ -103,21 +103,21 @@ class Login extends Component<Props, State> {
 
                     <Form.Group controlId="password">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control 
-                            type="password" 
+                        <Form.Control
+                            type="password"
                             placeholder="Password"
                             value={this.state.password}
                             onChange={ (e) => this.handleChange(e) } />
                     </Form.Group>
                     <Form.Group controlId="remember">
-                        <Form.Check 
-                            type="checkbox" 
+                        <Form.Check
+                            type="checkbox"
                             label="Remember me"
                             value={this.state.remember}
                             onChange={ (e) => this.handleChange(e) } />
                     </Form.Group>
-                    <Button 
-                        variant="primary" 
+                    <Button
+                        variant="primary"
                         type="submit"
                         onClick={(e) => this.handleSubmit(e)}>
                         Log in
