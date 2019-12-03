@@ -53,28 +53,14 @@ class Login extends Component<Props, State> {
     handleSubmit(e) {
         e.preventDefault();
         const u = this.state;
-        getBackend().admin.login(u.username, u.password.trim()) {
+        getBackend().admin.login(u.username, u.password.trim(),
             (data) => {
 
             },
             (err) => {
                 console.log(err);
             }
-        }
-
-        /*
-        Auth.loginUP(u.username, u.password.trim(), u.remember,
-            () => {
-                this.setState({ message: "" });
-                const redirectURL = Auth.getLoginRedirectURL();
-                this.props.history.push(redirectURL);
-            },
-            (message) => {
-                console.log(message);
-                this.setState({ message });
-            }
         );
-        */
     }
 
     render() {

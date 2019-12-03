@@ -68,7 +68,7 @@ export class RestLiveBackend implements LiveBackend {
 };
 
 export class RestAdminBackend implements AdminBackend {
-    login(u, p) {
+    login(u, p, done, err) {
         axios.get("/api/admin/login/" + u + "/" + p)
             .then(result => {
                 done(result.data);
