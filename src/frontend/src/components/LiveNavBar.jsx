@@ -6,14 +6,17 @@ import React, { Component } from 'react';
 // backend
 
 // import subcomponents
-import { Form } from 'react-bootstrap';
 
 // import css
 import './css/LiveNavBar.css';
 
 // defining types
-type Props = {};
-type State = {};
+type Props = { };
+type State = {
+    tail: boolean,
+    labels: boolean,
+    tail_length: number
+};
 
 /**
  * Displaying production lines list.
@@ -22,14 +25,24 @@ class LiveNavBar extends Component<Props, State> {
 
     render() {
         return <div className="divLiveNavBar">
-            <b>Options:</b>
-            <Form>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Check type="checkbox" label="Show tail (5 min)" value={true}/>
-                    <Form.Check type="checkbox" label="Show label" />
-                </Form.Group>
-            </Form>
+            <b>Options:</b><br/>
+
+            <input
+                type="checkbox"
+                id="tail"
+                checked={this.props.tail}
+                onChange={ (e) => this.props.handleChange(e) } />
+            Show tail<br />
+
+            <input
+                type="checkbox"
+                id="labels"
+                label="Show label"
+                checked={this.props.labels}
+                onChange={ (e) => this.props.handleChange(e) } />
+            Show label
         </div>
+
     }
 
 }

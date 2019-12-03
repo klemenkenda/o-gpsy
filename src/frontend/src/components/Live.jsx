@@ -21,7 +21,10 @@ type State = {
     orienteers: [],
     competitors: [],
     tracks: [],
-    current_ts: number
+    current_ts: number,
+    labels: boolean,
+    tail: boolean,
+    tailLength: number
 };
 
 /**
@@ -32,9 +35,13 @@ class Live extends Component<Props, State> {
     constructor(props) {
         super(props);
         this.state = {
+            orienteers: [],
             competitors: [],
             tracks: [],
-            current_ts: 0
+            current_ts: 2147483647,
+            labels: false,
+            tail: true,
+            tailLength: 60
         };
         this.orienteers = [];
     }
@@ -68,16 +75,6 @@ class Live extends Component<Props, State> {
             orienteer.updateMarker();
             orienteer.updateTrack();
         });
-    }
-
-    updateTracks() {
-        if (this.state.tracks.length > 0) {
-            // fill track
-            let latlngs = this.state.tracks
-                .filter(x => x.ts > this.state.current_ts - 300)
-                .map((el, i) => [el.lat, el.lon]);
-            this.track.setLatLngs(latlngs);
-        }
     }
 
     componentDidMount() {
@@ -141,12 +138,30 @@ class Live extends Component<Props, State> {
         this.countdown = setInterval(() => this.loadTracks(), 1000);
     }
 
+    handleChange(event: Event) {
+        let target = event.target;
+        if (target instanceof HTMLInputElement) {
+            const field = target.id;
+            const value = target.type === 'checkbox' ?
+                target.checked : target.value;
+            // update
+            this.setState(prev_state => {
+                prev_state[field] = value;
+                return prev_state;
+            });
+        }
+    };
+
     render() {
         this.updateMarkers();
         // this.updateTracks();
         return <div>
             <div id="map" style={{width: "100%", height: "100vh"}}>
-            <LiveNavBar />
+                <LiveNavBar
+                    handleChange={(e) => this.handleChange(e) }
+                    tail={this.state.tail}
+                    labels={this.state.labels}
+                    tailLength={60} />
             </div>
         </div>
     }
