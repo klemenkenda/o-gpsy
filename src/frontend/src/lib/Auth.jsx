@@ -14,4 +14,17 @@ export default class Auth {
         }
         localStorage.setItem('expired', new Date().getTime() + session_length);
     };
+
+    static checkUserShallow() {
+        if (localStorage.getItem('expired') > new Date().getTime()) {
+            return true;
+        }
+    }
+
+    static getUser() {
+        return {
+            user: localStorage.getItem('user'),
+            username: localStorage.getItem('username')
+        }
+    }
 }
