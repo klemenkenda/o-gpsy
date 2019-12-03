@@ -25,8 +25,9 @@ class Orienteer {
         // handling map related issues
         this.color = this.getColor(i);
         this.map = map;
-
         this.tail_length = 120; // TODO: this should be inherited from parent (used "live")
+
+        this.last_show_labels = this.parent.state.show_labels;
 
         // render marker and tail
         this.initMarkerAndTail();
@@ -42,7 +43,7 @@ class Orienteer {
         // add marker
         this.marker = L.circleMarker([0, 0], { radius: 6, color: "black", weight: 1, fillColor: this.color, fillOpacity: 1 })
             .bindTooltip(this.props.name, {
-                permanent: false,
+                permanent: this.parent.state.show_labels,
                 direction: 'right',
                 offset: new L.Point(10, 0)
             }).addTo(this.map);
@@ -60,6 +61,16 @@ class Orienteer {
                 this.track.addLatLng(lat_lng);
             }
         }
+        // update tooltip
+        if (this.last_show_labels !== this.parent.state.show_labels) {
+            console.log("ere");
+            if (this.parent.state.show_labels === true) {
+                this.marker.openTooltip();
+            } else {
+                this.marker.closeTooltip();
+            }
+            this.last_show_labels = this.parent.state.show_labels;
+        }
     }
 
     /**
@@ -69,7 +80,10 @@ class Orienteer {
         if (this.track_data.length > 0) {
             // fill track
             let tail_length = this.parent.state.tail_length;
-            if (this.paremnt.state.show_track === true) {
+            if (this.parent.state.show_tail === false) {
+                tail_length = 0;
+            }
+            if (this.parent.state.show_track === true) {
                 tail_length = 10 * 24 * 60 * 60;
             }
             let latlngs = this.track_data

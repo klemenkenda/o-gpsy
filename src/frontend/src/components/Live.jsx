@@ -131,7 +131,7 @@ class Live extends Component<Props, State> {
                 this.setState({ competitors: data, tracks: data[0].track });
             },
             (err) => {
-                console.log("Error");
+                console.log(err);
             }
         );
 
