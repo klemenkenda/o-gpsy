@@ -16,7 +16,7 @@ export class RestLiveBackend implements LiveBackend {
                 console.log(error);
                 err(error);
             }
-        );
+            );
     }
 
     getCoordinates(event_id, done, err) {
@@ -28,7 +28,7 @@ export class RestLiveBackend implements LiveBackend {
                 console.log(error);
                 err(error);
             }
-        )
+            )
     }
 
     putCoordinates(u, p, x, y, t, done, err) {
@@ -40,7 +40,7 @@ export class RestLiveBackend implements LiveBackend {
                 console.log(error);
                 err(error);
             }
-        )
+            )
     }
 
     getTime(done, err) {
@@ -52,7 +52,7 @@ export class RestLiveBackend implements LiveBackend {
                 console.log(error);
                 err(error);
             }
-        )
+            )
     }
 
     getEvents(done, err) {
@@ -77,6 +77,21 @@ export class RestAdminBackend implements AdminBackend {
                 console.log(error);
                 err(error);
             });
+    };
+
+    getMaps = async (u) => {
+        try {
+            let url = `/api/admin/maps/`
+            if (u) url = `/api/admin/maps/${u}`
+
+            const { data } = await axios.get(url)
+            return data
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
+
     };
 }
 

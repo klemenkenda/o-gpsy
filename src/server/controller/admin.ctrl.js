@@ -20,3 +20,13 @@ exports.getEvents = async (req, res) => {
     const events = await storage.getEvents(user_id);
     res.json(events);
 }
+
+exports.getMaps = async (req, res) => {
+    let user_id = Utils.emptyIsNull(req.params.user_id);
+    if (user_id != null) {
+        user_id = parseInt(user_id);
+    }
+
+    const events = await storage.getMaps(user_id);
+    res.json(events);
+}
