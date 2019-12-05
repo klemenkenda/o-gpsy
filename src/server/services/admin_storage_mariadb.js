@@ -76,16 +76,16 @@ class MariaDBAdminStorageService {
 
             let query;
             let records = [];
-            // return all public events (GUI)
+            // return all public maps (GUI)
             if (user_id === null) {
                 query = `
                     select * from maps
                 `;
                 records = await conn.query(query);
             } else {
-                // or return all users events
+                // or return all users maps
                 query = `
-                    select * from events
+                    select * from maps
                     where user_id = ?
                 `;
                 records = await conn.query(query, [user_id]);
