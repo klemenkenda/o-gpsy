@@ -27,7 +27,7 @@ class Maps extends Component<Props, State> {
     this.updateMaps()
   }
 
-  updateMaps = async () => {
+  async updateMaps() {
     let maps = await this.backend.getMaps()
     this.setState({ maps })
   }

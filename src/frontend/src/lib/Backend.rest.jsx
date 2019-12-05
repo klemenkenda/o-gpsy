@@ -79,7 +79,7 @@ export class RestAdminBackend implements AdminBackend {
             });
     };
 
-    getMaps = async (u) => {
+    async getMaps(u) {
         try {
             let url = `/api/admin/maps/`
             if (u) url = `/api/admin/maps/${u}`
