@@ -39,7 +39,8 @@ class Maps extends Component<Props, State> {
 
   async addMap() {
     let map = await this.backend.addMap(this.state.newMap);
-    this.setState((state) => ({ maps: [...state.maps, map] }));
+    await this.updateMaps(); // todo delete map in place instead of re-fetching
+    this.toggleAddingMap()
   };
 
   toggleAddingMap() {
@@ -69,8 +70,8 @@ class Maps extends Component<Props, State> {
       let payload = { [id]: value };
 
       if (type === 'file') {
-        payload[id] = files[0].name;
-        payload.file = files[0];
+        payload[id] = files && files[0] && files[0].name;
+        payload.file = files && files[0];
       }
 
       this.setState((state) => ({
@@ -89,8 +90,8 @@ class Maps extends Component<Props, State> {
       let payload = { [id]: value }
 
       if (type === 'file') {
-        payload[id] = files[0].name;
-        payload.file = files[0];
+        payload[id] = files && files[0] && files[0].name;
+        payload.file = files && files[0];
       }
 
       this.setState((state) => ({
@@ -142,7 +143,7 @@ class Maps extends Component<Props, State> {
       }
       {
         maps.map((map) => {
-          const editing = editedMap.id === map.id;
+          const editing = editedMap.id && editedMap.id === map.id;
           const editMapText = editing ? 'Cancel' : 'Edit Map';
           return (
             <React.Fragment key={map.id}>
