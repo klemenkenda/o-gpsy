@@ -43,6 +43,10 @@ For production mode go to `src/frontend` and run `npm install` and then `npm run
 
 Development server runs on port 3000. You start it simply by `npm start` in `src/frontend`. This will start react-tools and the changes will be automatically visible in the front end. Visit [http://localhost:3000](http://localhost:3000) for this version. This version uses the server running on port `8000` (see Production). The prerequisite is to start MariaDB service. This can be done with Docker (`src/docker`) with a command `docker-compose up`. If you run `docker-compose` Adminer is also available on `docker-machine ip` on port `8080`. Be careful to provide correct data to `src/common/config.json`.
 
+### Conventions
+
+* Use [BEM](http://getbem.com/introduction/) for CSS
+
 ### Plan for o-gpsy [ PHASE 1 / MVP ]
 
 * <del>Multiple events tracking</del> [ done ]
