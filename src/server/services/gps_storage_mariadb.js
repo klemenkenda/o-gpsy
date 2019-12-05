@@ -39,7 +39,8 @@ class MariaDBGPSStorageService {
                 values (
                     (select runners.id from trackers, runners
                         where trackers.id = runners.tracker_id and
-                        trackers.uuid = ?),
+                        trackers.uuid = ?
+                        order by runners.id desc),
                     from_unixtime(?), ?, ?
                 )
             `;
