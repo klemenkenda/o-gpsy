@@ -20,7 +20,8 @@ class Maps extends Component<Props, State> {
     this.state = {
       maps: [],
       newMap: {},
-      addingMap: false
+      addingMap: false,
+      editedMap: {},
     };
     this.backend = getBackend().admin;
   };
@@ -45,15 +46,26 @@ class Maps extends Component<Props, State> {
     this.setState((state) => ({ addingMap: !state.addingMap }));
   };
 
-  handleFormChange(event: Event) {
+  async editMap() {
+    let map = await this.backend.editMap(this.state.editedMap);
+    this.toggleEditMap(map)
+    await this.updateMaps(); // todo update map in place instead of re-fetching
+  };
+
+  toggleEditMap(map) {
+    if (this.state.editedMap.id !== map.id) return this.setState({ editedMap: map });
+    return this.setState({ editedMap: {} });
+  }
+
+  handleAddFormChange(event: Event) {
     const target = event.target;
     if (target instanceof HTMLInputElement) {
       const { id, value, type, files } = target;
-      let payload = { [id]: value }
+      let payload = { [id]: value };
 
       if (type === 'file') {
-        payload[id] = files[0].name
-        payload.file = files[0]
+        payload[id] = files[0].name;
+        payload.file = files[0];
       }
 
       this.setState((state) => ({
@@ -65,8 +77,28 @@ class Maps extends Component<Props, State> {
     }
   };
 
+  handleEditFormChange(event: Event) {
+    const target = event.target;
+    if (target instanceof HTMLInputElement) {
+      const { id, value, type, files } = target;
+      let payload = { [id]: value }
+
+      if (type === 'file') {
+        payload[id] = files[0].name;
+        payload.file = files[0];
+      }
+
+      this.setState((state) => ({
+        editedMap: {
+          ...state.editedMap,
+          ...payload,
+        },
+      }));
+    }
+  };
+
   render() {
-    const { maps, addingMap } = this.state;
+    const { maps, addingMap, editedMap } = this.state;
     const addMapText = addingMap ? 'Cancel' : 'Add map';
 
     return <Row className="mt-5 mb-5">
@@ -83,19 +115,19 @@ class Maps extends Component<Props, State> {
               <Form.Label>Map name</Form.Label>
               <Form.Control type="name"
                 placeholder="Enter map name"
-                onChange={(e) => this.handleFormChange(e)} />
+                onChange={(e) => this.handleAddFormChange(e)} />
             </Form.Group>
             <Form.Group controlId="filename">
               <Form.Label>Map</Form.Label>
               <Form.Control type="file"
                 placeholder="Choose file"
-                onChange={(e) => this.handleFormChange(e)} />
+                onChange={(e) => this.handleAddFormChange(e)} />
             </Form.Group>
             <Form.Group controlId="coordinates">
               <Form.Label>Map</Form.Label>
               <Form.Control type="text"
                 placeholder="Insert map coordinates, e.g. 46.049578_14.4795_46.049594_14.498732_46.040151_14.498755_46.040191_14.47962"
-                onChange={(e) => this.handleFormChange(e)} />
+                onChange={(e) => this.handleAddFormChange(e)} />
             </Form.Group>
 
             <Button onClick={() => this.addMap()}>Add</Button>
@@ -104,10 +136,47 @@ class Maps extends Component<Props, State> {
         </Col>
       }
       {
-        maps.map((map) => <Col key={map.id || -1} lg={12} md={12} xs={12}>
-          {map.name}
-          <img src={`/maps/${map.filename}`} alt={map.filename} style={{ display: 'inline-block', height: '300px', width: 'auto' }} />
-        </Col>)
+        maps.map((map) => {
+          const editing = editedMap.id === map.id;
+          const editMapText = editing ? 'Cancel' : 'Edit Map';
+          return (
+            <React.Fragment key={map.id}>
+              <Col lg={12} md={12} xs={12}>
+                {map.name}
+                <img src={`/maps/${map.filename}`} alt={map.filename} style={{ display: 'inline-block', height: '300px', width: 'auto' }} />
+                <Button type="button" className={{ btn: true, 'btn-danger': editing }} onClick={() => this.toggleEditMap(map)}>{editMapText}</Button>
+              </Col>
+              {
+                editing && <Col lg={12} md={12} xs={12}>
+                  <Form>
+                    <Form.Group controlId="name">
+                      <Form.Label>Map name</Form.Label>
+                      <Form.Control type="name"
+                        placeholder="Enter map name"
+                        value={editedMap.name}
+                        onChange={(e) => this.handleEditFormChange(e)} />
+                    </Form.Group>
+                    <Form.Group controlId="filename">
+                      <Form.Label>Map</Form.Label>
+                      <Form.Control type="file"
+                        placeholder="Choose file"
+                        onChange={(e) => this.handleEditFormChange(e)} />
+                    </Form.Group>
+                    <Form.Group controlId="coordinates">
+                      <Form.Label>Map</Form.Label>
+                      <Form.Control type="text"
+                        placeholder="Insert map coordinates, e.g. 46.049578_14.4795_46.049594_14.498732_46.040151_14.498755_46.040191_14.47962"
+                        value={editedMap.coordinates}
+                        onChange={(e) => this.handleEditFormChange(e)} />
+                    </Form.Group>
+
+                    <Button onClick={() => this.editMap()}>Edit</Button>
+                  </Form>
+
+                </Col>
+              }
+            </React.Fragment>)
+        })
       }
 
     </Row>

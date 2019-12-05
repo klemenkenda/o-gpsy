@@ -99,6 +99,17 @@ export class RestAdminBackend implements AdminBackend {
             throw e;
         }
     };
+
+    async editMap(map) {
+        try {
+            const { data } = await axios.post(`/api/admin/maps/edit`, { map })
+            return data
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
+    };
 }
 
 export class RestBackend implements Backend {

@@ -114,6 +114,24 @@ class MariaDBAdminStorageService {
         }
     }
 
+    async editMap(map) {
+        let conn;
+
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+
+            await conn.query(`update maps set name = ?, filename = ?, coordinates = ? where id = ?`, [map.name, map.filename, map.coordinates, map.id]);
+            return await conn.query(`select * from maps where id = ?`, [map.id]);
+
+        } catch (err) {
+            console.log(err);
+            throw (err);
+        } finally {
+            if (conn) conn.end();
+        }
+    }
+
 
 
 };

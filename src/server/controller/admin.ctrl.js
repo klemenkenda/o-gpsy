@@ -40,3 +40,13 @@ exports.addMap = async (req, res) => {
     map = await storage.addMap(map);
     res.json(map);
 }
+
+exports.editMap = async (req, res) => {
+    let map = req.body.map;
+    if (!map) {
+        throw 'Missing the map'
+    }
+
+    map = await storage.editMap(map);
+    res.json(map);
+}
