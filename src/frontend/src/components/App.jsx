@@ -70,7 +70,7 @@ class App extends React.Component<Props, State> {
                                 <p className="float-right">
                                     <a href="#home">Back to top</a>
                                 </p>
-                                <p>&copy; Klemen Kenda, IJS, E3</p>
+                                <p>&copy; Klemen Kenda &amp; Andrej Borštnik, IJS, E3</p>
                             </div>
                         </footer>
                     </Route>

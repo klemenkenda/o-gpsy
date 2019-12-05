@@ -80,7 +80,6 @@ class MariaDBAdminStorageService {
             if (user_id === null) {
                 query = `
                     select * from maps
-
                 `;
                 records = await conn.query(query);
             } else {

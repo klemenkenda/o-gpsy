@@ -7,7 +7,8 @@ const admin = require('../controller/admin.ctrl');
 // create router
 exports.prepareAdminRoutes = () => {
     let router = express.Router();
-    // acctual admin routes
+
+    // actual admin routes
     router.get('/login/:u/:p', admin.login);
 
     // GUI/admin routes
