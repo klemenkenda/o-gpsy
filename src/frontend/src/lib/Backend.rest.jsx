@@ -19,8 +19,8 @@ export class RestLiveBackend implements LiveBackend {
         );
     }
 
-    getCoordinates(event, done, err) {
-        axios.get("/api/point/1")
+    getCoordinates(event_id, done, err) {
+        axios.get("/api/point/" + event_id)
             .then(result => {
                 done(result.data);
             })
@@ -70,7 +70,7 @@ export class RestLiveBackend implements LiveBackend {
 export class RestAdminBackend implements AdminBackend {
     login(u, p, done, err) {
         axios.get("/api/admin/login/" + u + "/" + p)
-            .then(result => {                
+            .then(result => {
                 done(result.data);
             })
             .catch(error => {
