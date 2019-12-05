@@ -15,7 +15,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
 // defining types
-type Props = { };
+type Props = {};
 
 type State = {
     orienteers: [],
