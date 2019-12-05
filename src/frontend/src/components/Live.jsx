@@ -19,7 +19,7 @@ type Props = { };
 
 type State = {
     orienteers: [],
-    competitors: [],
+    competitors: Object,
     tracks: [],
     current_ts: number,
     show_labels: boolean,
@@ -45,17 +45,15 @@ class Live extends Component<Props, State> {
             tail_length: 60,
             show_track: false
         };
-        this.orienteers = [];
+        this.orienteers = {};
     }
 
     loadTracks(event_id) {
         getBackend().live.getCoordinates(event_id,
             (data) => {
-                if (this.orienteers.length === data.length) {
-                    data.forEach((el, i) => {
-                        this.orienteers[i].update(el);
-                    });
-                };
+                data.forEach((el, i) => {
+                    this.orienteers[el.runner_id].update(el);
+                });
             },
             (err) => {
                 console.log("Error");
@@ -73,7 +71,8 @@ class Live extends Component<Props, State> {
     }
 
     updateMarkers() {
-        this.orienteers.forEach((orienteer, i) => {
+        Object.keys(this.orienteers).forEach((key) => {
+            const orienteer = this.orienteers[key];
             orienteer.updateMarker();
             orienteer.updateTrack();
         });
@@ -126,7 +125,7 @@ class Live extends Component<Props, State> {
             (data) => {
                 this.orienteers = [];
                 data.forEach((el, i) => {
-                    this.orienteers.push(new Orienteer(_self, i, el, this.map));
+                    this.orienteers[el.id] = new Orienteer(_self, i, el, this.map);
                 });
                 this.setState({ competitors: data, tracks: data[0].track });
             },

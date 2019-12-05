@@ -97,6 +97,7 @@ class Orienteer {
      * @param {PointRecordObj} data New point data record.
      */
     update(data) {
+        console.log("Orienteer update", data);
         // this is acctually pointer
         let track = this.track_data;
         if (track.length > 0) {
