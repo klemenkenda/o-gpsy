@@ -45,7 +45,7 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
 
 ### Plan for o-gpsy [ PHASE 1 / MVP ]
 
-* Multiple events tracking
+* <del>Multiple events tracking</del> [ done ]
    * <del>Changing runner array to hash</del> [ done ]
 * Provide administration interface for users/clubs
    * <del>Login</del> [ done ]
