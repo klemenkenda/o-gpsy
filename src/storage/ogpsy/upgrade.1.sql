@@ -5,6 +5,7 @@ use ogpsy;
 create table users (
     ts timestamp not null default current_timestamp,
     id int auto_increment,
+    user_id int,
     username varchar(50),
     password varchar(255),
     name varchar(50),
