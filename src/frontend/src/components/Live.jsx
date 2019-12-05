@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 
 // models
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 // backend
 import { getBackend } from '../lib/Backend';
@@ -15,7 +16,11 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
 // defining types
-type Props = {};
+type Props = {
+    match: ReactRouterPropTypes.match,
+    history: ReactRouterPropTypes.history,
+    location: ReactRouterPropTypes.location
+};
 
 type State = {
     orienteers: [],
@@ -33,7 +38,7 @@ type State = {
  */
 class Live extends Component<Props, State> {
 
-    constructor(props) {
+    constructor(props, state) {
         super(props);
         this.state = {
             orienteers: [],
@@ -52,6 +57,7 @@ class Live extends Component<Props, State> {
         getBackend().live.getCoordinates(event_id,
             (data) => {
                 data.forEach((el, i) => {
+                    console.log(el);
                     this.orienteers[el.runner_id].update(el);
                 });
             },
@@ -79,6 +85,8 @@ class Live extends Component<Props, State> {
     }
 
     componentDidMount() {
+        this.event_id = this.props.match.params.id;
+
         // create a map
         this.map = L.map('map', {
             center: [46.510, 15.078],
@@ -121,7 +129,7 @@ class Live extends Component<Props, State> {
 
         let _self = this;
 
-        getBackend().live.getCompetitors(1,
+        getBackend().live.getCompetitors(this.event_id,
             (data) => {
                 this.orienteers = [];
                 data.forEach((el, i) => {
@@ -135,7 +143,7 @@ class Live extends Component<Props, State> {
         );
 
         // updating
-        this.countdown = setInterval(() => this.loadTracks(), 1000);
+        this.countdown = setInterval(() => this.loadTracks(this.event_id), 1000);
     }
 
     handleChange(event: Event) {

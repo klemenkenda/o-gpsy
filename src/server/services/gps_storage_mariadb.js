@@ -40,7 +40,8 @@ class MariaDBGPSStorageService {
                     (select runners.id from trackers, runners
                         where trackers.id = runners.tracker_id and
                         trackers.uuid = ?
-                        order by runners.id desc),
+                        order by runners.id desc
+                        limit 1),
                     from_unixtime(?), ?, ?
                 )
             `;
@@ -56,7 +57,7 @@ class MariaDBGPSStorageService {
         }
     };
 
-    async getPoint(u) {
+    async getPoint(event_id) {
         let conn;
         let pool;
 
@@ -67,13 +68,18 @@ class MariaDBGPSStorageService {
             let query = `
                 select *
                 from (
-                    select unix_timestamp(ts) as ts, runner_id, lat, lon from points
+                    select
+                        unix_timestamp(points.ts) as ts, runner_id, lat, lon
+                    from runners, points
+                    where
+                        runners.event_id = ? and
+                        runners.id = runner_id
                     group by runner_id desc
                 ) as x
                 order by runner_id
             `;
-
-            let records = await conn.query(query);
+            console.log(event_id);
+            let records = await conn.query(query, [event_id]);
             return(records);
 
         } catch(err) {

@@ -1,7 +1,7 @@
 {
     "storage": {
         "ogpsy": {
-            "host": "192.168.99.100",
+            "host": "localhost",
             "root_password": "example",
             "user": "ogpsy",
             "password": "Th0uSha11S4v3",

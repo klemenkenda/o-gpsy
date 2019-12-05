@@ -35,7 +35,7 @@ class App extends React.Component<Props, State> {
                 <Switch>
                     <Route path="/(|login|logout)" exact={true} key={1}>
                         <Header />
-                    </Route>                    
+                    </Route>
                 </Switch>
             </Router>,
             <Router key={2}>
@@ -55,9 +55,7 @@ class App extends React.Component<Props, State> {
                             <Logout />
                         </Container>
                     </Route>
-                    <Route path="/live/:id" key={4}>
-                        <Live />
-                    </Route>
+                    <Route path="/live/:id" key={4} component={Live} />
                 </Switch>
             </Router>,
             <Router key={3}>
