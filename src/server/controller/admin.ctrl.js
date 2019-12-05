@@ -1,3 +1,5 @@
+const fs = require('fs');
+const MAPS_DIR = require('../routes/static').MAPS_DIR;
 const Storage = require('../services/admin_storage_mariadb');
 const storage = new Storage();
 
@@ -39,6 +41,22 @@ exports.addMap = async (req, res) => {
 
     map = await storage.addMap(map);
     res.json(map);
+}
+
+exports.uploadMap = async (req, res) => {
+    // todo restrict to images with limited size
+    const fileName = decodeURIComponent(req.params.file_name);
+    const filePath = `${__dirname}/../${MAPS_DIR}/${fileName}`
+
+    req.on('data', (d) => {
+        fs.appendFile(filePath, d, (e) => {
+            if (e) throw e;
+        });
+    });
+    req.on('error', (e) => res.sendStatus(500));
+    req.on('end', () => {
+        res.json(fileName);
+    });
 }
 
 exports.editMap = async (req, res) => {
