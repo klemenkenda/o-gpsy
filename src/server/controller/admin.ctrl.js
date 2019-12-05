@@ -50,3 +50,14 @@ exports.editMap = async (req, res) => {
     map = await storage.editMap(map);
     res.json(map);
 }
+
+exports.deleteMap = async (req, res) => {
+    let id = req.body.id;
+    if (!id) {
+        throw 'Missing the map'
+    }
+    id = parseInt(id)
+
+    map = await storage.deleteMap(id);
+    res.json(map);
+}

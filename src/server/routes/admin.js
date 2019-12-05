@@ -17,6 +17,7 @@ exports.prepareAdminRoutes = () => {
     // GUI/admin/map routes
     router.post('/maps/add/', admin.addMap);
     router.post('/maps/edit/', admin.editMap);
+    router.post('/maps/delete/', admin.deleteMap);
     router.get('/maps/:user_id?', admin.getMaps);
 
     return (router);

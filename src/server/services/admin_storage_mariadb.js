@@ -132,6 +132,25 @@ class MariaDBAdminStorageService {
         }
     }
 
+    async deleteMap(id) {
+        let conn;
+
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+
+            let map = await conn.query(`select * from maps where id = ?`, [id]);
+            await conn.query(`delete from maps where id = ?`, [id]);
+            return map
+
+        } catch (err) {
+            console.log(err);
+            throw (err);
+        } finally {
+            if (conn) conn.end();
+        }
+    }
+
 
 
 };

@@ -110,6 +110,17 @@ export class RestAdminBackend implements AdminBackend {
             throw e;
         }
     };
+
+    async deleteMap(id) {
+        try {
+            const { data } = await axios.post(`/api/admin/maps/delete`, { id })
+            return data
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
+    };
 }
 
 export class RestBackend implements Backend {

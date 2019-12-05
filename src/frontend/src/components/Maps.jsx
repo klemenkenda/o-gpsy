@@ -57,6 +57,11 @@ class Maps extends Component<Props, State> {
     return this.setState({ editedMap: {} });
   }
 
+  async deleteMap(map) {
+    map = await this.backend.deleteMap(map.id);
+    await this.updateMaps(); // todo delete map in place instead of re-fetching
+  };
+
   handleAddFormChange(event: Event) {
     const target = event.target;
     if (target instanceof HTMLInputElement) {
@@ -144,6 +149,7 @@ class Maps extends Component<Props, State> {
               <Col lg={12} md={12} xs={12}>
                 {map.name}
                 <img src={`/maps/${map.filename}`} alt={map.filename} style={{ display: 'inline-block', height: '300px', width: 'auto' }} />
+                <Button type="button" className={{ btn: true, 'btn-danger': true }} onClick={() => this.deleteMap(map)}>Delete</Button>
                 <Button type="button" className={{ btn: true, 'btn-danger': editing }} onClick={() => this.toggleEditMap(map)}>{editMapText}</Button>
               </Col>
               {
