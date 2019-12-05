@@ -14,7 +14,8 @@ exports.prepareAdminRoutes = () => {
     // GUI/admin routes
     router.get('/events/:user_id?', admin.getEvents);
 
-    // GUI/admin routes
+    // GUI/admin/map routes
+    router.post('/maps/add/', admin.addMap);
     router.get('/maps/:user_id?', admin.getMaps);
 
     return (router);

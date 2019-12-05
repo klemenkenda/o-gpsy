@@ -87,7 +87,17 @@ export class RestAdminBackend implements AdminBackend {
             console.log(e);
             throw e;
         }
+    };
 
+    async addMap(map) {
+        try {
+            const { data } = await axios.post(`/api/admin/maps/add`, { map })
+            return data
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
     };
 }
 

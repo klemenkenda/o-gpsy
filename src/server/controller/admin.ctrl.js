@@ -30,3 +30,13 @@ exports.getMaps = async (req, res) => {
     const events = await storage.getMaps(user_id);
     res.json(events);
 }
+
+exports.addMap = async (req, res) => {
+    let map = req.body.map;
+    if (!map) {
+        throw 'Missing the map'
+    }
+
+    map = await storage.addMap(map);
+    res.json(map);
+}

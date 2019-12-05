@@ -74,24 +74,19 @@ class MariaDBAdminStorageService {
             conn = await this.pool.getConnection();
             await conn.query('use ' + this.config.db);
 
-            let query;
-            let records = [];
-            // return all public maps (GUI)
+            let maps = [];
+
             if (user_id === null) {
-                query = `
-                    select * from maps
-                `;
-                records = await conn.query(query);
+                maps = await conn.query(`select * from maps`);
             } else {
-                // or return all users maps
-                query = `
+                let query = `
                     select * from maps
                     where user_id = ?
                 `;
-                records = await conn.query(query, [user_id]);
+                maps = await conn.query(query, [user_id]);
             }
 
-            return (records);
+            return maps;
 
         } catch (err) {
             console.log(err);
@@ -100,6 +95,26 @@ class MariaDBAdminStorageService {
             if (conn) conn.end();
         }
     }
+
+    async addMap(map) {
+        let conn;
+
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+
+            let { insertId } = await conn.query(`insert into maps (name, filename, coordinates) VALUES (?, ?, ?)`, [map.name, map.filename, map.coordinates]);
+            return await conn.query(`select * from maps where id = ?`, [insertId]);
+
+        } catch (err) {
+            console.log(err);
+            throw (err);
+        } finally {
+            if (conn) conn.end();
+        }
+    }
+
+
 
 };
 
