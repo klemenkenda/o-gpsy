@@ -87,33 +87,41 @@ class Live extends Component<Props, State> {
     componentDidMount() {
         this.event_id = this.props.match.params.id;
 
+        let layers = [];
+
+        if (new Date().getTime() / 1000 < (1575720480 - 12 * 60 * 60)) {
+            layers = [
+                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                })
+            ]
+        };
+
         // create a map
         this.map = L.map('map', {
             center: [46.510, 15.078],
             zoom: 15,
-            layers: [
-                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                }),
-            ]
+            layers: layers
         });
         this.map.zoomControl.setPosition('topright');
 
         // add map image - Ljubljana-Vic
-        let imageUrl = '/maps/ljubljana-vic.jpg';
+
         /*
             46.049578, 14.4795
             46.049594, 14.498732 (2)
             46.040151, 14.498755
             46.040191, 14.47962 (1)
         */
+        let imageUrl = '/maps/ljubljana-vic.jpg';
         let imageBounds = [[46.040191, 14.47962], [46.049594, 14.498732]];
         this.mapImage = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
 
-
-        imageUrl = '/maps/slovenj-gradec.jpg';
-        imageBounds = [[46.505219, 15.072872], [46.515627, 15.08337]];
-        this.mapImageSG = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
+        if (new Date().getTime() / 1000 > 1575720480 - 120) {
+            imageUrl = '/maps/slovenj-gradec.jpg';
+            imageBounds = [[46.505219, 15.072872], [46.515627, 15.08337]];
+            this.mapImageSG = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
+        }
 
         /*
         // add map image - Logaticum northern block
