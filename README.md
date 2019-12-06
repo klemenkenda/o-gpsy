@@ -10,7 +10,7 @@ The solution uses some traditional technologies like MariaDB and some standard w
 
 *Currently we support the following technology:*
 
-* smart phone with [GPSLogger](http://gpslogger.app) for Android (beta phase)
+* smart phone with [GPSLogger](http://gpslogger.app) for Android (beta phase) - [manual](docs/TRACKER_ANDROID_PHONE.md)
 * Teltonika TMT250 (under development)
 
 Teltonika TMT250 AVL NodeJS driver is being developed [here](http://github.com/klemenkenda/tmt250-node).
@@ -43,9 +43,14 @@ For production mode go to `src/frontend` and run `npm install` and then `npm run
 
 Development server runs on port 3000. You start it simply by `npm start` in `src/frontend`. This will start react-tools and the changes will be automatically visible in the front end. Visit [http://localhost:3000](http://localhost:3000) for this version. This version uses the server running on port `8000` (see Production). The prerequisite is to start MariaDB service. This can be done with Docker (`src/docker`) with a command `docker-compose up`. If you run `docker-compose` Adminer is also available on `docker-machine ip` on port `8080`. Be careful to provide correct data to `src/common/config.json`.
 
-### Conventions
+### Naming Conventions
 
 * Use [BEM](http://getbem.com/introduction/) for CSS
+* Naming convention:
+   * use lower case snake casing for variables (`this_is_an_example`)
+   * use camel casing for functions (`thisIsAnExample`)
+   * use Pascal casing for classes (`ThisIsAnExample`)
+   * use snake casing for constants (`THIS_IS_AN_EXAMPLE`)
 
 ### Plan for o-gpsy [ PHASE 1 / MVP ]
 
