@@ -99,7 +99,7 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
 * Services
    * TMT250 SMS service
 * Docs
-   * Manual for Android app (GPSLogger)
+   * <del>Manual for Android app (GPSLogger)</del> [ done ]
    * Manual for TMT250
    * Manual for usage of the app
        * Desktop
