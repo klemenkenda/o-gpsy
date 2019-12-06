@@ -5,7 +5,7 @@
 * Install [GPSLogger](https://gpslogger.app), here is [Google Play](https://play.google.com/store/apps/details?id=com.mendhak.gpslogger&hl=en) link
 * Inform the administrator, who will give you a handle and pass.
 
-Go to logging details and enter the link under `Logging details / Prijavite URL po meri in vneseš URL` (in Slovene varsion): http://yourgpssite.org:8000/api/register/handle/pass/%LAT/%LON/%TIMESTAMP.
+Go to logging details and enter the link under `Logging details / Prijavite URL po meri` (in Slovene varsion): http://yourgpssite.org:8000/api/register/handle/pass/%LAT/%LON/%TIMESTAMP.
 
 Slovenian orienteering federations site is currently hosted at `sentinel.ijs.si` (replace `yourgpssite.org`).
 
