@@ -5,6 +5,7 @@ const path = require('path');
 // define constants
 const REACT_BUILD_DIR = "../../frontend/build";
 const MAPS_DIR = "public/maps";
+exports.MAPS_DIR = MAPS_DIR
 
 /** Prepare GUI routes - React and some static stuff */
 exports.prepareGuiRoutes = (app) => {

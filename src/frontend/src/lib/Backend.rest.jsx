@@ -87,7 +87,63 @@ export class RestAdminBackend implements AdminBackend {
             console.log(e);
             throw e;
         }
+    };
 
+    async uploadMapImage(map) {
+        try {
+            const { data } = await axios.post(`/api/admin/maps/upload/${encodeURIComponent(map.filename)}`, map.file, {
+                headers: {
+                    'content-type': map.file.type
+                }
+            })
+            return data
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
+    }
+
+    async addMap(map) {
+        try {
+            const image = await this.uploadMapImage(map)
+            if (!image) throw 'Map image upload failed'
+
+            const { data } = await axios.post(`/api/admin/maps/add`, { map })
+            return data
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
+    };
+
+    async editMap(map) {
+        try {
+            if (map.file) {
+                const image = await this.uploadMapImage(map)
+                if (!image) throw 'Map image upload failed'
+            }
+
+
+            const { data } = await axios.post(`/api/admin/maps/edit`, { map })
+            return data
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
+    };
+
+    async deleteMap(id) {
+        try {
+            const { data } = await axios.post(`/api/admin/maps/delete`, { id })
+            return data
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
     };
 }
 
