@@ -10,7 +10,7 @@ The solution uses some traditional technologies like MariaDB and some standard w
 
 *Currently we support the following technology:*
 
-* smart phone with [GPSLogger](http://gpslogger.app) for Android (alpha phase)
+* smart phone with [GPSLogger](http://gpslogger.app) for Android (beta phase)
 * Teltonika TMT250 (under development)
 
 Teltonika TMT250 AVL NodeJS driver is being developed [here](http://github.com/klemenkenda/tmt250-node).
@@ -58,7 +58,7 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
       * List/add/edit/delete tracker
       * List/add/edit/delete runner to the competition
       * List/add/edit/delete new competition
-      * List/add/edit/delete new map
+      * <del>List/add/edit/delete new map</del> [ done ]
 * Live view: user interface
    * <del>Show full track</del> [ done ]
    * <del>Working controls</del> [ done ]
