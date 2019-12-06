@@ -115,7 +115,7 @@ class Live extends Component<Props, State> {
         */
         let imageUrl = '/maps/ljubljana-vic.jpg';
         let imageBounds = [[46.040191, 14.47962], [46.049594, 14.498732]];
-        this.mapImage = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
+        // this.mapImage = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
 
         if (new Date().getTime() / 1000 > 1575720480 - 120) {
             imageUrl = '/maps/slovenj-gradec.jpg';
@@ -175,7 +175,7 @@ class Live extends Component<Props, State> {
             <div id="map" style={{width: "100%", height: "100vh"}}>
                 <LiveNavBar
                     handleChange={(e) => this.handleChange(e) }
-                    show_tail={this.state.show_show_tail}
+                    show_tail={this.state.show_tail}
                     show_labels={this.state.show_labels}
                     show_track={this.state.show_track}
                     tail_length={this.state.tail_length} />
