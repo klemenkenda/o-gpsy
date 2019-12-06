@@ -7,7 +7,7 @@
 
 Go to logging details and enter the link under `Logging details / Prijavite URL po meri` (in Slovene varsion): http://yourgpssite.org:8000/api/register/handle/pass/%LAT/%LON/%TIMESTAMP.
 
-Slovenian orienteering federations site is currently hosted at `sentinel.ijs.si` (replace `yourgpssite.org`).
+Slovenian orienteering federation's site is currently hosted at `sentinel.ijs.si` (replace `yourgpssite.org`).
 
 ## Hints for better performance
 
