@@ -36,7 +36,7 @@ class Maps extends Component<Props, State> {
     };
 
     async addMap() {
-        let map = await this.backend.addMap(this.state.newMap);
+        await this.backend.addMap(this.state.newMap);
         await this.updateMaps(); // todo delete map in place instead of re-fetching
         this.toggleAddingMap();
     };

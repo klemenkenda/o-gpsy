@@ -96,7 +96,7 @@ export class RestAdminBackend implements AdminBackend {
                     'content-type': map.file.type
                 }
             })
-            return data
+            return data;
         }
         catch (e) {
             console.log(e);
@@ -106,11 +106,11 @@ export class RestAdminBackend implements AdminBackend {
 
     async addMap(map) {
         try {
-            const image = await this.uploadMapImage(map)
-            if (!image) throw 'Map image upload failed'
+            const image = await this.uploadMapImage(map);
+            if (!image) throw new Error('Map image upload failed');
 
-            const { data } = await axios.post(`/api/admin/maps/add`, { map })
-            return data
+            const { data } = await axios.post(`/api/admin/maps/add`, { map });
+            return data;
         }
         catch (e) {
             console.log(e);
@@ -122,12 +122,12 @@ export class RestAdminBackend implements AdminBackend {
         try {
             if (map.file) {
                 const image = await this.uploadMapImage(map)
-                if (!image) throw 'Map image upload failed'
+                if (!image) throw new Error('Map image upload failed');
             }
 
 
-            const { data } = await axios.post(`/api/admin/maps/edit`, { map })
-            return data
+            const { data } = await axios.post(`/api/admin/maps/edit`, { map });
+            return data;
         }
         catch (e) {
             console.log(e);
@@ -137,8 +137,8 @@ export class RestAdminBackend implements AdminBackend {
 
     async deleteMap(id) {
         try {
-            const { data } = await axios.post(`/api/admin/maps/delete`, { id })
-            return data
+            const { data } = await axios.post(`/api/admin/maps/delete`, { id });
+            return data;
         }
         catch (e) {
             console.log(e);
