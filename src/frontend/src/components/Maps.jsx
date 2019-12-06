@@ -7,6 +7,7 @@ import {
     Col,
     Button,
     Form,
+    Container
 } from 'react-bootstrap';
 
 type Props = {};
@@ -105,84 +106,86 @@ class Maps extends Component<Props, State> {
         const { maps, addingMap, editedMap } = this.state;
         const addMapText = addingMap ? 'Cancel' : 'Add map';
 
-        return <Row className="mt-5 mb-5">
-            <Col lg={12} md={12} xs={12}>
-                Maps
-            </Col>
-            <Col lg={12} md={12} xs={12}>
-                <Button type="button" className={{ btn: true, 'btn-danger': addingMap }} onClick={() => this.toggleAddingMap()}>{addMapText}</Button>
-            </Col>
-            {
-                addingMap && <Col lg={12} md={12} xs={12}>
-                    <Form>
-                        <Form.Group controlId="name">
-                            <Form.Label>Map name</Form.Label>
-                            <Form.Control type="name"
-                                placeholder="Enter map name"
-                                onChange={(e) => this.handleAddFormChange(e)} />
-                        </Form.Group>
-                        <Form.Group controlId="filename">
-                            <Form.Label>Map</Form.Label>
-                            <Form.Control type="file"
-                                placeholder="Choose file"
-                                onChange={(e) => this.handleAddFormChange(e)} />
-                        </Form.Group>
-                        <Form.Group controlId="coordinates">
-                            <Form.Label>Map</Form.Label>
-                            <Form.Control type="text"
-                                placeholder="Insert map coordinates, e.g. 46.049578_14.4795_46.049594_14.498732_46.040151_14.498755_46.040191_14.47962"
-                                onChange={(e) => this.handleAddFormChange(e)} />
-                        </Form.Group>
-
-                        <Button onClick={() => this.addMap()}>Add</Button>
-                    </Form>
-
+        return <Container>
+            <Row className="mt-5 mb-5">
+                <Col lg={12} md={12} xs={12}>
+                    <h1>Maps</h1>
                 </Col>
-            }
-            {
-                maps.map((map) => {
-                    const editing = editedMap.id && editedMap.id === map.id;
-                    const editMapText = editing ? 'Cancel' : 'Edit Map';
-                    return (
-                        <React.Fragment key={map.id}>
-                            <Col lg={12} md={12} xs={12}>
-                                {map.name}
-                                <img src={`/maps/${map.filename}`} alt={map.filename} style={{ display: 'inline-block', height: '300px', width: 'auto' }} />
-                                <Button type="button" className={{ btn: true, 'btn-danger': true }} onClick={() => this.deleteMap(map)}>Delete</Button>
-                                <Button type="button" className={{ btn: true, 'btn-danger': editing }} onClick={() => this.toggleEditMap(map)}>{editMapText}</Button>
-                            </Col>
-                            {
-                                editing && <Col lg={12} md={12} xs={12}>
-                                    <Form>
-                                        <Form.Group controlId="name">
-                                            <Form.Label>Map name</Form.Label>
-                                            <Form.Control type="name"
-                                                placeholder="Enter map name"
-                                                value={editedMap.name}
-                                                onChange={(e) => this.handleEditFormChange(e)} />
-                                        </Form.Group>
-                                        <Form.Group controlId="filename">
-                                            <Form.Label>Map</Form.Label>
-                                            <Form.Control type="file"
-                                                placeholder="Choose file"
-                                                onChange={(e) => this.handleEditFormChange(e)} />
-                                        </Form.Group>
-                                        <Form.Group controlId="coordinates">
-                                            <Form.Label>Map</Form.Label>
-                                            <Form.Control type="text"
-                                                placeholder="Insert map coordinates, e.g. 46.049578_14.4795_46.049594_14.498732_46.040151_14.498755_46.040191_14.47962"
-                                                value={editedMap.coordinates}
-                                                onChange={(e) => this.handleEditFormChange(e)} />
-                                        </Form.Group>
-                                        <Button onClick={() => this.editMap()}>Edit</Button>
-                                    </Form>
+                <Col lg={12} md={12} xs={12}>
+                    <Button type="button" className={{ btn: true, 'btn-danger': addingMap }} onClick={() => this.toggleAddingMap()}>{addMapText}</Button>
+                </Col>
+                {
+                    addingMap && <Col lg={12} md={12} xs={12}>
+                        <Form>
+                            <Form.Group controlId="name">
+                                <Form.Label>Map name</Form.Label>
+                                <Form.Control type="name"
+                                    placeholder="Enter map name"
+                                    onChange={(e) => this.handleAddFormChange(e)} />
+                            </Form.Group>
+                            <Form.Group controlId="filename">
+                                <Form.Label>Map</Form.Label>
+                                <Form.Control type="file"
+                                    placeholder="Choose file"
+                                    onChange={(e) => this.handleAddFormChange(e)} />
+                            </Form.Group>
+                            <Form.Group controlId="coordinates">
+                                <Form.Label>Map</Form.Label>
+                                <Form.Control type="text"
+                                    placeholder="Insert map coordinates, e.g. 46.049578_14.4795_46.049594_14.498732_46.040151_14.498755_46.040191_14.47962"
+                                    onChange={(e) => this.handleAddFormChange(e)} />
+                            </Form.Group>
+
+                            <Button onClick={() => this.addMap()}>Add</Button>
+                        </Form>
+
+                    </Col>
+                }
+                {
+                    maps.map((map) => {
+                        const editing = editedMap.id && editedMap.id === map.id;
+                        const editMapText = editing ? 'Cancel' : 'Edit Map';
+                        return (
+                            <React.Fragment key={map.id}>
+                                <Col lg={12} md={12} xs={12}>
+                                    {map.name}
+                                    <img src={`/maps/${map.filename}`} alt={map.filename} style={{ display: 'inline-block', height: '300px', width: 'auto' }} />
+                                    <Button type="button" className={{ btn: true, 'btn-danger': true }} onClick={() => this.deleteMap(map)}>Delete</Button>
+                                    <Button type="button" className={{ btn: true, 'btn-danger': editing }} onClick={() => this.toggleEditMap(map)}>{editMapText}</Button>
                                 </Col>
-                            }
-                        </React.Fragment>
-                    )
-                })
-            }
-        </Row>
+                                {
+                                    editing && <Col lg={12} md={12} xs={12}>
+                                        <Form>
+                                            <Form.Group controlId="name">
+                                                <Form.Label>Map name</Form.Label>
+                                                <Form.Control type="name"
+                                                    placeholder="Enter map name"
+                                                    value={editedMap.name}
+                                                    onChange={(e) => this.handleEditFormChange(e)} />
+                                            </Form.Group>
+                                            <Form.Group controlId="filename">
+                                                <Form.Label>Map</Form.Label>
+                                                <Form.Control type="file"
+                                                    placeholder="Choose file"
+                                                    onChange={(e) => this.handleEditFormChange(e)} />
+                                            </Form.Group>
+                                            <Form.Group controlId="coordinates">
+                                                <Form.Label>Map</Form.Label>
+                                                <Form.Control type="text"
+                                                    placeholder="Insert map coordinates, e.g. 46.049578_14.4795_46.049594_14.498732_46.040151_14.498755_46.040191_14.47962"
+                                                    value={editedMap.coordinates}
+                                                    onChange={(e) => this.handleEditFormChange(e)} />
+                                            </Form.Group>
+                                            <Button onClick={() => this.editMap()}>Edit</Button>
+                                        </Form>
+                                    </Col>
+                                }
+                            </React.Fragment>
+                        )
+                    })
+                }
+            </Row>
+        </Container>
     }
 }
 
