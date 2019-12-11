@@ -39,13 +39,17 @@ class MariaDBAdminStorageService {
             conn = await this.pool.getConnection();
             await conn.query('use ' + this.config.db);
 
-            let query = `
-                select * from events
-                where id = ?
-            `;
+            let query = `select * from events where events.id = ?`;
             let records = await conn.query(query, [event_id]);
+            let event = records[0];
 
-            return (records);
+            // add map data to the event
+            query = `select * from maps where id = ?`;
+            const map = await conn.query(query, [event.map_id]);
+
+            event["map"] = map;
+
+            return (event);
         } catch (err) {
             console.log(err);
             throw (err);
