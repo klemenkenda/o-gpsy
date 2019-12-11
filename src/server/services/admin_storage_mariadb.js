@@ -33,8 +33,10 @@ class MariaDBAdminStorageService {
     }
 
     async getEvent(event_id) {
+        let conn;
+
         try {
-            let conn = await this.pool.getConnection();
+            conn = await this.pool.getConnection();
             await conn.query('use ' + this.config.db);
 
             let query = `
