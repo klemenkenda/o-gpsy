@@ -47,7 +47,7 @@ class MariaDBAdminStorageService {
             query = `select * from maps where id = ?`;
             const map = await conn.query(query, [event.map_id]);
 
-            event["map"] = map;
+            event["map"] = map[0];
 
             return (event);
         } catch (err) {
