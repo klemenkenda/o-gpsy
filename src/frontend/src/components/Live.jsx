@@ -31,7 +31,8 @@ type State = {
     show_tail: boolean,
     show_track: boolean,
     tail_length: number,
-    action: string
+    action: string,
+    start_ts: number
 };
 
 /**
@@ -129,13 +130,6 @@ class Live extends Component<Props, State> {
             this.mapImageDB = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
 
             /*
-            if (new Date().getTime() / 1000 > 1575720480 - 120) {
-                imageUrl = '/maps/slovenj-gradec.jpg';
-                imageBounds = [[46.505219, 15.072872], [46.515627, 15.08337]];
-                this.mapImageSG = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
-            }
-            */
-            /*
             // add map image - Logaticum northern block
             imageUrl = '/maps/lom.jpg';
             imageBounds = [[45.889466, 14.245748], [45.902055, 14.256412]];
@@ -161,6 +155,10 @@ class Live extends Component<Props, State> {
                     console.log(err);
                 }
             );
+
+            // set state
+            let start_ts = new Date(event.start).getTime() / 1000;
+            this.setState({ start_ts: start_ts });
 
             // updating
             this.countdown = setInterval(() => this.loadTracks(this.event_id), 1000);
