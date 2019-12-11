@@ -62,15 +62,15 @@ export class RestLiveBackend implements LiveBackend {
             });
     }
 
-    getEvent(id, done, err) {
-        axios.get("/api/admin/events/" +  id)
-            .then(result => {
-                done(result.data);
-            })
-            .catch(error => {
-                console.log(error);
-                err(error);
-            });
+    async getEvent(id, done, err) {
+        try {
+            let url = `/api/admin/event/${id}`;
+            const { data } = await axios.get(url);
+            return data;
+        } catch (e) {
+            console.log(e);
+            throw e;
+        }
     }
 };
 
@@ -93,8 +93,7 @@ export class RestAdminBackend implements AdminBackend {
 
             const { data } = await axios.get(url);
             return data;
-        }
-        catch (e) {
+        } catch (e) {
             console.log(e);
             throw e;
         }
