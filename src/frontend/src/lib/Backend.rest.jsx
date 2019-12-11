@@ -15,20 +15,18 @@ export class RestLiveBackend implements LiveBackend {
             .catch(error => {
                 console.log(error);
                 err(error);
-            }
-        );
+            });
     }
 
-    getCoordinates(event, done, err) {
-        axios.get("/api/point/1")
+    getCoordinates(event_id, done, err) {
+        axios.get("/api/point/" + event_id)
             .then(result => {
                 done(result.data);
             })
             .catch(error => {
                 console.log(error);
                 err(error);
-            }
-        )
+            });
     }
 
     putCoordinates(u, p, x, y, t, done, err) {
@@ -39,8 +37,7 @@ export class RestLiveBackend implements LiveBackend {
             .catch(error => {
                 console.log(error);
                 err(error);
-            }
-        )
+            });
     }
 
     getTime(done, err) {
@@ -51,8 +48,7 @@ export class RestLiveBackend implements LiveBackend {
             .catch(error => {
                 console.log(error);
                 err(error);
-            }
-        )
+            });
     }
 
     getEvents(done, err) {
@@ -69,14 +65,85 @@ export class RestLiveBackend implements LiveBackend {
 
 export class RestAdminBackend implements AdminBackend {
     login(u, p, done, err) {
-        axios.get("/api/admin/login/" + u + "/" + p)
-            .then(result => {                
+        axios.get(`/api/admin/login/${u}/${p}`)
+            .then(result => {
                 done(result.data);
             })
             .catch(error => {
                 console.log(error);
                 err(error);
             });
+    };
+
+    async getMaps(u) {
+        try {
+            let url = `/api/admin/maps/`;
+            if (u) url = `/api/admin/maps/${u}`;
+
+            const { data } = await axios.get(url);
+            return data;
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
+    };
+
+    async uploadMapImage(map) {
+        try {
+            const { data } = await axios.post(`/api/admin/maps/upload/${encodeURIComponent(map.filename)}`, map.file, {
+                headers: {
+                    'content-type': map.file.type
+                }
+            })
+            return data;
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
+    }
+
+    async addMap(map) {
+        try {
+            const image = await this.uploadMapImage(map);
+            if (!image) throw new Error('Map image upload failed');
+
+            const { data } = await axios.post(`/api/admin/maps/add`, { map });
+            return data;
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
+    };
+
+    async editMap(map) {
+        try {
+            if (map.file) {
+                const image = await this.uploadMapImage(map)
+                if (!image) throw new Error('Map image upload failed');
+            }
+
+
+            const { data } = await axios.post(`/api/admin/maps/edit`, { map });
+            return data;
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
+    };
+
+    async deleteMap(id) {
+        try {
+            const { data } = await axios.post(`/api/admin/maps/delete`, { id });
+            return data;
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
     };
 }
 

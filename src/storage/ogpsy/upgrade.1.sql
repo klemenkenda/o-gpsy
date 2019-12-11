@@ -5,6 +5,7 @@ use ogpsy;
 create table users (
     ts timestamp not null default current_timestamp,
     id int auto_increment,
+    user_id int,
     username varchar(50),
     password varchar(255),
     name varchar(50),
@@ -39,8 +40,8 @@ create table events (
     user_id int,
     name varchar(255),
     www varchar(255),
-    start time,
-    end time,
+    start datetime,
+    end datetime,
     active boolean,
     public boolean,
     map_id int,

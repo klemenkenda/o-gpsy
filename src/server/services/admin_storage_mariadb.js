@@ -21,11 +21,11 @@ class MariaDBAdminStorageService {
             await conn.query('use ' + this.config.db);
 
             let query = `select * from users where username = ? and password = ?`;
-            let r = await conn.query(query, [ username, password ]);
-            return(r);
-        } catch(err) {
+            let r = await conn.query(query, [username, password]);
+            return (r);
+        } catch (err) {
             console.log(err);
-            throw(err);
+            throw (err);
         } finally {
             if (conn) conn.end();
         }
@@ -49,7 +49,7 @@ class MariaDBAdminStorageService {
                 `;
                 records = await conn.query(query);
             } else {
-            // or return all users events
+                // or return all users events
                 query = `
                     select * from events
                     where user_id = ?
@@ -57,15 +57,101 @@ class MariaDBAdminStorageService {
                 records = await conn.query(query, [user_id]);
             }
 
-            return(records);
+            return (records);
 
-        } catch(err) {
+        } catch (err) {
             console.log(err);
-            throw(err);
+            throw (err);
         } finally {
             if (conn) conn.end();
         }
     }
+
+    async getMaps(user_id) {
+        let conn;
+
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+
+            let maps = [];
+
+            if (user_id === null) {
+                maps = await conn.query(`select * from maps`);
+            } else {
+                let query = `
+                    select * from maps
+                    where user_id = ?
+                `;
+                maps = await conn.query(query, [user_id]);
+            }
+
+            return maps;
+
+        } catch (err) {
+            console.log(err);
+            throw (err);
+        } finally {
+            if (conn) conn.end();
+        }
+    }
+
+    async addMap(map) {
+        let conn;
+
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+
+            let { insertId } = await conn.query(`insert into maps (name, filename, coordinates) VALUES (?, ?, ?)`, [map.name, map.filename, map.coordinates]);
+            return await conn.query(`select * from maps where id = ?`, [insertId]);
+
+        } catch (err) {
+            console.log(err);
+            throw (err);
+        } finally {
+            if (conn) conn.end();
+        }
+    }
+
+    async editMap(map) {
+        let conn;
+
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+
+            await conn.query(`update maps set name = ?, filename = ?, coordinates = ? where id = ?`, [map.name, map.filename, map.coordinates, map.id]);
+            return await conn.query(`select * from maps where id = ?`, [map.id]);
+
+        } catch (err) {
+            console.log(err);
+            throw (err);
+        } finally {
+            if (conn) conn.end();
+        }
+    }
+
+    async deleteMap(id) {
+        let conn;
+
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+
+            let map = await conn.query(`select * from maps where id = ?`, [id]);
+            await conn.query(`delete from maps where id = ?`, [id]);
+            return map
+
+        } catch (err) {
+            console.log(err);
+            throw (err);
+        } finally {
+            if (conn) conn.end();
+        }
+    }
+
+
 
 };
 

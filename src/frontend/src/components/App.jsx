@@ -17,6 +17,7 @@ import Login from "./Login";
 import Home from "./Home";
 import Live from "./Live";
 import Logout from "./Logout";
+import Maps from "./Maps";
 
 // CSS
 import './css/App.css';
@@ -26,16 +27,16 @@ type Props = {
     history: ReactRouterPropTypes.history,
     location: ReactRouterPropTypes.location
 }
-type State = { };
+type State = {};
 
 class App extends React.Component<Props, State> {
     render() {
         return [
             <Router key={1}>
                 <Switch>
-                    <Route path="/(|login|logout)" exact={true} key={1}>
+                    <Route path="/(|login|logout|maps)" exact={true} key={1}>
                         <Header />
-                    </Route>                    
+                    </Route>
                 </Switch>
             </Router>,
             <Router key={2}>
@@ -55,20 +56,21 @@ class App extends React.Component<Props, State> {
                             <Logout />
                         </Container>
                     </Route>
-                    <Route path="/live/:id" key={4}>
-                        <Live />
+                    <Route path="/live/:id" key={4} component={Live} />
+                    <Route path="/maps" exact={true} key={5}>
+                        <Maps />
                     </Route>
                 </Switch>
             </Router>,
             <Router key={3}>
                 <Switch>
-                    <Route path="/(|login|logout)" exact={true} key={1}>
-                        <footer className="text-muted pt-4" style={{borderTop: "1px solid #eee"}}>
+                    <Route path="/(|login|logout|maps)" exact={true} key={1}>
+                        <footer className="text-muted pt-4" style={{ borderTop: "1px solid #eee" }}>
                             <div className="container">
                                 <p className="float-right">
                                     <a href="#home">Back to top</a>
                                 </p>
-                                <p>&copy; Klemen Kenda, IJS, E3</p>
+                                <p>&copy; Klemen Kenda &amp; Andrej Borštnik, IJS, E3</p>
                             </div>
                         </footer>
                     </Route>
