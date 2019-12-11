@@ -34,15 +34,14 @@ class MariaDBAdminStorageService {
 
     async getEvent(event_id) {
         try {
-            conn = await this.pool.getConnection();
+            let conn = await this.pool.getConnection();
             await conn.query('use ' + this.config.db);
 
-            let records = [];
             let query = `
                 select * from events
                 where id = ?
             `;
-            records = await conn.query(query, [event_id]);
+            let records = await conn.query(query, [event_id]);
 
             return (records);
         } catch (err) {
