@@ -15,11 +15,23 @@ exports.login = async (req, res) => {
 
 exports.getEvents = async (req, res) => {
     let user_id = Utils.emptyIsNull(req.params.user_id);
-    if (user_id != null) {
+    if (user_id !== null) {
         user_id = parseInt(user_id);
     }
 
-    const events = await storage.getEvents(user_id);
+    let event_id = Utils.emptyIsNull(req.params.event_id);
+    if (event_id !== null) {
+        event_id = parseInt(event_id);
+    }
+
+    let events;
+
+    if (event_id) {
+        events = await storage.getEvent(event_id);
+    } else {
+        events = await storage.getEvents(user_id);
+    };
+
     res.json(events);
 }
 

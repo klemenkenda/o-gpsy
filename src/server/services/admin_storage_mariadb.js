@@ -32,6 +32,27 @@ class MariaDBAdminStorageService {
 
     }
 
+    async getEvent(event_id) {
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+
+            let records = [];
+            let query = `
+                select * from events
+                where id = ?
+            `;
+            records = await conn.query(query, [event_id]);
+
+            return (records);
+        } catch (err) {
+            console.log(err);
+            throw (err);
+        } finally {
+            if (conn) conn.end();
+        }
+    }
+
     async getEvents(user_id) {
         let conn;
 
@@ -45,7 +66,6 @@ class MariaDBAdminStorageService {
             if (user_id === null) {
                 query = `
                     select * from events
-
                 `;
                 records = await conn.query(query);
             } else {

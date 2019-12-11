@@ -30,7 +30,8 @@ type State = {
     show_labels: boolean,
     show_tail: boolean,
     show_track: boolean,
-    tail_length: number
+    tail_length: number,
+    action: string
 };
 
 /**
@@ -48,7 +49,8 @@ class Live extends Component<Props, State> {
             show_labels: true,
             show_tail: true,
             tail_length: 60,
-            show_track: false
+            show_track: false,
+            state: "live"
         };
         this.orienteers = {};
     }
@@ -57,7 +59,6 @@ class Live extends Component<Props, State> {
         getBackend().live.getCoordinates(event_id,
             (data) => {
                 data.forEach((el, i) => {
-                    console.log(el);
                     this.orienteers[el.runner_id].update(el);
                 });
             },
@@ -76,7 +77,7 @@ class Live extends Component<Props, State> {
         );
     }
 
-    updateMarkers() {
+    updateOrienteers() {
         Object.keys(this.orienteers).forEach((key) => {
             const orienteer = this.orienteers[key];
             orienteer.updateMarker();
@@ -87,15 +88,11 @@ class Live extends Component<Props, State> {
     componentDidMount() {
         this.event_id = this.props.match.params.id;
 
-        let layers = [];
-
-        if (new Date().getTime() / 1000 < (1575720480 - 12 * 60 * 60)) {
-            layers = [
-                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                })
-            ]
-        };
+        let layers = [
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            })
+        ];
 
         // create a map
         this.map = L.map('map', {
@@ -169,8 +166,8 @@ class Live extends Component<Props, State> {
     };
 
     render() {
-        this.updateMarkers();
-        // this.updateTracks();
+        this.updateOrienteers();
+
         return <div>
             <div id="map" style={{width: "100%", height: "100vh"}}>
                 <LiveNavBar

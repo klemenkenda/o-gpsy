@@ -61,6 +61,17 @@ export class RestLiveBackend implements LiveBackend {
                 err(error);
             });
     }
+
+    getEvent(id, done, err) {
+        axios.get("/api/admin/events/" +  id)
+            .then(result => {
+                done(result.data);
+            })
+            .catch(error => {
+                console.log(error);
+                err(error);
+            });
+    }
 };
 
 export class RestAdminBackend implements AdminBackend {

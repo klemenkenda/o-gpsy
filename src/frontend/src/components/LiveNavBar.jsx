@@ -44,6 +44,8 @@ class LiveNavBar extends Component<Props, State> {
                 checked={this.props.show_labels}
                 onChange={ (e) => this.props.handleChange(e) } />
             Show labels
+            <br />
+            <button>Replay</button>
         </div>
 
     }
