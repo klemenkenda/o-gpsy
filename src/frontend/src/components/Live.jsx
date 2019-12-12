@@ -27,6 +27,7 @@ type State = {
     competitors: Object,
     tracks: [],
     current_ts: number,
+    actionable_ts: number,
     show_labels: boolean,
     show_tail: boolean,
     show_track: boolean,
@@ -47,6 +48,7 @@ class Live extends Component<Props, State> {
             competitors: [],
             tracks: [],
             current_ts: 2147483647,
+            actionable_ts: 2147483647,
             show_labels: true,
             show_tail: true,
             tail_length: 60,
@@ -70,7 +72,11 @@ class Live extends Component<Props, State> {
 
         getBackend().live.getTime(
             (data) => {
-                this.setState({ current_ts: data });
+                if (this.state.state === "replay") {
+                    this.setState({ current_ts: data });
+                } else if (this.state.state === "live") {
+                    this.setState({ current_ts: data, actionable_ts: data });
+                }
             },
             (err) => {
                 console.log(err);
@@ -93,6 +99,17 @@ class Live extends Component<Props, State> {
             let event = await getBackend().live.getEvent(this.event_id);
             console.log(event);
 
+            // calculate map bounds
+            const coordinates_numbers = event.map.coordinates.split("_").map(x => { return parseFloat(x)});
+            let coordinates = [];
+            while(coordinates_numbers.length) coordinates.push(coordinates_numbers.splice(0,2));
+
+            // calculate centre
+            let view_center = [
+                coordinates.reduce((a, b) => { return a.length === 2 ? a[0] + b[0] : a + b[0]}) / coordinates.length,
+                coordinates.reduce((a, b) => { return a.length === 2 ? a[1] + b[1] : a + b[1]}) / coordinates.length
+            ]
+
             let layers = [
                 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -101,7 +118,7 @@ class Live extends Component<Props, State> {
 
             // create a map
             this.map = L.map('map', {
-                center: [46.510, 15.078],
+                center: view_center,
                 zoom: 15,
                 layers: layers
             });
@@ -122,10 +139,6 @@ class Live extends Component<Props, State> {
 
             // add map image dynamically
             imageUrl = '/maps/' + event.map.filename;
-            // calculate image bounds
-            const coordinates_numbers = event.map.coordinates.split("_").map(x => { return parseFloat(x)});
-            let coordinates = [];
-            while(coordinates_numbers.length) coordinates.push(coordinates_numbers.splice(0,2));
             imageBounds = [coordinates[3], coordinates[1]];
             this.mapImageDB = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
 

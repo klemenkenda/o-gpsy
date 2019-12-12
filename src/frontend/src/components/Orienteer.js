@@ -86,7 +86,7 @@ class Orienteer {
                 tail_length = 10 * 24 * 60 * 60;
             }
             let latlngs = this.track_data
-                .filter(x => x.ts > this.parent.state.current_ts - tail_length)
+                .filter(x => x.ts > this.parent.state.actionable_ts - tail_length)
                 .map((el, i) => [el.lat, el.lon]);
             this.track.setLatLngs(latlngs);
         }
