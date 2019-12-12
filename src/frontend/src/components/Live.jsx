@@ -106,6 +106,20 @@ class Live extends Component<Props, State> {
         }
     }
 
+    updateActionableTimer() {
+        this.setState({
+            actionable_ts: this.state.actionable_ts + 1
+        })
+    }
+
+    startStopReplay() {
+        if (this.state.action === "replay") {
+            this.actionableTimer = setInterval(() => this.updateActionableTimer(), 100);
+        } else {
+            alert("Should be in replay mode!");
+        }
+    }
+
     async componentDidMount() {
         this.event_id = this.props.match.params.id;
 
@@ -219,6 +233,7 @@ class Live extends Component<Props, State> {
                     handleChange={ (e) => this.handleChange(e) }
                     setReplayState={ () => this.setLiveState("replay") }
                     setLiveState={ () => this.setLiveState("live") }
+                    startStopReplay={ () => this.startStopReplay() }
                     show_tail={this.state.show_tail}
                     show_labels={this.state.show_labels}
                     show_track={this.state.show_track}

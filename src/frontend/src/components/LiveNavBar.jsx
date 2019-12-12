@@ -55,6 +55,8 @@ class LiveNavBar extends Component<Props, State> {
             <button onClick={this.props.setLiveState}>Live</button>
             <br />
             { this.convertTs2Time(this.props.timestamp) }
+            <br />
+            <button onClick={this.props.startStopReplay}>Start/Stop</button>
         </div>
 
     }
