@@ -1,5 +1,6 @@
 // main imports
 import React, { Component } from 'react';
+import { lZ } from '../lib/Utils';
 
 // models
 
@@ -18,6 +19,11 @@ type State = { };
  * Displaying production lines list.
  */
 class LiveNavBar extends Component<Props, State> {
+
+    convertTs2Time(ts: number) {
+        let d = new Date(ts * 1000);
+        return lZ(d.getHours()) + ":" + lZ(d.getMinutes()) + ":" + lZ(d.getSeconds());
+    }
 
     render() {
         return <div className="divLiveNavBar">
@@ -47,6 +53,8 @@ class LiveNavBar extends Component<Props, State> {
             <br />
             <button onClick={this.props.setReplayState}>Replay</button>
             <button onClick={this.props.setLiveState}>Live</button>
+            <br />
+            { this.convertTs2Time(this.props.timestamp) }
         </div>
 
     }
