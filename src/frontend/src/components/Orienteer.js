@@ -85,9 +85,17 @@ class Orienteer {
             if (this.parent.state.show_track === true) {
                 tail_length = 10 * 24 * 60 * 60;
             }
-            let latlngs = this.track_data
-                .filter(x => x.ts > this.parent.state.actionable_ts - tail_length)
+            let latlngsFilter = this.track_data
+                .filter(x => x.ts > this.parent.state.actionable_ts - tail_length);
+
+            if (this.parent.state.action === "replay") {
+                latlngsFilter = latlngsFilter
+                    .filter(x => x.ts <= this.parent.state.actionable_ts);
+            }
+
+            const latlngs = latlngsFilter
                 .map((el, i) => [el.lat, el.lon]);
+
             this.track.setLatLngs(latlngs);
         }
     }

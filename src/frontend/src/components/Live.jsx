@@ -53,7 +53,7 @@ class Live extends Component<Props, State> {
             show_tail: true,
             tail_length: 60,
             show_track: false,
-            state: "live"
+            action: "live"
         };
         this.orienteers = {};
     }
@@ -72,9 +72,9 @@ class Live extends Component<Props, State> {
 
         getBackend().live.getTime(
             (data) => {
-                if (this.state.state === "replay") {
+                if (this.state.action === "replay") {
                     this.setState({ current_ts: data });
-                } else if (this.state.state === "live") {
+                } else if (this.state.action === "live") {
                     this.setState({ current_ts: data, actionable_ts: data });
                 }
             },
@@ -90,6 +90,17 @@ class Live extends Component<Props, State> {
             orienteer.updateMarker();
             orienteer.updateTrack();
         });
+    }
+
+    setLiveState(state: string) {
+        if (state === "replay") {
+            this.setState({
+                action: state,
+                actionable_ts: this.state.start_ts
+            });
+        } else {
+            this.setState({ action: state});
+        }
     }
 
     async componentDidMount() {
@@ -202,7 +213,9 @@ class Live extends Component<Props, State> {
         return <div>
             <div id="map" style={{width: "100%", height: "100vh"}}>
                 <LiveNavBar
-                    handleChange={(e) => this.handleChange(e) }
+                    handleChange={ (e) => this.handleChange(e) }
+                    setReplayState={ () => this.setLiveState("replay") }
+                    setLiveState={ () => this.setLiveState("live") }
                     show_tail={this.state.show_tail}
                     show_labels={this.state.show_labels}
                     show_track={this.state.show_track}

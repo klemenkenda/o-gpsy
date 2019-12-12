@@ -45,7 +45,8 @@ class LiveNavBar extends Component<Props, State> {
                 onChange={ (e) => this.props.handleChange(e) } />
             Show labels
             <br />
-            <button>Replay</button>
+            <button onClick={this.props.setReplayState}>Replay</button>
+            <button onClick={this.props.setLiveState}>Live</button>
         </div>
 
     }
