@@ -54,9 +54,16 @@ class Orienteer {
      */
     updateMarker() {
         if (this.marker) {
-            const len = this.track_data.length;
+            let track_data = this.track_data;
+            if (this.parent.state.action === "replay") {
+                track_data = track_data
+                    .filter(x => x.ts <= this.parent.state.actionable_ts);
+
+                console.log(track_data[track_data.length - 1]);
+            }
+            const len = track_data.length;
             if (len > 0) {
-                let lat_lng = new L.LatLng(this.track_data[len - 1].lat, this.track_data[len - 1].lon);
+                let lat_lng = new L.LatLng(track_data[len - 1].lat, track_data[len - 1].lon);
                 this.marker.setLatLng(lat_lng);
                 this.track.addLatLng(lat_lng);
             }

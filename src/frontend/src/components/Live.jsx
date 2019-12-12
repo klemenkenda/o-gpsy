@@ -114,7 +114,12 @@ class Live extends Component<Props, State> {
 
     startStopReplay() {
         if (this.state.action === "replay") {
-            this.actionableTimer = setInterval(() => this.updateActionableTimer(), 100);
+            if (this.actionableTimer) {
+                clearInterval(this.actionableTimer);
+                this.actionableTimer = null;
+            } else {
+                this.actionableTimer = setInterval(() => this.updateActionableTimer(), 10);
+            }
         } else {
             alert("Should be in replay mode!");
         }
