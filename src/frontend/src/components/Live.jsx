@@ -99,7 +99,10 @@ class Live extends Component<Props, State> {
                 actionable_ts: this.state.start_ts
             });
         } else {
-            this.setState({ action: state});
+            this.setState({
+                action: state,
+                actionable_ts: this.state.current_ts
+            });
         }
     }
 
