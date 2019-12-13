@@ -176,11 +176,6 @@ class Live extends Component<Props, State> {
             this.mapImageDB = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
 
             /*
-            // add map image - Logaticum northern block
-            imageUrl = '/maps/lom.jpg';
-            imageBounds = [[45.889466, 14.245748], [45.902055, 14.256412]];
-            this.mapImage2 = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
-
             // add map of Moravce (Matic)
             imageUrl = '/maps/trening-matic.jpg';
             imageBounds = [[46.12459, 14.722344], [46.138434, 14.750768]];

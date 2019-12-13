@@ -46,7 +46,7 @@ class Home extends Component<Props, State> {
                     this.state.events.map((event, i) => {
                         let desc = "";
                         if (event.start !== null) {
-                            desc = ", starts at " + event.start;
+                            desc = ", starts at " + new Date(event.start);
                         }
                         return <li key={i}>
                             <a href={"/live/" + event.id}>
