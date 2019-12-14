@@ -58,6 +58,7 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
    * <del>Changing runner array to hash</del> [ done ]
 * Provide administration interface for users/clubs
    * <del>Login</del> [ done ]
+   * Change current user's password
    * Create standard CRUD template to be used for all of the following tasks
       * List/add/edit/delete users
       * List/add/edit/delete tracker
