@@ -1,6 +1,7 @@
 # O-GPSY
 
 > This software is still under heavy development.
+> It's free to use for non-commercial activities (i.e. club trainings based on volunteering work). For all the rest - contact us. :)
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
