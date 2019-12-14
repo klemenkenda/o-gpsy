@@ -157,22 +157,9 @@ class Live extends Component<Props, State> {
             });
             this.map.zoomControl.setPosition('topright');
 
-            // add map image - Ljubljana-Vic
-
-            /*
-                46.049578, 14.4795
-                46.049594, 14.498732 (2)
-                46.040151, 14.498755
-                46.040191, 14.47962 (1)
-            */
-            let imageUrl = '/maps/ljubljana-vic.jpg';
-            let imageBounds = [[46.040191, 14.47962], [46.049594, 14.498732]];
-            // this.mapImage = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
-
-
             // add map image dynamically
-            imageUrl = '/maps/' + event.map.filename;
-            imageBounds = [coordinates[3], coordinates[1]];
+            let imageUrl = '/maps/' + event.map.filename;
+            let imageBounds = [coordinates[3], coordinates[1]];
             this.mapImageDB = L.imageOverlay(imageUrl, imageBounds).addTo(this.map);
 
             /*
