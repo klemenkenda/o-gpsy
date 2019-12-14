@@ -66,6 +66,7 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
       * <del>List/add/edit/delete new map</del> [ done ]
 * Live view: user interface
    * <del>Show full track</del> [ done ]
+   * <del>Use DB map</del> [ done ]
    * <del>Working controls</del> [ done ]
        * <del>Tail on/off</del> [ done ]
        * <del>Label on/off</del> [ done ]
@@ -75,7 +76,7 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
        * On/off functionality
        * Calculate speed
    * Show clock + replay/sync (like gpsseuranta)
-   * Replay functionality
+   * <del>Replay functionality</del> [ done ]
    * Sync for replay
 * Services
    * TMT250 TCP service
