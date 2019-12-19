@@ -1,4 +1,4 @@
-const Request = require("express").Request;
+const Request = require('express').Request;
 
 /** Utility function for processing incoming strings */
 exports.emptyIsNull = (s) => {
@@ -10,20 +10,20 @@ exports.emptyIsNull = (s) => {
         return null;
     }
     return s;
-}
+};
 
 /** Utility function for extracting data from request body */
 exports.extractBodyParam = (body, name) => {
     if (!existsBodyParam(body, name)) {
-        throw new Error("Missing mandatory field: " + name);
+        throw new Error('Missing mandatory field: ' + name);
     }
     return body[name];
-}
+};
 
 /** Utility function for extracting data from request body */
 exports.existsBodyParam = (body, name) => {
     return Object.keys(body).indexOf(name) >= 0;
-}
+};
 
 /** Utility method for combining parameters from different parts of request */
 exports.combineParams = (req) => {
@@ -32,5 +32,5 @@ exports.combineParams = (req) => {
     Object.assign(res, req.params); // parameters in URL route, e.g. /datasources/:id/analyses
     Object.assign(res, req.query);  // parameters in URL after ?, e.g. /datasources?type=a
     return res;
-}
+};
 

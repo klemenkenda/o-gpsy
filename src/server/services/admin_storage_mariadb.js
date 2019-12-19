@@ -20,7 +20,7 @@ class MariaDBAdminStorageService {
             conn = await this.pool.getConnection();
             await conn.query('use ' + this.config.db);
 
-            let query = `select * from users where username = ? and password = ?`;
+            let query = 'select * from users where username = ? and password = ?';
             let r = await conn.query(query, [username, password]);
             return (r);
         } catch (err) {
@@ -39,15 +39,15 @@ class MariaDBAdminStorageService {
             conn = await this.pool.getConnection();
             await conn.query('use ' + this.config.db);
 
-            let query = `select * from events where events.id = ?`;
+            let query = 'select * from events where events.id = ?';
             let records = await conn.query(query, [event_id]);
             let event = records[0];
 
             // add map data to the event
-            query = `select * from maps where id = ?`;
+            query = 'select * from maps where id = ?';
             const map = await conn.query(query, [event.map_id]);
 
-            event["map"] = map[0];
+            event['map'] = map[0];
 
             return (event);
         } catch (err) {
@@ -102,7 +102,7 @@ class MariaDBAdminStorageService {
             let maps = [];
 
             if (user_id === null) {
-                maps = await conn.query(`select * from maps`);
+                maps = await conn.query('select * from maps');
             } else {
                 let query = `
                     select * from maps
@@ -128,8 +128,8 @@ class MariaDBAdminStorageService {
             conn = await this.pool.getConnection();
             await conn.query('use ' + this.config.db);
 
-            let { insertId } = await conn.query(`insert into maps (name, filename, coordinates) VALUES (?, ?, ?)`, [map.name, map.filename, map.coordinates]);
-            return await conn.query(`select * from maps where id = ?`, [insertId]);
+            let { insertId } = await conn.query('insert into maps (name, filename, coordinates) VALUES (?, ?, ?)', [map.name, map.filename, map.coordinates]);
+            return await conn.query('select * from maps where id = ?', [insertId]);
 
         } catch (err) {
             console.log(err);
@@ -146,8 +146,8 @@ class MariaDBAdminStorageService {
             conn = await this.pool.getConnection();
             await conn.query('use ' + this.config.db);
 
-            await conn.query(`update maps set name = ?, filename = ?, coordinates = ? where id = ?`, [map.name, map.filename, map.coordinates, map.id]);
-            return await conn.query(`select * from maps where id = ?`, [map.id]);
+            await conn.query('update maps set name = ?, filename = ?, coordinates = ? where id = ?', [map.name, map.filename, map.coordinates, map.id]);
+            return await conn.query('select * from maps where id = ?', [map.id]);
 
         } catch (err) {
             console.log(err);
@@ -164,9 +164,9 @@ class MariaDBAdminStorageService {
             conn = await this.pool.getConnection();
             await conn.query('use ' + this.config.db);
 
-            let map = await conn.query(`select * from maps where id = ?`, [id]);
-            await conn.query(`delete from maps where id = ?`, [id]);
-            return map
+            let map = await conn.query('select * from maps where id = ?', [id]);
+            await conn.query('delete from maps where id = ?', [id]);
+            return map;
 
         } catch (err) {
             console.log(err);
@@ -178,6 +178,6 @@ class MariaDBAdminStorageService {
 
 
 
-};
+}
 
 module.exports = MariaDBAdminStorageService;

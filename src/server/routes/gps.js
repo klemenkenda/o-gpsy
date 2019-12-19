@@ -14,4 +14,4 @@ exports.prepareGPSRoutes = () => {
     router.get('/competitors', gps.getCompetitors);
 
     return(router);
-}
+};

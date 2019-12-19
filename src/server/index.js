@@ -24,5 +24,5 @@ staticRouter.prepareMapRoutes(app);
 staticRouter.prepareGuiRoutes(app);
 
 // starting server
-console.log("Starting server on port", PORT)
+console.log('Starting server on port', PORT);
 app.listen(PORT);
