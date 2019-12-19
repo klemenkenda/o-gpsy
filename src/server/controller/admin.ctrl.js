@@ -65,7 +65,7 @@ exports.uploadMap = async (req, res) => {
             if (e) throw e;
         });
     });
-    req.on('error', (e) => res.sendStatus(500));
+    req.on('error', () => res.sendStatus(500));
     req.on('end', () => {
         res.json(fileName);
     });
@@ -88,6 +88,6 @@ exports.deleteMap = async (req, res) => {
     }
     id = parseInt(id);
 
-    map = await storage.deleteMap(id);
+    let map = await storage.deleteMap(id);
     res.json(map);
 };

@@ -101,7 +101,7 @@ class Orienteer {
             }
 
             const latlngs = latlngsFilter
-                .map((el, i) => [el.lat, el.lon]);
+                .map((el) => [el.lat, el.lon]);
 
             this.track.setLatLngs(latlngs);
         }

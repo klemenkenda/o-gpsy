@@ -1,5 +1,3 @@
-const Request = require('express').Request;
-
 /** Utility function for processing incoming strings */
 exports.emptyIsNull = (s) => {
     if (!s) {
@@ -14,7 +12,7 @@ exports.emptyIsNull = (s) => {
 
 /** Utility function for extracting data from request body */
 exports.extractBodyParam = (body, name) => {
-    if (!existsBodyParam(body, name)) {
+    if (!exports.existsBodyParam(body, name)) {
         throw new Error('Missing mandatory field: ' + name);
     }
     return body[name];

@@ -11,7 +11,7 @@ class GenerateSchema {
         let sql = fs.readFileSync('./' + name + '/' + item).toString('utf8');
         try {
             await conn.query(sql);
-        } catch(err) {
+        } catch (err) {
             console.log(err);
             throw err;
         } finally {
@@ -43,12 +43,10 @@ class GenerateSchema {
             }
 
             conn.end();
-        } catch (err) {
-            throw err;
         } finally {
             console.log('Ending connection.');
             if (conn) conn.end();
-            if (pool) return pool.end();
+            if (pool) pool.end();
         }
     }
 
@@ -58,8 +56,6 @@ class GenerateSchema {
             try {
                 await this.generate(branch)
                     .catch((err) => { console.log('Error', err); });
-            } catch(err) {
-                throw err;
             } finally {
                 console.log('Finishing.');
             }
