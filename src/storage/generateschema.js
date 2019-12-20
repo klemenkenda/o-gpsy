@@ -1,4 +1,4 @@
-let config = require('../common/config.json')["storage"];
+let config = require('../common/config.json')['storage'];
 let mariadb = require('mariadb');
 let fs = require('fs');
 
@@ -8,21 +8,21 @@ class GenerateSchema {
     }
 
     async file_sql(conn, name, item) {
-        let sql = fs.readFileSync("./" + name + "/" + item).toString('utf8');
+        let sql = fs.readFileSync('./' + name + '/' + item).toString('utf8');
         try {
             await conn.query(sql);
-        } catch(err) {
+        } catch (err) {
             console.log(err);
             throw err;
         } finally {
-            console.log("Finishing file: " + name + "@" + item);
+            console.log('Finishing file: ' + name + '@' + item);
         }
 
     }
 
     async generate(branch) {
         let lConfig = config[branch.name];
-        console.log("Generating branch " + branch.name + " MariaDB@" + lConfig.host)
+        console.log('Generating branch ' + branch.name + ' MariaDB@' + lConfig.host);
         // connect to the database
         let pool = mariadb.createPool({
             host: lConfig.host,
@@ -43,12 +43,10 @@ class GenerateSchema {
             }
 
             conn.end();
-        } catch (err) {
-            throw err;
         } finally {
-            console.log("Ending connection.");
+            console.log('Ending connection.');
             if (conn) conn.end();
-            if (pool) return pool.end();
+            if (pool) pool.end();
         }
     }
 
@@ -57,11 +55,9 @@ class GenerateSchema {
             let branch = this.branches[i];
             try {
                 await this.generate(branch)
-                    .catch((err) => { console.log("Error", err) });
-            } catch(err) {
-                throw err;
+                    .catch((err) => { console.log('Error', err); });
             } finally {
-                console.log("Finishing.")
+                console.log('Finishing.');
             }
         }
     }

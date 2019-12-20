@@ -30,10 +30,10 @@ exports.getEvents = async (req, res) => {
         events = await storage.getEvent(event_id);
     } else {
         events = await storage.getEvents(user_id);
-    };
+    }
 
     res.json(events);
-}
+};
 
 exports.getMaps = async (req, res) => {
     let user_id = Utils.emptyIsNull(req.params.user_id);
@@ -43,51 +43,51 @@ exports.getMaps = async (req, res) => {
 
     const events = await storage.getMaps(user_id);
     res.json(events);
-}
+};
 
 exports.addMap = async (req, res) => {
     let map = req.body.map;
     if (!map) {
-        throw 'Missing the map'
+        throw 'Missing the map';
     }
 
     map = await storage.addMap(map);
     res.json(map);
-}
+};
 
 exports.uploadMap = async (req, res) => {
     // todo restrict to images with limited size
     const fileName = decodeURIComponent(req.params.file_name);
-    const filePath = `${__dirname}/../${MAPS_DIR}/${fileName}`
+    const filePath = `${__dirname}/../${MAPS_DIR}/${fileName}`;
 
     req.on('data', (d) => {
         fs.appendFile(filePath, d, (e) => {
             if (e) throw e;
         });
     });
-    req.on('error', (e) => res.sendStatus(500));
+    req.on('error', () => res.sendStatus(500));
     req.on('end', () => {
         res.json(fileName);
     });
-}
+};
 
 exports.editMap = async (req, res) => {
     let map = req.body.map;
     if (!map) {
-        throw 'Missing the map'
+        throw 'Missing the map';
     }
 
     map = await storage.editMap(map);
     res.json(map);
-}
+};
 
 exports.deleteMap = async (req, res) => {
     let id = req.body.id;
     if (!id) {
-        throw 'Missing the map'
+        throw 'Missing the map';
     }
-    id = parseInt(id)
+    id = parseInt(id);
 
-    map = await storage.deleteMap(id);
+    let map = await storage.deleteMap(id);
     res.json(map);
-}
+};

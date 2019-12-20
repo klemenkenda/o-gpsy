@@ -23,4 +23,4 @@ exports.prepareAdminRoutes = () => {
     router.get('/maps/:user_id?', admin.getMaps);
 
     return (router);
-}
+};

@@ -6,12 +6,12 @@ import * as serviceWorker from './serviceWorker';
 
 
 // initialize backend
-import { setBackend } from "./lib/Backend";
+import { setBackend } from './lib/Backend';
 // eslint-disable-next-line
 // import { RestBackend } from "./lib/Backend.rest";
 // eslint-disable-next-line
 // import { MockBackend } from "./lib/Backend.mock";
-import { RestBackend } from "./lib/Backend.rest";
+import { RestBackend } from './lib/Backend.rest';
 
 // setBackend(new MockBackend());
 setBackend(new RestBackend());
