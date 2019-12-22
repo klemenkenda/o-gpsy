@@ -111,6 +111,7 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
    * Using flow for type checking
    * Using jest for unit tests (frontend)
    * Using mocha (or jest) for unit tests (server)
+   * <del>Using linter</del> [ done ]
 
 > Help is needed! Developers welcome. Support from future users (testing, beta testing) too. :)
 
