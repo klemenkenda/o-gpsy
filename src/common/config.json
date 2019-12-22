@@ -7,5 +7,10 @@
             "password": "Th0uSha11S4v3",
             "db": "ogpsy"
         }
+    },
+    "service": {
+        "server": {
+            "port": 8000
+        }
     }
 }
