@@ -109,9 +109,14 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
        * Phone
 * Development
    * Using flow for type checking
-   * Using jest for unit tests (frontend)
+   * <del>Using jest for unit tests (frontend)</del> [ done ]
    * Using mocha (or jest) for unit tests (server)
    * <del>Using linter</del> [ done ]
+* Testing
+   * Unit tests for frontend
+   * Unit tests for server
+* CI
+   * Travis on GitHub
 
 > Help is needed! Developers welcome. Support from future users (testing, beta testing) too. :)
 
