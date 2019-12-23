@@ -7,6 +7,7 @@ import { lZ } from '../lib/Utils';
 // backend
 
 // import subcomponents
+import LiveNavBarRunner from './LiveNavBarRunner';
 
 // import css
 import './css/LiveNavBar.css';
@@ -26,6 +27,17 @@ class LiveNavBar extends Component<Props, State> {
     }
 
     render() {
+        const orienteerNav = Object.keys(this.props.orienteers).map((el, i) => {
+            const orienteer = this.props.orienteers[el];
+            return <LiveNavBarRunner
+                key={i}
+                name={orienteer.props.name}
+                club={orienteer.props.club}
+                country={orienteer.props.country}
+                color={orienteer.color}
+            />;
+        });
+
         return <div className="divLiveNavBar">
             <b>Options:</b><br/>
 
@@ -57,6 +69,9 @@ class LiveNavBar extends Component<Props, State> {
             { this.convertTs2Time(this.props.timestamp) }
             <br />
             <button onClick={this.props.startStopReplay}>Start/Stop</button>
+            <div>
+                {orienteerNav}
+            </div>
         </div>
 
     }
