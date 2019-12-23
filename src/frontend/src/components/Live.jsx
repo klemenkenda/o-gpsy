@@ -225,6 +225,7 @@ class Live extends Component<Props, State> {
                     show_labels={this.state.show_labels}
                     show_track={this.state.show_track}
                     tail_length={this.state.tail_length}
+                    orienteers={this.orienteers}
                     timestamp={this.state.actionable_ts} />
             </div>
         </div>

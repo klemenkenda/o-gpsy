@@ -55,7 +55,7 @@ class MariaDBGPSStorageService {
             if (conn) conn.end();
             if (pool) pool.end();
         }
-    };
+    }
 
     async getPoint(event_id) {
         let conn;
@@ -121,6 +121,6 @@ class MariaDBGPSStorageService {
         }
     }
 
-};
+}
 
 module.exports = MariaDBGPSStorageService;

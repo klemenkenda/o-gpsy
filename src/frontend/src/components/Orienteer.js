@@ -41,7 +41,7 @@ class Orienteer {
         this.track = L.polyline([], { color: this.color, weight: 6, opacity: 0.8 }).addTo(this.map);
         this.updateTrack();
         // add marker
-        this.marker = L.circleMarker([0, 0], { radius: 6, color: "black", weight: 1, fillColor: this.color, fillOpacity: 1 })
+        this.marker = L.circleMarker([0, 0], { radius: 6, color: 'black', weight: 1, fillColor: this.color, fillOpacity: 1 })
             .bindTooltip(this.props.name, {
                 permanent: this.parent.state.show_labels,
                 direction: 'right',
@@ -55,11 +55,9 @@ class Orienteer {
     updateMarker() {
         if (this.marker) {
             let track_data = this.track_data;
-            if (this.parent.state.action === "replay") {
+            if (this.parent.state.action === 'replay') {
                 track_data = track_data
                     .filter(x => x.ts <= this.parent.state.actionable_ts);
-
-                console.log(track_data[track_data.length - 1]);
             }
             const len = track_data.length;
             if (len > 0) {
@@ -95,13 +93,13 @@ class Orienteer {
             let latlngsFilter = this.track_data
                 .filter(x => x.ts > this.parent.state.actionable_ts - tail_length);
 
-            if (this.parent.state.action === "replay") {
+            if (this.parent.state.action === 'replay') {
                 latlngsFilter = latlngsFilter
                     .filter(x => x.ts <= this.parent.state.actionable_ts);
             }
 
             const latlngs = latlngsFilter
-                .map((el, i) => [el.lat, el.lon]);
+                .map((el) => [el.lat, el.lon]);
 
             this.track.setLatLngs(latlngs);
         }
@@ -122,7 +120,7 @@ class Orienteer {
             }
         } else {
             track.push(data);
-        };
+        }
     }
 
     /**
@@ -131,18 +129,18 @@ class Orienteer {
      */
     getColor(i) {
         const colors = [
-            "red",
-            "blue",
-            "green",
-            "maroon",
-            "yellow",
-            "olive",
-            "lime",
-            "teal",
-            "navy",
-            "fuchsia",
-            "purple",
-            "silver",
+            'red',
+            'blue',
+            'green',
+            'maroon',
+            'yellow',
+            'olive',
+            'lime',
+            'teal',
+            'navy',
+            'fuchsia',
+            'purple',
+            'silver',
         ];
 
         return colors[i % colors.length];

@@ -1,5 +1,5 @@
-// constants
-const PORT = 8000;
+// configuration
+const config = require('../common/config.json').service.server;
 
 // imports
 const express = require('express');
@@ -24,5 +24,5 @@ staticRouter.prepareMapRoutes(app);
 staticRouter.prepareGuiRoutes(app);
 
 // starting server
-console.log("Starting server on port", PORT)
-app.listen(PORT);
+console.log('Starting server on port', config.port);
+app.listen(config.port);

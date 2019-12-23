@@ -12,7 +12,7 @@ exports.writeCoordinates = (req, res) => {
 
     console.log(x, y, ts);
     storage.addGPS(u, p, x, y, ts);
-    res.send("OK");
+    res.send('OK');
 };
 
 exports.getPoint = async (req, res) => {
@@ -20,11 +20,11 @@ exports.getPoint = async (req, res) => {
     const u = req.params.u;
     const r = await storage.getPoint(u);
     res.json(r);
-}
+};
 
 exports.getCompetitors = async (req, res) => {
     // extract data
     const event_id = req.query.event_id;
     const r = await storage.getCompetitors(event_id);
     res.json(r);
-}
+};

@@ -24,6 +24,7 @@ export class MockLiveBackend implements LiveBackend {
             }
         ]);
     }
+
     getCoordinates(event, done, err) {
         this.comp_x += (Math.random() - 0.5) / 10000;
         this.comp_y += (Math.random() - 0.5) / 10000;
@@ -41,6 +42,35 @@ export class MockLiveBackend implements LiveBackend {
 
     getTime(done, err) {
         done(Math.round(new Date().getTime() / 1000));
+    }
+
+    getEvents(done, err) {
+        done([
+            {
+                "ts": "2019-11-27T14:10:54.000Z",
+                "id": 1,
+                "user_id": 1,
+                "name": "Test event",
+                "www": null,
+                "start": "2019-11-30T10:55:00.000Z",
+                "end": null,
+                "active": 1,
+                "public": 1,
+                "map_id": 3
+            },
+            {
+                "ts": "2019-12-05T11:31:41.000Z",
+                "id": 2,
+                "user_id": 1,
+                "name": "Devel event",
+                "www": null,
+                "start": "2019-11-30T11:00:00.000Z",
+                "end": "2019-12-06T15:00:00.000Z",
+                "active": 1,
+                "public": 1,
+                "map_id": 1
+            }
+        ])
     }
 }
 
