@@ -58,8 +58,6 @@ class Orienteer {
             if (this.parent.state.action === 'replay') {
                 track_data = track_data
                     .filter(x => x.ts <= this.parent.state.actionable_ts);
-
-                console.log(track_data[track_data.length - 1]);
             }
             const len = track_data.length;
             if (len > 0) {
