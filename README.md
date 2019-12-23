@@ -74,7 +74,7 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
        * <del>Label on/off</del> [ done ]
        * Various tail lengths (+/-)
    * List of runners
-       * Display name/color
+       * <del>Display name/color</del> [ done ]
        * On/off functionality
        * Calculate speed
    * Show clock + replay/sync (like gpsseuranta)
