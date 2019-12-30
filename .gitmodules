@@ -1,0 +1,3 @@
+[submodule "src/integrations/tmt250-tcp/tmt250-node"]
+	path = src/integrations/tmt250-tcp/tmt250-node
+	url = https://github.com/klemenkenda/tmt250-node

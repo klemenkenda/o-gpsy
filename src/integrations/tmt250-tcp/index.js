@@ -16,13 +16,21 @@ server.on('connection', function(sock) {
     sockets.push(sock);
 
     sock.on('data', function(data) {
-        console.log('DATA ' + sock.remoteAddress + ':' + sock.remotePort + ': ' + data);
-        fs.appendFileSync('tmt250-sample.txt', data + '\n');
+        try {
+            console.log('DATA ' + sock.remoteAddress + ':' + sock.remotePort + ': ' + data);
+            let dataEnter = data.toString("base64");
+            fs.appendFileSync('tmt250-sample.txt', dataEnter + '\n');
 
-        // Write the data back to all the connected, the client will receive it as data from the server
-        // sockets.forEach(function(sock, index, array) {
-            sock.write(Buffer.from([1, 2, 3]));
-        // });
+            // Write the data back to all the connected, the client will receive it as data from the server
+            // sockets.forEach(function(sock, index, array) {
+                setTimeout(() => {
+                    sock.write(Buffer.from([1]));
+                }, 10);
+
+            // });
+        } catch(e) {
+            console.log("Err", e);
+        }
     });
 
     // Add a 'close' event handler to this instance of socket
