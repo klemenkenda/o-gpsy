@@ -1,3 +1,5 @@
+const AVLDecoder = require('./tmt250-node/index');
+
 const net = require('net');
 const fs = require('fs');
 const port = 8001;
