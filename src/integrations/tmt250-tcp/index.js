@@ -28,15 +28,24 @@ server.on('connection', function(sock) {
     sock.on('data', (data) => {
         try {
             // logging
-            console.log(decoder.IMEI, decoder.port, decoder.host);
-            console.log('DATA ' + sock.remoteAddress + ':' + sock.remotePort + ': ' + data);
+            console.log(decoder.IMEI, decoder.port, decoder.remote);
+            console.log('DATA ' + sock.remoteAddress + ':' + sock.remotePort + ': len = ' + data.length);
 
             // appending to log file
             let dataEnter = data.toString("base64");
             fs.appendFileSync('tmt250-sample.txt', dataEnter + '\n');
 
-            // default return
-            sock.write(Buffer.from([1]));
+            // processing of the records
+            if (decoder.IMEI === "") {
+                if (decoder.identify(data)) {
+                    console.log("Node identified: " + decoder.IMEI);
+                    // send ACK
+                    sock.write(Buffer.from([1]));
+                } else {
+                    console.log("Error identifying node: " + data);
+                }
+            }
+
         } catch(e) {
             console.log("Err", e);
         }
