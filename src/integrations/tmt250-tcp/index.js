@@ -22,19 +22,21 @@ server.listen(config.port, config.host, () => {
 server.on('connection', function(sock) {
     console.log('CONNECTED: ' + sock.remoteAddress + ':' + sock.remotePort);
     sockets.push(sock);
-    decoders.push(new AVLDecoder(sock.remoteAddress, sock.remotePort));
+    let decoder = new AVLDecoder(sock.remoteAddress, sock.remotePort);
+    decoders.push(decoder);
 
     sock.on('data', (data) => {
         try {
+            // logging
+            console.log(decoder.IMEI, decoder.port, decoder.host);
             console.log('DATA ' + sock.remoteAddress + ':' + sock.remotePort + ': ' + data);
+
+            // appending to log file
             let dataEnter = data.toString("base64");
             fs.appendFileSync('tmt250-sample.txt', dataEnter + '\n');
 
-            //setTimeout(() => {
-                sock.write(Buffer.from([1]));
-            // }, 10);
-
-            // });
+            // default return
+            sock.write(Buffer.from([1]));
         } catch(e) {
             console.log("Err", e);
         }
