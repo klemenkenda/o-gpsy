@@ -1,33 +1,38 @@
+// config
+// configuration
+const config = require('../../common/config.json').service.tmt250tcp;
+
 const AVLDecoder = require('./tmt250-node/index');
 
+// system imports
 const net = require('net');
 const fs = require('fs');
-const port = 8001;
-const host = '194.249.231.93';
 
+// vars
+let sockets = [];
+let decoders = [];
+
+// create socket server
 const server = net.createServer();
-server.listen(port, host, () => {
-    console.log('TCP Server is running on port ' + port + '.');
+server.listen(config.port, config.host, () => {
+    console.log('TCP Server is running on port ' + config.port + '.');
 });
 
-let sockets = [];
-
+// listen to sockets
 server.on('connection', function(sock) {
     console.log('CONNECTED: ' + sock.remoteAddress + ':' + sock.remotePort);
-    //console.log(sock);
     sockets.push(sock);
+    decoders.push(new AVLDecoder(sock.remoteAddress, sock.remotePort));
 
-    sock.on('data', function(data) {
+    sock.on('data', (data) => {
         try {
             console.log('DATA ' + sock.remoteAddress + ':' + sock.remotePort + ': ' + data);
             let dataEnter = data.toString("base64");
             fs.appendFileSync('tmt250-sample.txt', dataEnter + '\n');
 
-            // Write the data back to all the connected, the client will receive it as data from the server
-            // sockets.forEach(function(sock, index, array) {
-                setTimeout(() => {
-                    sock.write(Buffer.from([1]));
-                }, 10);
+            //setTimeout(() => {
+                sock.write(Buffer.from([1]));
+            // }, 10);
 
             // });
         } catch(e) {
