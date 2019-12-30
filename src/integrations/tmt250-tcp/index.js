@@ -44,6 +44,9 @@ server.on('connection', function(sock) {
                 } else {
                     console.log("Error identifying node: " + data);
                 }
+            } else {
+                let response = decoder.decodeAVL(data);
+                sock.write(response);
             }
 
         } catch(e) {
