@@ -46,7 +46,7 @@ server.on('connection', function(sock) {
                 }
             } else {
                 let response = decoder.decodeAVL(data);
-                sock.write(response);
+                sock.write(decoder.generateAVLResponse());
             }
 
         } catch(e) {
