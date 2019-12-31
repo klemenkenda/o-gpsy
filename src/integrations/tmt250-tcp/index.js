@@ -54,8 +54,7 @@ server.on('connection', function(sock) {
                 // display timestamps
                 response.records.forEach((record) => {
                     storage.addGPS(decoder.IMEI, "", record.lat, record.lon, Math.round(record.timestamp / 1000));
-
-                    console.log(decoder.IMEI, new Date(record.timestamp), Math.round(record.timestamp / 1000), record.lat, record.lon);
+                    console.log(decoder.IMEI, Math.round(record.timestamp / 1000), record.lat, record.lon);
                 })
                 sock.write(decoder.generateAVLResponse());
             }
