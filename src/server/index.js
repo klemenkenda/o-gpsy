@@ -1,5 +1,5 @@
 // configuration
-const config = require('../common/config.json').tmt250tcp.server;
+const config = require('../common/config.json').service.server;
 
 // imports
 const express = require('express');
