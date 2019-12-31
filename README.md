@@ -23,10 +23,10 @@ Teltonika TMT250 AVL NodeJS driver is being developed [here](http://github.com/k
 * `frontend` - frontend based on Bootstrap, React and Leaflet (admin and viewer for users)
 * `server` - backend GUI server based on NodeJS and MariaDB; in addition it supports HTTP requests from trackers (such as smart phones using GPSLogger (for Android)
 * `storage` - folder with SQL definitions and others
+* `integrations/tmt250-tcp` - TMT250 tracker gateway for TCP requests (beta)
 
-*TODO*:
+*TODO/perhaps not needed*:
 
-* `integrations/tmt250-tcp` - TMT250 tracker gateway for TCP requests
 * `integrations/tmt250-sms` - TMT250 tracker gateway (for Android phone) for SMS requests
 
 ## Prerequisites
@@ -80,8 +80,8 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
    * Show clock + replay/sync (like gpsseuranta)
    * <del>Replay functionality</del> [ done ]
    * Sync for replay
-* Services
-   * TMT250 TCP service
+* <del>Services</del> [ done ]
+   * <del>TMT250 TCP service</del> [ done ]
 
 ### Plan for o-gpsy [ PHASE 2 / upgrade ]
 
