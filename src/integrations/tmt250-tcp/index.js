@@ -46,6 +46,10 @@ server.on('connection', function(sock) {
                 }
             } else {
                 let response = decoder.decodeAVL(data);
+                // display timestamps
+                response.records.forEach((record) => {
+                    console.log(new Date(record.timestamp, record.lon, record.lat));
+                })
                 sock.write(decoder.generateAVLResponse());
             }
 
