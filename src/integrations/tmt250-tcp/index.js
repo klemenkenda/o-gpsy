@@ -2,11 +2,16 @@
 // configuration
 const config = require('../../common/config.json').service.tmt250tcp;
 
+// services
 const AVLDecoder = require('./tmt250-node/index');
+const Storage = require('../../server/services/gps_storage_mariadb');
 
 // system imports
 const net = require('net');
 const fs = require('fs');
+
+// create storage
+const storage = new Storage();
 
 // vars
 let sockets = [];
@@ -48,7 +53,9 @@ server.on('connection', function(sock) {
                 let response = decoder.decodeAVL(data);
                 // display timestamps
                 response.records.forEach((record) => {
-                    console.log(new Date(record.timestamp, record.lon, record.lat));
+                    storage.addGPS(decoder.IMEI, "", record.lat, record.lon, Math.round(record.timestamp / 1000));
+
+                    console.log(decoder.IMEI, new Date(record.timestamp), Math.round(record.timestamp / 1000), record.lat, record.lon);
                 })
                 sock.write(decoder.generateAVLResponse());
             }
