@@ -66,15 +66,17 @@ class MariaDBGPSStorageService {
             await conn.query('use ' + this.config.db);
 
             let query = `
-            select
-                unix_timestamp(points.ts) as ts, runner_id, lat, lon
-            from runners, points
-            where
-                runners.event_id = ? and
-                runners.id = runner_id and
-                points.ts IN (
-                    select max(ts) from points group by runner_id
-                )
+                select
+                    unix_timestamp(points.ts) as ts, runner_id, lat, lon
+                from runners, points
+                where
+                    runners.event_id = ? and
+                    runners.id = runner_id and
+                    points.ts IN (
+                        select max(ts) from (
+                            select max(ts) as ts, runner_id from points group by runner_id
+                        ) x where runners.id = runner_id
+                    )
             `;
             let records = await conn.query(query, [event_id]);
             return(records);
@@ -108,6 +110,7 @@ class MariaDBGPSStorageService {
                         lat
                     from points
                     where runner_id = ?
+                    order by ts
                 `;
                 track = await conn.query(query, rec.id);
                 records[i].track = track;
