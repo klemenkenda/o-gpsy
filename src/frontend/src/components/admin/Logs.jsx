@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 import { getBackend } from '../../lib/Backend';
 
 // import subcomponents
+import { Container, Table } from 'react-bootstrap';
 
 // defining types
 type Props = {};
@@ -19,6 +20,13 @@ type State = {
  */
 class Logs extends Component<Props, State> {
 
+    constructor(state) {
+        super(state);
+        this.state = {
+            log: []
+        }
+    }
+
     componentDidMount() {
         this.loadLogs();
     }
@@ -29,9 +37,31 @@ class Logs extends Component<Props, State> {
     }
 
     render() {
-        return <div>Template says: "Hello, world!"</div>
+        return <Container className="mt-5">
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Runner id</th>
+                        <th>Lat</th>
+                        <th>Lon</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {
+                    this.state.log.reverse().map((row) => {
+                        return <tr>
+                            <td>{row.ts}</td>
+                            <td>{row.runner_id}</td>
+                            <td>{row.lat}</td>
+                            <td>{row.lon}</td>
+                        </tr>
+                    })
+                }
+                </tbody>
+            </Table>
+        </Container>
     }
-
 }
 
 export default Logs;
