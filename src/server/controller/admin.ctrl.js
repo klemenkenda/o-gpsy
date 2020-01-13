@@ -13,6 +13,12 @@ exports.login = async (req, res) => {
     res.json(r);
 };
 
+exports.getLog = async (req, res) => {
+    const n = Utils.existsBodyParam(req.query, "n") ? Utils.extractBodyParam(req.query, "n") : 20;
+    const r = await storage.getLog(n);
+    res.json(r);
+}
+
 exports.getEvents = async (req, res) => {
     let user_id = Utils.emptyIsNull(req.params.user_id);
     if (user_id !== null) {

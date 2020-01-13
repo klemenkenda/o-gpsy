@@ -17,7 +17,11 @@ import Login from "./Login";
 import Home from "./Home";
 import Live from "./Live";
 import Logout from "./Logout";
-import Maps from "./Maps";
+
+// admin components
+import AdminEvents from "./admin/Events";
+import AdminMaps from "./admin/Maps";
+import AdminLogs from "./admin/Logs";
 
 // CSS
 import './css/App.css';
@@ -34,7 +38,7 @@ class App extends React.Component<Props, State> {
         return [
             <Router key={1}>
                 <Switch>
-                    <Route path="/(|login|logout|maps)" exact={true} key={1}>
+                    <Route path="/(|login|logout|admin/maps|admin|admin/events|admin/logs)" exact={true} key={1}>
                         <Header />
                     </Route>
                 </Switch>
@@ -57,8 +61,11 @@ class App extends React.Component<Props, State> {
                         </Container>
                     </Route>
                     <Route path="/live/:id" key={4} component={Live} />
-                    <Route path="/maps" exact={true} key={5}>
-                        <Maps />
+                    <Route path="/admin" exact={true} key={50} component={AdminEvents} />
+                    <Route path="/admin/events" key={60} component={AdminEvents} />
+                    <Route path="/admin/logs" key={80} component={AdminLogs} />
+                    <Route path="/admin/maps" exact={true} key={70}>
+                        <AdminMaps />
                     </Route>
                 </Switch>
             </Router>,

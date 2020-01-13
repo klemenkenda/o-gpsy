@@ -8,7 +8,8 @@ export interface LiveBackend {
 }
 
 export interface AdminBackend {
-    doLogin(u, p): void;
+    login(u, p): void;
+    getLog(n): void;
 }
 
 export interface Backend {

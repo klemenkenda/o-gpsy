@@ -48,12 +48,18 @@ class Header extends Component<Props, State> {
 
         return <Navbar bg="dark" variant="dark">
             <Navbar.Brand href="/">o-gpsy</Navbar.Brand>
-            <Nav className="mr-auto">
-                {/*
-                <Nav.Link href="#home">Domov</Nav.Link>
-                <Nav.Link href="#pricing">Najem</Nav.Link>
-                */}
-            </Nav>
+            { this.state.logged_in &&
+                <Nav className="mr-auto">
+                    <Nav.Link href="/admin/events">Events</Nav.Link>
+                    <Nav.Link href="/admin/trackers">Trackers</Nav.Link>
+                    <Nav.Link href="/admin/maps">Maps</Nav.Link>
+                    <Nav.Link href="/admin/logs">Logs</Nav.Link>
+                </Nav>
+            }
+            { !this.state.logged_in &&
+                <Nav className="mr-auto">
+                </Nav>
+            }
             {button}
         </Navbar>
     }
@@ -61,7 +67,7 @@ class Header extends Component<Props, State> {
     renderLoginButton() {
         if (this.state.logged_in === true) {
             const name = Auth.getUser().user;
-            
+
             return <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
                     Signed in as: <a href="/logout">{name}</a>
@@ -72,7 +78,7 @@ class Header extends Component<Props, State> {
             {/*
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-light" className="mr-sm-2">Search</Button>
-            */}            
+            */}
             <Button variant="outline-info" href="/login">Log In</Button>
         </Form>
 

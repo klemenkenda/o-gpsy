@@ -32,6 +32,32 @@ class MariaDBAdminStorageService {
 
     }
 
+    async getLog(n) {
+        let conn;
+
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+
+            const rows_record = await conn.query('select count(*) c from points');
+            const rows = rows_record[0].c;
+
+            let query = `select
+                *
+            from
+                points
+            limit ` + (rows - n) + `,` + n;
+
+            let r = await conn.query(query, []);
+            return (r);
+        } catch (err) {
+            console.log(err);
+            throw (err);
+        } finally {
+            if (conn) conn.end();
+        }
+    }
+
     async getEvent(event_id) {
         let conn;
 

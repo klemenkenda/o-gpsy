@@ -86,6 +86,19 @@ export class RestAdminBackend implements AdminBackend {
             });
     };
 
+    async getLog(n) {
+        try {
+            let url = `/api/admin/logs`;
+            if (n) url = `/api/admin/logs?n=${n}`;
+
+            const { data } = await axios.get(url);
+            return data;
+        } catch (e) {
+            console.log(e);
+            throw e;
+        }
+    }
+
     async getMaps(u) {
         try {
             let url = `/api/admin/maps/`;
