@@ -29,6 +29,8 @@ class Logs extends Component<Props, State> {
 
     componentDidMount() {
         this.loadLogs();
+        // updating
+        this.sheduler = setInterval(() => this.loadLogs(), 1000);
     }
 
     async loadLogs() {
