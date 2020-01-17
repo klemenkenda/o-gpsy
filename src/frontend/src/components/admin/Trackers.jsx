@@ -32,7 +32,6 @@ class Trackers extends Component {
 
         try {
             let trackers = await this.backend.getTrackers();
-            console.log("trackers", trackers);
             this.setState({
                 trackers: trackers
             });
