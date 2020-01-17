@@ -18,7 +18,7 @@ class LiveNavBarRunner extends Component<Props, State> {
 
     render() {
         const runner_style = { borderLeft: "5px solid " + this.props.color, paddingLeft: "5px", marginTop: "4px" };
-        return <div style={runner_style}>
+        return <div style={runner_style} onClick={() => this.props.handleToggleRunner(this.props.id)}>
             {this.props.name}
             <span className="spanRunnerClub">
                 {this.props.club}, {this.props.country}

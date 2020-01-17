@@ -26,15 +26,21 @@ class LiveNavBar extends Component<Props, State> {
         return lZ(d.getHours()) + ":" + lZ(d.getMinutes()) + ":" + lZ(d.getSeconds());
     }
 
+    handleToggleRunner(id) {
+        console.log(this.props.orienteers[id]);
+    }
+
     render() {
         const orienteerNav = Object.keys(this.props.orienteers).map((el, i) => {
             const orienteer = this.props.orienteers[el];
             return <LiveNavBarRunner
                 key={i}
+                id={el}
                 name={orienteer.props.name}
                 club={orienteer.props.club}
                 country={orienteer.props.country}
                 color={orienteer.color}
+                handleToggleRunner={(id) => this.handleToggleRunner(id)}
             />;
         });
 
