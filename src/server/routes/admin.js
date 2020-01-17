@@ -24,5 +24,11 @@ exports.prepareAdminRoutes = () => {
     router.post('/maps/delete/', admin.deleteMap);
     router.get('/maps/:user_id?', admin.getMaps);
 
+    // GUI/admin/trackers routes
+    router.get('/trackers/', admin.getTrackers);
+    router.post('/trackers/', admin.addTracker);
+    router.put('/tracker/:id', admin.updateTracker);
+    router.delete('/tracker/:id', admin.deleteTracker);
+
     return (router);
 };

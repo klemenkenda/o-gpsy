@@ -7,18 +7,12 @@ import Auth from '../lib/Auth';
 // backend
 
 // import subcomponents
-import { Navbar, Nav, Form, /*FormControl,*/ Button } from 'react-bootstrap';
-
-// defining types
-type Props = {};
-type State = {
-    logged_in: boolean
-};
+import { Navbar, Nav, Form, Button } from 'react-bootstrap';
 
 /**
  * Displaying production lines list.
  */
-class Header extends Component<Props, State> {
+class Header extends Component {
 
     constructor(props, state) {
         super();
@@ -46,21 +40,24 @@ class Header extends Component<Props, State> {
     render() {
         const button = this.renderLoginButton();
 
-        return <Navbar bg="dark" variant="dark">
+        return <Navbar bg="dark" variant="dark" expand="sm">
             <Navbar.Brand href="/">o-gpsy</Navbar.Brand>
-            { this.state.logged_in &&
-                <Nav className="mr-auto">
-                    <Nav.Link href="/admin/events">Events</Nav.Link>
-                    <Nav.Link href="/admin/trackers">Trackers</Nav.Link>
-                    <Nav.Link href="/admin/maps">Maps</Nav.Link>
-                    <Nav.Link href="/admin/logs">Logs</Nav.Link>
-                </Nav>
-            }
-            { !this.state.logged_in &&
-                <Nav className="mr-auto">
-                </Nav>
-            }
-            {button}
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+                { this.state.logged_in &&
+                    <Nav className="mr-auto">
+                        <Nav.Link href="/admin/events">Events</Nav.Link>
+                        <Nav.Link href="/admin/trackers">Trackers</Nav.Link>
+                        <Nav.Link href="/admin/maps">Maps</Nav.Link>
+                        <Nav.Link href="/admin/logs">Logs</Nav.Link>
+                    </Nav>
+                }
+                { !this.state.logged_in &&
+                    <Nav className="mr-auto">
+                    </Nav>
+                }
+                {button}
+            </Navbar.Collapse>
         </Navbar>
     }
 

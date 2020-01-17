@@ -9,16 +9,10 @@ import { getBackend } from '../../lib/Backend';
 // import subcomponents
 import { Container, Table } from 'react-bootstrap';
 
-// defining types
-type Props = {};
-type State = {
-    log: any
-};
-
 /**
  * Displaying production lines list.
  */
-class Logs extends Component<Props, State> {
+class Logs extends Component {
 
     constructor(state) {
         super(state);
@@ -40,7 +34,8 @@ class Logs extends Component<Props, State> {
 
     render() {
         return <Container className="mt-5">
-            <Table striped bordered hover>
+            <h1>Last recorded points</h1>
+            <Table striped bordered hover size="sm" responsive="sm">
                 <thead>
                     <tr>
                         <th>Timestamp</th>

@@ -22,6 +22,7 @@ import Logout from "./Logout";
 import AdminEvents from "./admin/Events";
 import AdminMaps from "./admin/Maps";
 import AdminLogs from "./admin/Logs";
+import AdminTrackers from "./admin/Trackers";
 
 // CSS
 import './css/App.css';
@@ -38,7 +39,7 @@ class App extends React.Component<Props, State> {
         return [
             <Router key={1}>
                 <Switch>
-                    <Route path="/(|login|logout|admin/maps|admin|admin/events|admin/logs)" exact={true} key={1}>
+                    <Route path="/(|login|logout|admin/maps|admin|admin/events|admin/logs|admin/trackers|admin/trackers/add)" exact={true} key={1}>
                         <Header />
                     </Route>
                 </Switch>
@@ -63,6 +64,8 @@ class App extends React.Component<Props, State> {
                     <Route path="/live/:id" key={4} component={Live} />
                     <Route path="/admin" exact={true} key={50} component={AdminEvents} />
                     <Route path="/admin/events" key={60} component={AdminEvents} />
+                    <Route path="/admin/trackers/:action" key={90} component={AdminTrackers} />
+                    <Route path="/admin/trackers" key={90} component={AdminTrackers} />
                     <Route path="/admin/logs" key={80} component={AdminLogs} />
                     <Route path="/admin/maps" exact={true} key={70}>
                         <AdminMaps />

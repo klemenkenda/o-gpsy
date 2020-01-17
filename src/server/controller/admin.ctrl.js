@@ -97,3 +97,20 @@ exports.deleteMap = async (req, res) => {
     let map = await storage.deleteMap(id);
     res.json(map);
 };
+
+exports.getTrackers = async (req, res) => {
+    const trackers = await storage.getTrackers();
+    res.json(trackers);
+}
+
+exports.addTracker = async (req, res) => {
+    res.json({});
+}
+
+exports.updateTracker = async (req, res) => {
+    res.json({});
+}
+
+exports.deleteTracker = async (req, res) => {
+    res.json({});
+}

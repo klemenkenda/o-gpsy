@@ -202,7 +202,21 @@ class MariaDBAdminStorageService {
         }
     }
 
+    async getTrackers() {
+        let conn;
 
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+            let trackers = await conn.query('select * from trackers');
+            return trackers;
+        } catch (err) {
+            console.log(err);
+            throw (err);
+        } finally {
+            if (conn) conn.end();
+        }
+    }
 
 }
 

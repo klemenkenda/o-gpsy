@@ -168,6 +168,17 @@ export class RestAdminBackend implements AdminBackend {
             throw e;
         }
     };
+
+    async getTrackers() {
+        try {
+            let url = `/api/admin/trackers/`;
+            const { data } = await axios.get(url);
+            return data;
+        } catch (e) {
+            console.log(e);
+            throw e;
+        }
+    }
 }
 
 export class RestBackend implements Backend {
