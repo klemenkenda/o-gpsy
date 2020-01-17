@@ -12,7 +12,7 @@ The solution uses some traditional technologies like MariaDB and some standard w
 *Currently we support the following technology:*
 
 * smart phone with [GPSLogger](http://gpslogger.app) for Android (beta phase) - [manual](docs/TRACKER_ANDROID_PHONE.md)
-* Teltonika TMT250 (under development)
+* Teltonika TMT250
 
 Teltonika TMT250 AVL NodeJS driver is being developed [here](http://github.com/klemenkenda/tmt250-node).
 
@@ -38,7 +38,9 @@ Teltonika TMT250 AVL NodeJS driver is being developed [here](http://github.com/k
 
 ## Production
 
-For production mode go to `src/frontend` and run `npm install` and then `npm run build`. This will build the last version of the frontend into the `build` directory. This one gets automatically served with o-gpsy server in `src/server`. You start the server simply by `npm start` (be aware to run `npm install` before). The app will be served on port 8000.
+For production mode go to `src/frontend` and run `npm install` and then `npm run build`. This will build the last version of the frontend into the `build` directory. This one gets automatically served with o-gpsy server in `src/server`. You start the server simply by `npm start` (be aware to run `npm install` before). The app will be served on port 8000. Server is responsible for ingesting GPS from Android HTTP requests.
+
+Start TMT250 TCP service in `src/integrations/tcp250-tcp` with `npm start` or `pm2 start index.js` (use `npm install` before). The app will be served on port 8001.
 
 ## Development
 
