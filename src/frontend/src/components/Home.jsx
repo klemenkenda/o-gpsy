@@ -8,6 +8,10 @@ import { getBackend } from '../lib/Backend';
 // backend
 
 // import subcomponents
+import {
+    Container,
+    Jumbotron
+} from 'react-bootstrap';
 
 // defining types
 type Props = {};
@@ -39,24 +43,33 @@ class Home extends Component<Props, State> {
         )
     }
     render() {
-        return <div className="mt-5">
-            <h1>Events</h1>
-            <ul>
-                {
-                    this.state.events.map((event, i) => {
-                        let desc = "";
-                        if (event.start !== null) {
-                            desc = ", starts at " + new Date(event.start);
-                        }
-                        return <li key={i}>
-                            <a href={"/live/" + event.id}>
-                                {event.name}
-                            </a>{ desc }
-                        </li>;
-                    })
-                }
-            </ul>
-        </div>
+        return [
+            <Jumbotron key={1} fluid>
+                <Container>
+                    <h1>Schedule &amp; History</h1>
+                    <p>
+                        Live tracking for Slovenian Orienteering Federation.
+                    </p>
+                </Container>
+            </Jumbotron>,
+            <Container>
+                <ul>
+                    {
+                        this.state.events.reverse().map((event, i) => {
+                            let desc = "";
+                            if (event.start !== null) {
+                                desc = ", starts at " + new Date(event.start);
+                            }
+                            return <li key={i}>
+                                <a href={"/live/" + event.id}>
+                                    {event.name}
+                                </a>{ desc }
+                            </li>;
+                        })
+                    }
+                </ul>
+            </Container>
+        ]
     }
 
 }

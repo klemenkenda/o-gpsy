@@ -47,9 +47,7 @@ class App extends React.Component<Props, State> {
             <Router key={2}>
                 <Switch>
                     <Route path="/" exact={true} key={1}>
-                        <Container>
-                            <Home />
-                        </Container>
+                        <Home />
                     </Route>
                     <Route path="/login" key={2}>
                         <Container>
