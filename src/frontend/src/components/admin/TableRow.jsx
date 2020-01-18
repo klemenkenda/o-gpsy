@@ -39,9 +39,9 @@ class TableRow extends React.Component<Props> {
             }
             {
                 this.props.showAction &&
-                <td style={{textAlign: 'right' }}>
-                    <Link to={editLink} className="btn btn-outline-primary">Edit</Link>&nbsp;
-                    <button onClick={this.delete} className="btn btn-outline-danger">Delete</button>
+                <td>
+                    <Link to={editLink} className="btn btn-primary">Edit</Link>&nbsp;
+                    <button onClick={this.delete} className="btn btn-danger">Delete</button>
                 </td>
             }
         </tr>;

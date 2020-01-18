@@ -2,7 +2,9 @@
 import React, { Component } from 'react';
 import {
     Container,
-    Table
+    Table,
+    Jumbotron,
+    ButtonToolbar, Button
 } from 'react-bootstrap';
 import TableRow from './TableRow';
 
@@ -69,12 +71,26 @@ class Trackers extends Component {
     }
 
     render() {
-        return <Container className="mt-5">
-            <h1>Trackers: {this.action}</h1>
-            {
-                (this.action === "list") && this.renderList()
-            }
-        </Container>
+        return [
+            <Jumbotron key={1} fluid>
+                <Container>
+                    <h1>Trackers: {this.action}</h1>
+                    <ButtonToolbar>
+                        {
+                            (this.action === "list") && <Button variant="success" href="/admin/trackers/add">Add new tracker</Button>
+                        }
+                        {
+                            (this.action !== "list") && <Button variant="info" href="/admin/trackers">List trackers</Button>
+                        }
+                    </ButtonToolbar>
+                </Container>
+            </Jumbotron>,
+            <Container key={2} className="mt-5">
+                {
+                    (this.action === "list") && this.renderList()
+                }
+            </Container>
+        ]
     }
 
 }
