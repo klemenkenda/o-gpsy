@@ -52,7 +52,7 @@ class Home extends Component<Props, State> {
                     </p>
                 </Container>
             </Jumbotron>,
-            <Container>
+            <Container key={2}>
                 <ul>
                     {
                         this.state.events.reverse().map((event, i) => {
