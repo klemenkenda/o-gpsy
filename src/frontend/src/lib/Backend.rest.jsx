@@ -213,6 +213,27 @@ export class RestAdminBackend implements AdminBackend {
             throw e;
         }
     }
+
+    async getEvents(done, err) {
+        try {
+            const { data } = await axios.get("/api/admin/events")
+            return data;
+        } catch (e) {
+            console.log(e);
+            throw(e);
+        }
+    }
+
+    async getEvent(id, done, err) {
+        try {
+            let url = `/api/admin/event/${id}`;
+            const { data } = await axios.get(url);
+            return data;
+        } catch (e) {
+            console.log(e);
+            throw e;
+        }
+    }
 }
 
 export class RestBackend implements Backend {
