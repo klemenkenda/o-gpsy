@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 
 // defining types
 type Props = {
@@ -22,10 +21,16 @@ class TableRow extends React.Component<Props> {
     }
 
     /**
+     * Handler for deleting the row.
+     */
+    edit = () => {
+        this.props.handleToEdit(this.props.obj.id);
+    }
+
+    /**
      * Rendering JSX for current component.
      */
     render() {
-        let editLink = this.props.editLink + this.props.obj.id;
         return <tr>
             <td>{this.props.obj.id}</td>
             {
@@ -40,7 +45,7 @@ class TableRow extends React.Component<Props> {
             {
                 this.props.showAction &&
                 <td>
-                    <Link to={editLink} className="btn btn-primary">Edit</Link>&nbsp;
+                    <button onClick={this.edit} className="btn btn-primary">Edit</button>&nbsp;
                     <button onClick={this.delete} className="btn btn-danger">Delete</button>
                 </td>
             }

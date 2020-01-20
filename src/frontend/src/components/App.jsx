@@ -39,7 +39,7 @@ class App extends React.Component<Props, State> {
         return [
             <Router key={1}>
                 <Switch>
-                    <Route path="/(|login|logout|admin/maps|admin|admin/events|admin/logs|admin/trackers|admin/trackers/add)" exact={true} key={1}>
+                    <Route path="/(|login|logout|admin/maps|admin|admin/events|admin/logs|admin/trackers)" key={1}>
                         <Header />
                     </Route>
                 </Switch>

@@ -190,6 +190,29 @@ export class RestAdminBackend implements AdminBackend {
             throw e;
         }
     };
+
+    async addTracker(tracker) {
+        try {
+            const { data } = await axios.post(`/api/admin/trackers`, { tracker });
+            return data;
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
+    }
+
+    async updateTracker(tracker) {
+        try {
+            const id = tracker.id;
+            const { data } = await axios.put(`/api/admin/tracker/${id}`, { tracker });
+            return data;
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
+    }
 }
 
 export class RestBackend implements Backend {

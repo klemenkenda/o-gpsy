@@ -104,12 +104,34 @@ exports.getTrackers = async (req, res) => {
 }
 
 exports.addTracker = async (req, res) => {
-    const tracker = await storage.deleteTracker(id);
-    res.json(req.params);
+    let tracker = req.body.tracker;
+
+    const hw = tracker.hw;
+    const uuid = tracker.uuid;
+    const name = tracker.name;
+
+    if ((hw === null) || (uuid === null) || (name === null) || (uuid === "") || (name === "")) {
+        res.json({ "error": "Wrong tracker data!"});
+    }
+
+    tracker = await storage.addTracker(hw, uuid, name);
+    res.json(tracker);
 }
 
 exports.updateTracker = async (req, res) => {
-    res.json({});
+    let tracker = req.body.tracker;
+    let id = parseInt(req.params.id);
+
+    const hw = tracker.hw;
+    const uuid = tracker.uuid;
+    const name = tracker.name;
+
+    if (isNaN(id) || (hw === null) || (uuid === null) || (name === null) || (uuid === "") || (name === "")) {
+        res.json({ "error": "Wrong tracker data!"});
+    }
+
+    tracker = await storage.updateTracker(id, hw, uuid, name);
+    res.json(tracker);
 }
 
 exports.deleteTracker = async (req, res) => {

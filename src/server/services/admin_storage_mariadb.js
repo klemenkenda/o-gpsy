@@ -234,6 +234,39 @@ class MariaDBAdminStorageService {
         }
     }
 
+    async addTracker(hw, uuid, name) {
+        let conn;
+
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+
+            let { insertId } = await conn.query('insert into trackers (hw, uuid, name) VALUES (?, ?, ?)', [hw, uuid, name]);
+            return await conn.query('select * from trackers where id = ?', [insertId]);
+
+        } catch (err) {
+            console.log(err);
+            throw (err);
+        } finally {
+            if (conn) conn.end();
+        }
+    }
+
+    async updateTracker(id, hw, uuid, name) {
+        let conn;
+
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+            await conn.query('update trackers set hw=?, uuid=?, name=? where id=?', [hw, uuid, name, id]);
+            return await conn.query('select * from trackers where id = ?', [id]);
+        } catch (err) {
+            console.log(err);
+            throw (err);
+        } finally {
+            if (conn) conn.end();
+        }
+    }
 }
 
 module.exports = MariaDBAdminStorageService;
