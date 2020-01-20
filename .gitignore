@@ -1,2 +1,3 @@
 .vscode/
 node_modules/
+src/integrations/tmt250-tcp/tmt250-sample.txt

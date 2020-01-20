@@ -104,7 +104,8 @@ exports.getTrackers = async (req, res) => {
 }
 
 exports.addTracker = async (req, res) => {
-    res.json({});
+    const tracker = await storage.deleteTracker(id);
+    res.json(req.params);
 }
 
 exports.updateTracker = async (req, res) => {
@@ -112,5 +113,10 @@ exports.updateTracker = async (req, res) => {
 }
 
 exports.deleteTracker = async (req, res) => {
-    res.json({});
+    let id = Utils.emptyIsNull(req.params.id);
+    if (id !== null) {
+        id = parseInt(id);
+    }
+    const tracker = await storage.deleteTracker(id);
+    res.json(tracker);
 }

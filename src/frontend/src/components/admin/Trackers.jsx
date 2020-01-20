@@ -4,7 +4,8 @@ import {
     Container,
     Table,
     Jumbotron,
-    ButtonToolbar, Button
+    ButtonToolbar, Button,
+    Modal
 } from 'react-bootstrap';
 import TableRow from './TableRow';
 
@@ -22,6 +23,10 @@ class Trackers extends Component {
 
     constructor() {
         super();
+        this.state = {
+            showDeleteModal: false,
+            trackerToDeleteId: -1
+        }
         this.backend = getBackend().admin;
     }
 
@@ -31,7 +36,10 @@ class Trackers extends Component {
         if (this.props.match.params.action) {
             this.action = this.props.match.params.action;
         }
+        await this.loadTrackers();
+    }
 
+    async loadTrackers() {
         try {
             let trackers = await this.backend.getTrackers();
             this.setState({
@@ -43,31 +51,74 @@ class Trackers extends Component {
 
     }
 
+    deleteTrackerStart(id) {
+        this.setState({
+            showDeleteModal: true,
+            trackerToDeleteId: id
+        })
+    }
+
+    async deleteTracker() {
+        try {
+            const id = this.state.trackerToDeleteId;
+            console.log(await this.backend.deleteTracker(id));
+            this.setState({
+                showDeleteModal: false
+            })
+            this.loadTrackers();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    handleClose() {
+        this.setState({
+            showDeleteModal: false
+        })
+    }
+
     renderList() {
-        return <Table striped bordered hover responsive="sm">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Hardware</th>
-                    <th>Name</th>
-                    <th>Uuid / IMEI</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            {
-                this.state.trackers.map((el, i) => {
-                    return <TableRow
-                        key={i}
-                        id={el.id}
-                        obj={el}
-                        columns={['hw', 'name', 'uuid']}
-                        showAction={true}
-                    />;
-                })
-            }
-            </tbody>
-        </Table>
+        return <>
+            <Modal show={this.state.showDeleteModal} onHide={this.handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirm</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Do you really want to delete the tracker?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => this.handleClose()}>
+                        No
+                    </Button>
+                    <Button variant="danger" onClick={() => this.deleteTracker()}>
+                        Delete
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            <Table striped bordered hover responsive="sm">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Hardware</th>
+                        <th>Name</th>
+                        <th>Uuid / IMEI</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {
+                    this.state.trackers.map((el, i) => {
+                        return <TableRow
+                            key={i}
+                            id={el.id}
+                            obj={el}
+                            columns={['hw', 'name', 'uuid']}
+                            showAction={true}
+                            handleToDelete={(id) => this.deleteTrackerStart(id)}
+                        />;
+                    })
+                }
+                </tbody>
+            </Table>
+        </>
     }
 
     render() {

@@ -179,6 +179,17 @@ export class RestAdminBackend implements AdminBackend {
             throw e;
         }
     }
+
+    async deleteTracker(id) {
+        try {
+            const { data } = await axios.delete(`/api/admin/tracker/${id}`);
+            return data;
+        }
+        catch (e) {
+            console.log(e);
+            throw e;
+        }
+    };
 }
 
 export class RestBackend implements Backend {

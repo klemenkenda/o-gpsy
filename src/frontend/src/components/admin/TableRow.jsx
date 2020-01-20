@@ -27,7 +27,7 @@ class TableRow extends React.Component<Props> {
     render() {
         let editLink = this.props.editLink + this.props.obj.id;
         return <tr>
-            <td>{this.props.id + 1}</td>
+            <td>{this.props.obj.id}</td>
             {
                 this.props.columns.map((el, i) => {
                     return (

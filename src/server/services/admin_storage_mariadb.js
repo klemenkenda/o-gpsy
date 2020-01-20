@@ -218,6 +218,22 @@ class MariaDBAdminStorageService {
         }
     }
 
+    async deleteTracker(id) {
+        let conn;
+
+        try {
+            conn = await this.pool.getConnection();
+            await conn.query('use ' + this.config.db);
+            let tracker = await conn.query('delete from trackers where id = ?', [id]);
+            return tracker;
+        } catch (err) {
+            console.log(err);
+            throw (err);
+        } finally {
+            if (conn) conn.end();
+        }
+    }
+
 }
 
 module.exports = MariaDBAdminStorageService;
