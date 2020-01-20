@@ -54,9 +54,19 @@ class Trackers extends Component {
     async loadTrackers() {
         try {
             let trackers = await this.backend.getTrackers();
-            this.setState({
-                trackers: trackers
-            });
+            if ((this.action === "edit") && !isNaN(this.state.selected)) {
+                const tracker = trackers.filter(x => x.id === this.state.selected)[0];
+                this.setState({
+                    trackers: trackers,
+                    hw: tracker.hw,
+                    name: tracker.name,
+                    uuid: tracker.uuid
+                })
+            } else {
+                this.setState({
+                    trackers: trackers
+                });
+            }
         } catch (err) {
             console.log(err);
         }
@@ -168,17 +178,18 @@ class Trackers extends Component {
                 if (this.action === "add") {
                     await this.backend.addTracker({ hw: this.state.hw, uuid: this.state.uuid, name: this.state.name });
                 } else if (this.action === "edit") {
-                    console.log(await this.backend.updateTracker({ id: this.state.selected, hw: this.state.hw, uuid: this.state.uuid, name: this.state.name }));
+                    await this.backend.updateTracker({ id: this.state.selected, hw: this.state.hw, uuid: this.state.uuid, name: this.state.name });
                 }
                 this.action = "list";
                 this.props.history.push("/admin/trackers");
+                this.setState({ validated: false });
                 this.loadTrackers();
             } catch (err) {
                 console.log(err);
             }
-        };
-
-        this.setState({ validated: true });
+        } else {
+            this.setState({ validated: true });
+        }
     }
 
     renderForm() {
@@ -225,7 +236,7 @@ class Trackers extends Component {
             </Button>}
 
             { (this.action === "edit" ) && <Button variant="warning" type="submit">
-                Edit tracker
+                Update tracker
             </Button>}
 
         </Form>
