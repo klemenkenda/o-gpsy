@@ -62,13 +62,13 @@ Development server runs on port 3000. You start it simply by `npm start` in `src
 * Provide administration interface for users/clubs
    * <del>Login</del> [ done ]
    * Change current user's password
-   * Create standard CRUD template to be used for all of the following tasks
+   * <del>Create standard CRUD template to be used for all of the following tasks</del> [ done ]
       * <del>Admin menu</del> [ done ]
       * <del>List last entered points (log)</del> [ done ]
       * List/add/edit/delete users
-      * List/add/edit/delete tracker
+      * <del>List/add/edit/delete tracker</del> [ done ]
       * List/add/edit/delete runner to the competition
-      * List/add/edit/delete new competition
+      * <del>List/</del>add/edit/delete new competition
       * <del>List/add/edit/delete new map</del> [ done ]
 * Live view: user interface
    * <del>Show full track</del> [ done ]
