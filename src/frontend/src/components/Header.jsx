@@ -67,7 +67,7 @@ class Header extends Component {
 
             return <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
-                    Signed in as: <a href="/logout">{name}</a>
+                    {name} | <a href="/logout">Log Out</a>
                 </Navbar.Text>
             </Navbar.Collapse>
         } else {

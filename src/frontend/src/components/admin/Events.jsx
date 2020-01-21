@@ -47,19 +47,32 @@ class Events extends Component {
             this.action = "edit";
         }
         await this.loadEvents();
+        await this.loadEventDetails();
     }
 
     async loadEvents() {
         try {
             const data = await this.backend.getEvents();
-            console.log(data);
             this.setState({
-                events: data
+                events: data.reverse()
             });
         } catch (err) {
             console.log(err);
         }
+    }
 
+    async loadEventDetails() {
+        try {
+            this.state.events.forEach(async (el, i) => {
+                const data = await this.backend.getEvent(el.id);
+                el.map_id = data.map.name + " (" + el.id + ")";
+                el.start = new Date(el.start).toLocaleString('sl-SI');
+                this.setState({ events: this.state.events });
+            });
+
+        } catch(e) {
+            console.log(e);
+        }
     }
 
 
@@ -127,9 +140,9 @@ class Events extends Component {
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Start</th>
+                        <th>Start time</th>
                         <th>Name</th>
-                        <th>Map id</th>
+                        <th>Map</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -238,10 +251,10 @@ class Events extends Component {
                     <h1>Events: {this.action}</h1>
                     <ButtonToolbar>
                         {
-                            (this.action === "list") && <Button variant="success" href="/admin/trackers/add">Add new event</Button>
+                            (this.action === "list") && <Button variant="success" href="/admin/events/add">Add new event</Button>
                         }
                         {
-                            (this.action !== "list") && <Button variant="info" href="/admin/trackers">List events</Button>
+                            (this.action !== "list") && <Button variant="info" href="/admin/events">List events</Button>
                         }
                     </ButtonToolbar>
                 </Container>
