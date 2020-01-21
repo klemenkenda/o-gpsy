@@ -89,7 +89,7 @@ class Events extends Component {
 
     editTrackerStart(id) {
         this.action = "edit";
-        this.props.history.push(`/admin/trackers/${id}`);
+        this.props.history.push(`/admin/events/${id}`);
         // obtain tracker data
         const tracker = this.state.trackers.filter(x => x.id === id)[0];
         this.setState({
