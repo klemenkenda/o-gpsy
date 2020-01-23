@@ -98,8 +98,8 @@ class AdminEventsAdd extends Component<Props, State> {
                                 onChange={date => this.setState({ end: date })} />
                         </Form.Group>
                     </Form.Row>
-                    <Form.Row>
-                        <Form.Group as={Col} md={12} controlId="checkboxes">
+                    <Form.Row className="mt-3">
+                        <Form.Group as={Col} md={12} controlId="checkboxes1">
                         <Form.Check
                             type="switch"
                             id="active"
@@ -107,8 +107,11 @@ class AdminEventsAdd extends Component<Props, State> {
                             checked={this.state.active}
                             onChange={x => this.setState({ active: x.target.checked })}
                         />
+                        </Form.Group>
+                        <Form.Group as={Col} md={12} controlId="checkboxes2">
                         <Form.Check
                             type="switch"
+                            size="lg"
                             label="Public"
                             id="public"
                             checked={this.state.public}
@@ -119,6 +122,9 @@ class AdminEventsAdd extends Component<Props, State> {
                     <Form.Row>
                         <Form.Group as={Col} md={12} controlId="maps">
                             <h3>Map</h3>
+
+                            <Button variant="success" type="submit">Save event data</Button>
+
                         </Form.Group>
                     </Form.Row>
                 </Form>
